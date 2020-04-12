@@ -21,6 +21,9 @@ class Variable:
     def getValue(self):
         return self.value
 
+    def setValue(self,val):
+        self.value=val
+
 class InputVariable(Variable):
     def __init__(self,description,value):
         super().__init__(description,value,None)
@@ -36,5 +39,5 @@ class CalcFunction:
         self.bindings=bindings
 
     def execute(self,values): #values is represented with a dictionary e.g. {"g":9.81}
-        params=[values[key] for key in bindings]
+        params=[values[key] for key in self.bindings]
         return self.fun(*params)

@@ -1,5 +1,9 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+from collections import OrderedDict
+from matplotlib.collections import LineCollection
+from fa2 import ForceAtlas2
+from grapher.curved_edges import curved_edges
 
 #plt.ion()
 
@@ -14,36 +18,69 @@ except ImportError:
         raise ImportError("Need Graphviz and either "
                           "PyGraphviz or pydot")
 
+forceatlas2 = ForceAtlas2()
+
 class Grapher:
-    def __init__(self):
+    def __init__(self,view=False,debug=False):
         self.G=nx.DiGraph()
         self.initialized=False
+        self.colors=OrderedDict()
+        self.view=view
+        self.debug=debug
+
 
     def addNode(self,name,description,parent=None):
         self.G.add_node(name,description=description)
+        if name not in self.colors:
+            self.colors[name]='#000000'
         if parent is not None:
             self.G.add_edge(name,parent)
-        self.drawGraph()
+        if self.view and self.debug:
+            self.drawGraph()
 
     def pause(self,val):
         plt.pause(val)
 
-    def drawGraph(self):
-        if not self.initialized:
-            self.fig, self.ax = plt.subplots(figsize=(8, 8))
-            #self.ax.('equal')
-            self.initialized=True
+    def changeNodeColor(self,node,color):
+        self.colors[node]=color
+        if self.view and self.debug:
+            self.drawGraph()
+
+    def calcPos(self):
         #self.pos = nx.planar_layout(self.G)
+        #self.pos = nx.shell_layout(self.G)
+        #self.pos = nx.spiral_layout(self.G)
+        #self.pos = nx.kamada_kawai_layout(self.G)
+        #self.pos = nx.spectral_layout(self.G)
         self.pos = nx.circular_layout(self.G)
+        #self.pos= forceatlas2.forceatlas2_networkx_layout(self.G, pos=None, iterations=50)
         #self.pos = graphviz_layout(self.G, prog='twopi', args='')
-        #print(self.pos)
+
+    def drawGraph(self):
+        if not self.view:
+            return
+        if not self.initialized:
+            self.fig, self.ax = plt.subplots(figsize=(8, 8),num='Liquid rocket analysis')
+            self.ax.set_axis_off()
+            self.pause(1)
+            self.initialized=True
         self.ax.cla()
-        nx.draw_networkx(self.G, self.pos, ax=self.ax, node_size=50, alpha=0.5, with_labels=False, node_color="blue",linewidths=1,arrowsize=20)
+        self.ax.set_axis_off()
+        self.calcPos()
+        #curves = curved_edges(self.G, self.pos)
+        #lc = LineCollection(curves, color='k', alpha=0.1)
+        tcolors=[node[1] for node in list(self.colors.items())]
+        #print(tcolors)
+        #nx.draw_networkx_nodes(self.G, self.pos, node_size=5, node_color='k', alpha=0.4)
+        nx.draw_networkx(self.G, self.pos, ax=self.ax, node_size=50, alpha=1, with_labels=False, node_color=tcolors,linewidths=1)
+        #self.ax.add_collection(lc)
+        #plt.tick_params(axis='both',which='both',bottom=False,left=False,labelbottom=False,labelleft=False)
         pos_attrs = {}
         for node, coords in self.pos.items():
-            pos_attrs[node] = (coords[0], coords[1] + 0.1)
+            pos_attrs[node] = (coords[0], coords[1] + 0.05)
         node_attrs = nx.get_node_attributes(self.G, 'description')
         nx.draw_networkx_labels(self.G, pos_attrs, ax=self.ax, labels=node_attrs)
 
         self.fig.canvas.draw()
+        self.pause(0.01)
         #plt.show(block=True)

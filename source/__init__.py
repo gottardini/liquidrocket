@@ -17,8 +17,10 @@ variables={
     "c_star":UnknownVariable("Velocità caratteristica",CalcFunction(calcCharacteristicVelocity,'R_cp','T_c','GAMMA')),
     "u_e":UnknownVariable("Velocità all'efflusso",CalcFunction(calcExitVelocity,'eta_2D','y_c','R_cp','T_c','p_e','p_c')),
     "I_s_e":UnknownVariable("Impulso specifico a quota zero",CalcFunction(calcSpecificImpulse,'u_e','g_0')),
-    "c_t_e":UnknownVariable("Coefficiente di spinta a quota zero",CalcFunction(calcThrustCoefficient,'eta_2D','I_s_e','g_0','c_star'))
+    "c_t_e":UnknownVariable("Coefficiente di spinta a quota zero",CalcFunction(calcThrustCoefficient,'eta_2D','I_s_e','g_0','c_star')),
+    "m_p":UnknownVariable("Portata massica di propellente",CalcFunction(calcPropFlowRate,'T_z','u_e','eps','p_c','c_t_e','p_e','p_z')),
+    "A_t":UnknownVariable("Sezione di gola",CalcFunction(calcThroatArea,'m_p','u_e','p_c','c_t_e')),
+    "D_t":UnknownVariable("Diametro di gola",CalcFunction(calcThroatDiameter,'A_t')),
+    "A_e":UnknownVariable("Area di efflusso",CalcFunction(calcExitArea,'eps','A_t')),
+    "D_e":UnknownVariable("Diametro di efflusso",CalcFunction(calcExitDiameter,'A_e'))
 }
-
-#outputs=["c_star","I_s_e"]
-outputs=[key for key,val in variables.items()]

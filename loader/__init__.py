@@ -18,7 +18,8 @@ class DataLoader:
         engines=OrderedDict()
         for i in range(nEngines):
             engines[data[0][firstEngineCol+i]]={}
-        for row in data:
-            for i in range(nEngines):
-                engines[data[0][firstEngineCol+i]][row[symbolCol]]=InputVariable(row[nameCol],row[firstEngineCol+i])
+        for row in data[1:-6]:
+            #print(row)
+            for i in range(nEngines-nEngines+1):
+                engines[data[0][firstEngineCol+i]][row[symbolCol]]=InputVariable(row[nameCol],float(row[firstEngineCol+i]))
         return engines

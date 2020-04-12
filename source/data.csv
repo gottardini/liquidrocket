@@ -3,7 +3,8 @@ Vulcain II","Ariane V
 HM7B","Falcon Heavy
 Merlin 1D","Saturn V
 F-1","Saturn V
-J-2",
+J-2 (II° stadio)","Saturn V
+J-2 (III° stadio)"
 Rapporto aree ugello,eps,-,n,58.2,83.1,,16,27.5,27.5
 Tempo di combustione,t_b,s,n,540,945,230,150.7,367,156+336
 Pressione statica in camera di combustione,p_c,Pa,n,1.17E+07,3.70E+06,1.10E+07,7000000,5.26E+06,5.26E+06
@@ -23,7 +24,7 @@ Rapporto massico di miscela,r,-,n,6.1,5,2.24,2.27,5,5
 Massa molare media dei prodotti di combustione,Mm_cp,kg/kmol,y,13.846,11.764,,22.5,8.9,8.9
 Rapporto calori specifici dei prodotti di combustione,y_c,-,y,1.1411,1.1524,,1.24,1.26,1.26
 Impulso specifico nominale,Isp_z,s,n,429,444.6,285.4,,424,424
-Fattore di correzione velocità ,eta_2D,-,n,,,,0.92,,
+Fattore di correzione velocità ,eta_2D,-,n,0.92,,,0.92,,
 Lunghezza caratteristica (Sutton),L_star,m,n,,,,1,,
 Numero di Mach in camera di combustione,Ma_c,-,y,,,,,,
 Coefficiente di efflusso fori piastra iniezione,Cd,-,n,,,,0.88,,
