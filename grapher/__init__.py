@@ -46,7 +46,7 @@ class Grapher:
         if self.view and self.debug:
             self.drawGraph()
 
-    def calcPos(self):
+    def calcPos(self):        
         #self.pos = nx.planar_layout(self.G)
         #self.pos = nx.shell_layout(self.G)
         #self.pos = nx.spiral_layout(self.G)

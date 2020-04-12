@@ -1,4 +1,4 @@
-import config
+import utils
 from solver import Solver
 from grapher import Grapher
 import time
@@ -6,8 +6,9 @@ import matplotlib.pyplot as plt
 import traceback
 import argparse
 import pprint
-pp=pprint.PrettyPrinter()
-
+import logging
+from colorlog import ColoredFormatter
+LOGFORMAT = "  %(log_color)s%(levelname)-8s%(reset)s | %(log_color)s%(message)s%(reset)s"
 
 def str2bool(v):
     if isinstance(v, bool):
@@ -26,20 +27,40 @@ if __name__=="__main__":
     parser.set_defaults(graph=False)
     parser.set_defaults(debug=False)
     args = parser.parse_args()
+    print(utils.getLogo())
 
-    outputs=config.getOutputs()
-    data=config.getData(0)
+    ###SOME SETUP
+    pp=pprint.PrettyPrinter()
+    LOG_LEVEL = logging.DEBUG if args.debug else logging.INFO
+
+
+    logging.root.setLevel(LOG_LEVEL)
+    formatter = ColoredFormatter(LOGFORMAT)
+    stream = logging.StreamHandler()
+    stream.setLevel(LOG_LEVEL)
+    stream.setFormatter(formatter)
+    logger = logging.getLogger('pythonConfig')
+    logger.setLevel(LOG_LEVEL)
+    logger.addHandler(stream)
+
+
+    outputs=utils.getOutputs()
+    data=utils.getData(0)
     grph=Grapher(view=args.graph,debug=args.debug)
     try:
-        print("Requested outputs: ")
-        pp.pprint([(out,data[out].description) for out in outputs])
-        print("\nBuilding problem graph...")
-        slvr=Solver(data,outputs,grph)
+        logger.info("Requested outputs: ")
+        logger.info(pp.pformat([(out,data[out].description) for out in outputs]))
+        print()
+        logger.info("Building problem tree...")
+        slvr=Solver(data,outputs,grph,logger)
+        utils.tic()
         if slvr.validateTree():
-            print("Solving...")
+            logger.info("Tree building took %s seconds"%(utils.toc()))
+            logger.info("Solving tree...")
+            utils.tic()
             res=slvr.solve()
-            print("Done! Here are your results:")
-            pp.pprint(res)
+            logger.info("Done! Solving took %s seconds. Here are your results:"%(utils.toc()))
+            logger.info(res)
     except Exception:
          print(traceback.format_exc())
     plt.show()
