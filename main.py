@@ -1,4 +1,5 @@
 import utils
+print(utils.getLogo())
 from solver import Solver
 from grapher import Grapher
 import time
@@ -27,7 +28,7 @@ if __name__=="__main__":
     parser.set_defaults(graph=False)
     parser.set_defaults(debug=False)
     args = parser.parse_args()
-    print(utils.getLogo())
+
 
     ###SOME SETUP
     pp=pprint.PrettyPrinter()
@@ -61,6 +62,7 @@ if __name__=="__main__":
             res=slvr.solve()
             logger.info("Done! Solving took %s seconds. Here are your results:"%(utils.toc()))
             logger.info(res)
+            logger.debug("\n"+pp.pformat({key:val.getValue() for key,val in slvr.data.items()}))
     except Exception:
          print(traceback.format_exc())
     plt.show()

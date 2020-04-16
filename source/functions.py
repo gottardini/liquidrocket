@@ -2,7 +2,7 @@ import numpy as np
 from scipy.optimize import fsolve
 
 def calcGasConstant(Ru,MM):
-    return Ru/MM;
+    return Ru*1e3/MM;
 
 def vanker(y):
     return np.sqrt(y*(2/(y+1))**((y+1)/(y-1)));
@@ -19,17 +19,23 @@ def calcCharacteristicVelocity(R_cp,T_c,GAMMA):
 def calcExitVelocity(eta_2D,y,R_cp,T_c,p_e,p_c):
     return eta_2D*np.sqrt(2*(y/(y-1))*R_cp*T_c*(1-(p_e/p_c)**((y-1)/y)));
 
-def calcSpecificImpulse(u_e,g_0):
+def calcAdaptedSpecificImpulse(u_e,g_0):
     return u_e/g_0
 
-def calcThrustCoefficient(eta_2D,I_s_e,g_0,c_star):
+def calcAdaptedThrustCoefficient(eta_2D,I_s_e,g_0,c_star):
     return eta_2D*I_s_e*g_0/c_star
 
-def calcPropFlowRate(T_z, u_e, eps, p_c, c_t_e, p_e, p_z):
-    return T_z/(u_e+((eps*u_e)/(p_c*c_t_e))*(p_e-p_z));
+def calcThrustCoefficientWhat(p_a,y,eps,p_e,p_c):
+    return np.sqrt((2*(y**2)/(y-1))*((2/(y+1))**((y+1)/(y-1))))+eps*((p_e-p_a)/p_c);
 
-def calcThroatArea(m_p, u_e, p_c, c_t_e):
-    return (m_p*u_e)/(p_c*c_t_e)
+def calcThrustCoefficient(p_a,y,eps,p_e,p_c):
+    return y*np.sqrt(2/(y-1)*((2/(y+1))**((y+1)/(y-1)))*(1-(p_e/p_c)**((y-1)/y)))+eps*(p_e-p_a)/p_c;
+
+def calcPropFlowRate(T_z, u_e, eps, p_c, ct, p_e, p_z):
+    return T_z*1e3/(u_e+((eps*u_e)/(p_c*ct))*(p_e-p_z));
+
+def calcThroatArea(m_p, u_e, p_c, ct):
+    return (m_p*u_e)/(p_c*ct)
 
 def calcThroatDiameter(A_t):
     return np.sqrt(4*A_t/np.pi)
@@ -39,3 +45,6 @@ def calcExitArea(A_t,eps):
 
 def calcExitDiameter(A_e):
     return np.sqrt(4*A_e/np.pi)
+
+def calcThrust(m_p, u_e, A_e, p_e, p_a):
+    return m_p*u_e + (p_e-p_a)*A_e

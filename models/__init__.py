@@ -1,3 +1,6 @@
+import numpy as np
+import collections
+
 class Node:
     def __init__(self,variable):
         pass
@@ -7,6 +10,11 @@ class Variable:
     def __init__(self,description,value=None,calcFunction=None):
         self.description=description
         self.calcFunction=calcFunction
+        if type(value)!=np.array:
+            if isinstance(value,collections.Iterable):
+                value=np.array(value)
+            else:
+                value=np.array([value])
         self.value=value
 
     def getDependencies(self):

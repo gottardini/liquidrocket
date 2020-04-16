@@ -20,6 +20,10 @@ class DataLoader:
             engines[data[0][firstEngineCol+i]]={}
         for row in data[1:-6]:
             #print(row)
-            for i in range(nEngines-nEngines+1):
-                engines[data[0][firstEngineCol+i]][row[symbolCol]]=InputVariable(row[nameCol],float(row[firstEngineCol+i]))
+            for i in range(nEngines):
+                try:
+                    val=float(row[firstEngineCol+i])
+                except:
+                    val=None
+                engines[data[0][firstEngineCol+i]][row[symbolCol]]=InputVariable(row[nameCol],val)
         return engines

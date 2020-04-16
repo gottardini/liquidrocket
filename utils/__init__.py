@@ -14,17 +14,19 @@ def mergeData(sources):
 def getEngineData(inputData,chosenEngine):
     if type(chosenEngine)==int:
         inputD=list(inputData.items())[chosenEngine][1]
+
     elif type(chosenEngine)==str:
         inputD=inputData[chosenEngine]
     else:
         raise ValueError("Invalid engine selection")
+
 
     return inputD
 
 def getData(chosenEngine):
     loader=ld.DataLoader(config.datafile)
     inputData=loader.load()
-
+    #print(inputData)
     #######
     sources=[source.constants,source.variables,getEngineData(inputData,chosenEngine)]
     #######
@@ -32,7 +34,7 @@ def getData(chosenEngine):
     return mergeData(sources)
 
 def getOutputs():
-    return open(config.jobfile).read()[:-1].split("\n")
+    return list(filter(lambda x: x!='',open(config.jobfile).read().split("\n")))
 
 def getLogo():
     return open("utils/logo.txt").read()

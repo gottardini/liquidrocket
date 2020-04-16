@@ -27,10 +27,10 @@ class Solver:
 
     def solveRecursively(self,nodename):
         self.logger.debug("Solver is currently at node '%s'"%(nodename))
-        if self.data[nodename].getValue() is not None:
+        if None not in self.data[nodename].getValue():
             self.logger.debug("Node '%s' has a value. Branch dies here"%(nodename))
             self.grapher.changeNodeColor(nodename,'#8DFF33')
-            return
+            return True
         calcFunction=self.data[nodename].getCalcFunction()
         dependencies=self.data[nodename].getDependencies()
         if dependencies is None:
@@ -43,7 +43,9 @@ class Solver:
         args={dep:self.data[dep].getValue() for dep in dependencies}
         #At this point each dependency has a value, so we can calculate the current nodes
         self.logger.debug("Evaluating node '%s'"%(nodename))
-        self.data[nodename].setValue(calcFunction.execute(args))
+        value=calcFunction.execute(args)
+        self.logger.debug("Result: %s"%(value))
+        self.data[nodename].setValue(value)
         self.logger.debug("Node '%s' successfully evaluated. Proceeding..."%(nodename))
         self.grapher.changeNodeColor(nodename,'#8DFF33')
         return True
@@ -78,7 +80,7 @@ class Solver:
                 return False
             self.visited.append(nodename)
             dependencies=self.data[nodename].getDependencies()
-            if dependencies is not None:
+            if dependencies != None:
                 self.logger.debug("Node '%s' has %s depencencies. Visiting them..."%(nodename,len(dependencies)))
                 dependenciesSet=set(dependencies)
                 keysInter=dependenciesSet.intersection(self.dataKeySet)
