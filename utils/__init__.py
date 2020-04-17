@@ -36,6 +36,9 @@ def getData(chosenEngine):
 def getOutputs():
     return list(filter(lambda x: x!='',open(config.jobfile).read().split("\n")))
 
+def getPostProc():
+    return list(filter(lambda x: x!='',open(config.postprocfile).read().split("\n")))
+
 def getLogo():
     return open("utils/logo.txt").read()
 

@@ -2,6 +2,7 @@ import utils
 print(utils.getLogo())
 from solver import Solver
 from grapher import Grapher
+from postprocessing import PostProcesser
 import time
 import matplotlib.pyplot as plt
 import traceback
@@ -48,12 +49,14 @@ if __name__=="__main__":
     outputs=utils.getOutputs()
     data=utils.getData(0)
     grph=Grapher(view=args.graph,debug=args.debug)
+    postprocesser=PostProcesser()
     try:
         logger.info("Requested outputs: ")
         logger.info(pp.pformat([(out,data[out].description) for out in outputs]))
         print()
         logger.info("Building problem tree...")
         slvr=Solver(data,outputs,grph,logger)
+        #time.sleep(6)
         utils.tic()
         if slvr.validateTree():
             logger.info("Tree building took %s seconds"%(utils.toc()))
@@ -63,6 +66,8 @@ if __name__=="__main__":
             logger.info("Done! Solving took %s seconds. Here are your results:"%(utils.toc()))
             logger.info(res)
             logger.debug("\n"+pp.pformat({key:val.getValue() for key,val in slvr.data.items()}))
+            logger.info("Postprocessing...")
+            #postprocesser.make(slvr.data)
     except Exception:
          print(traceback.format_exc())
     plt.show()

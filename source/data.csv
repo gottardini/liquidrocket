@@ -24,7 +24,7 @@ Rapporto massico di miscela,r,-,n,6.1,5,2.24,2.27,5,5
 Massa molare media dei prodotti di combustione,Mm_cp,kg/kmol,y,13.846,11.764,,22.5,8.9,8.9
 Rapporto calori specifici dei prodotti di combustione,y_c,-,y,1.1411,1.1524,,1.24,1.26,1.26
 Impulso specifico nominale,Isp_z,s,n,429,444.6,285.4,304,424,424
-Fattore di correzione velocità ,eta_2D,-,n,1,,,0.92,1,
+Fattore di correzione velocità ,eta_2D,-,n,1,1,1,0.92,1,
 Lunghezza caratteristica (Sutton),L_star,m,n,,,,1,,
 Numero di Mach in camera di combustione,Ma_c,-,y,,,,,,
 Coefficiente di efflusso fori piastra iniezione,Cd,-,n,,,,0.88,,

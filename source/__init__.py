@@ -3,7 +3,7 @@ from source.functions import *
 import numpy as np
 
 variables_array={
-    "p":InputVariable("Quota",np.linspace(101325,0,num=50))
+    "z":InputVariable("Quota [m]",np.linspace(0,1e5,50)),
 }
 
 constants={
@@ -12,7 +12,8 @@ constants={
     "a":InputVariable("Gradiente di temperatura verticale [K/m]",0.0065),
     "p_0":InputVariable("Pressione a quota zero [Pa]", 101325),
     "T_0":InputVariable("Temperatura a quota zero [K]", 288.16),
-    "GUESS":InputVariable("Stima pressione all'efflusso",50000)
+    "GUESS":InputVariable("Stima pressione all'efflusso",20000),
+    "R_air":InputVariable("Costante specifica dell'aria",287.058)
 }
 
 variables_gas={
@@ -27,10 +28,13 @@ variables_fluid={
 }
 
 variables_static={
+    "thr_ad":UnknownVariable("Spinta a quota di adattamento[N]",CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p_e')),
+    "z_ad":UnknownVariable("Quota di adattamento",CalcFunction(calcAltitudeFromPressure,'p_e','p_0','T_0','a','g_0','R_air')),
+    "thr_n":UnknownVariable("Spinta nominale [N]",CalcFunction(kiloNewtonToNewton,'T_n')),
     "Is_ad":UnknownVariable("Impulso specifico a quota di adattamento",CalcFunction(calcAdaptedSpecificImpulse,'u_e','g_0')),
     "ct_ad":UnknownVariable("Coefficiente di spinta a quota di adattamento",CalcFunction(calcAdaptedThrustCoefficient,'eta_2D','Is_ad','g_0','c_star')),
     "ct_n":UnknownVariable("Coefficiente di spinta nominale",CalcFunction(calcThrustCoefficient,'p_n', 'y_c', 'eps', 'p_e', 'p_c')),
-    "m_p":UnknownVariable("Portata massica di propellente",CalcFunction(calcPropFlowRate,'T_n','u_e','eps','p_c','ct_n','p_e','p_n')),
+    "m_p":UnknownVariable("Portata massica di propellente",CalcFunction(calcPropFlowRate,'thr_n','u_e','eps','p_c','ct_n','p_e','p_n')),
     "A_t":UnknownVariable("Sezione di gola",CalcFunction(calcThroatArea,'m_p','u_e','p_c','ct_n')),
     "D_t":UnknownVariable("Diametro di gola",CalcFunction(calcThroatDiameter,'A_t')),
     "A_e":UnknownVariable("Area di efflusso",CalcFunction(calcExitArea,'eps','A_t')),
@@ -38,8 +42,10 @@ variables_static={
 }
 
 variables_var={
-    "ct_var":UnknownVariable("Coefficiente di spinta in funzione della pressione",CalcFunction(calcThrustCoefficient,'p','y_c','eps','p_e','p_c')),
-    "thr":UnknownVariable("Spinta in funzione della pressione",CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p'))
+    "p":UnknownVariable("Pressione atmosferica [Pa]",CalcFunction(calcPressureFromAltitude,'z','p_0','T_0','a','g_0','R_air')),
+    "ct_var":UnknownVariable("Coefficiente di spinta",CalcFunction(calcThrustCoefficient,'p','y_c','eps','p_e','p_c')),
+    "thr_var":UnknownVariable("Spinta [N]",CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p')),
+
 }
 
 variables={**variables_gas,**variables_fluid,**variables_static,**variables_array,**variables_var}

@@ -32,7 +32,7 @@ def calcThrustCoefficient(p_a,y,eps,p_e,p_c):
     return y*np.sqrt(2/(y-1)*((2/(y+1))**((y+1)/(y-1)))*(1-(p_e/p_c)**((y-1)/y)))+eps*(p_e-p_a)/p_c;
 
 def calcPropFlowRate(T_z, u_e, eps, p_c, ct, p_e, p_z):
-    return T_z*1e3/(u_e+((eps*u_e)/(p_c*ct))*(p_e-p_z));
+    return T_z/(u_e+((eps*u_e)/(p_c*ct))*(p_e-p_z));
 
 def calcThroatArea(m_p, u_e, p_c, ct):
     return (m_p*u_e)/(p_c*ct)
@@ -48,3 +48,12 @@ def calcExitDiameter(A_e):
 
 def calcThrust(m_p, u_e, A_e, p_e, p_a):
     return m_p*u_e + (p_e-p_a)*A_e
+
+def calcPressureFromAltitude(z,p_0,T_0,a,g_0, R_air):
+    return p_0*(1+a*z/T_0)**(-g_0/(a*R_air))
+
+def calcAltitudeFromPressure(p,p_0,T_0,a,g_0, R_air):
+    return T_0/a*((p/p_0)**(-a*R_air/g_0)-1)
+
+def kiloNewtonToNewton(f):
+    return 1e3*f

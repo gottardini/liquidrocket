@@ -46,21 +46,21 @@ class Grapher:
         if self.view and self.debug:
             self.drawGraph()
 
-    def calcPos(self):        
+    def calcPos(self):
         #self.pos = nx.planar_layout(self.G)
         #self.pos = nx.shell_layout(self.G)
         #self.pos = nx.spiral_layout(self.G)
         #self.pos = nx.kamada_kawai_layout(self.G)
         #self.pos = nx.spectral_layout(self.G)
-        self.pos = nx.circular_layout(self.G)
+        #self.pos = nx.circular_layout(self.G)
         #self.pos= forceatlas2.forceatlas2_networkx_layout(self.G, pos=None, iterations=50)
-        #self.pos = graphviz_layout(self.G, prog='twopi', args='')
+        self.pos = graphviz_layout(self.G, prog='twopi', args='')
 
     def drawGraph(self):
         if not self.view:
             return
         if not self.initialized:
-            self.fig, self.ax = plt.subplots(figsize=(8, 8),num='Liquid rocket analysis')
+            self.fig, self.ax = plt.subplots(figsize=(8, 8),num='Liquid rocket analysis',facecolor='white')
             self.ax.set_axis_off()
             self.pause(1)
             self.initialized=True
@@ -68,16 +68,16 @@ class Grapher:
         self.ax.set_axis_off()
         self.calcPos()
         #curves = curved_edges(self.G, self.pos)
-        #lc = LineCollection(curves, color='k', alpha=0.1)
+        #lc = LineCollection(curves, color='k', alpha=0.2)
         tcolors=[node[1] for node in list(self.colors.items())]
         #print(tcolors)
-        #nx.draw_networkx_nodes(self.G, self.pos, node_size=5, node_color='k', alpha=0.4)
+        #nx.draw_networkx_nodes(self.G, self.pos, node_size=50, node_color='k', alpha=0.9)
         nx.draw_networkx(self.G, self.pos, ax=self.ax, node_size=50, alpha=1, with_labels=False, node_color=tcolors,linewidths=1)
         #self.ax.add_collection(lc)
         #plt.tick_params(axis='both',which='both',bottom=False,left=False,labelbottom=False,labelleft=False)
         pos_attrs = {}
         for node, coords in self.pos.items():
-            pos_attrs[node] = (coords[0], coords[1] + 0.05)
+            pos_attrs[node] = (coords[0] + 0.2, coords[1] + 0.2)
         node_attrs = nx.get_node_attributes(self.G, 'description')
         nx.draw_networkx_labels(self.G, pos_attrs, ax=self.ax, labels=node_attrs)
 
