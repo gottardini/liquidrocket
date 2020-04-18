@@ -49,10 +49,16 @@ def calcExitDiameter(A_e):
 def calcThrust(m_p, u_e, A_e, p_e, p_a):
     return m_p*u_e + (p_e-p_a)*A_e
 
-def calcPressureFromAltitude(z,p_0,T_0,a,g_0, R_air):
+def calcTropoPressure(z,p_0,T_0,a,g_0, R_air):
     return p_0*(1+a*z/T_0)**(-g_0/(a*R_air))
 
+def calcPressureFromAltitude(z,p_0,T_0,a,g_0, R_air):
+    return np.where(z<=11e3,calcTropoPressure(z,p_0,T_0,a,g_0, R_air),calcTropoPressure(11e3,p_0,T_0,a,g_0, R_air)*np.exp(-g_0*(z-11e3)/(R_air*(T_0-a*11e3))))
+
 def calcAltitudeFromPressure(p,p_0,T_0,a,g_0, R_air):
+    return np.where(p<=calcTropoPressure(11e3,p_0,T_0,a,g_0, R_air),11e3-R_air*(T_0-a*11e3)*np.log(p/calcTropoPressure(11e3,p_0,T_0,a,g_0, R_air))/g_0,calcTropoAltitude(p,p_0,T_0,a,g_0, R_air))
+
+def calcTropoAltitude(p,p_0,T_0,a,g_0, R_air):
     return T_0/a*((p/p_0)**(-a*R_air/g_0)-1)
 
 def kiloNewtonToNewton(f):

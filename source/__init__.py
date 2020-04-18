@@ -39,10 +39,13 @@ variables_static={
     "D_t":UnknownVariable("Diametro di gola",CalcFunction(calcThroatDiameter,'A_t')),
     "A_e":UnknownVariable("Area di efflusso",CalcFunction(calcExitArea,'eps','A_t')),
     "D_e":UnknownVariable("Diametro di efflusso",CalcFunction(calcExitDiameter,'A_e')),
+    "m_f":UnknownVariable("Portata massica di combustibile",CalcFunction(calcFuelRate,'m_p','r'))
 }
+
 
 variables_var={
     "p":UnknownVariable("Pressione atmosferica [Pa]",CalcFunction(calcPressureFromAltitude,'z','p_0','T_0','a','g_0','R_air')),
+    "p_tropo":UnknownVariable("Pressione troposferica [Pa]",CalcFunction(calcTropoPressure,'z','p_0','T_0','a','g_0','R_air')),
     "ct_var":UnknownVariable("Coefficiente di spinta",CalcFunction(calcThrustCoefficient,'p','y_c','eps','p_e','p_c')),
     "thr_var":UnknownVariable("Spinta [N]",CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p')),
 

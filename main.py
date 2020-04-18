@@ -67,7 +67,7 @@ if __name__=="__main__":
             logger.info(res)
             logger.debug("\n"+pp.pformat({key:val.getValue() for key,val in slvr.data.items()}))
             logger.info("Postprocessing...")
-            #postprocesser.make(slvr.data)
+            postprocesser.make(slvr.data)
     except Exception:
          print(traceback.format_exc())
     plt.show()

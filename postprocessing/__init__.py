@@ -5,13 +5,13 @@ import numpy as np
 class PostProcesser:
     def __init__(self):
         self.figures=OrderedDict({
-            "Pressione in funzione della quota":['z',['p','p_e']],
+            "Pressione in funzione della quota":['z',['p','p_tropo','p_e']],
             "Spinta in funzione della pressione":['p',['thr_var','thr_n','thr_ad']],
             "Spinta in funzione della quota":['z',['thr_var','thr_n','thr_ad']],
             })
 
         self.styles=[
-            [{"color":"black"},{"color":"green","linestyle":"--"}],
+            [{"color":"black"},{"color":"gray"},{"color":"green","linestyle":"--"}],
             [{"color":"blue"},{"color":"gray","linestyle":"--"},{"color":"green","linestyle":"--"}],
             [{"color":"blue"},{"color":"gray","linestyle":"--"},{"color":"green","linestyle":"--"}],
         ]
@@ -23,7 +23,7 @@ class PostProcesser:
         ]
 
         self.ticks=[
-        
+
         ]
 
     def make(self,data):
