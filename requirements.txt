@@ -2,11 +2,13 @@ attrs==19.3.0
 backcall==0.1.0
 bezier==0.9.0
 bleach==3.1.4
+colorlog==4.1.0
 cycler==0.10.0
 decorator==4.4.2
 defusedxml==0.6.0
 entrypoints==0.3
 fa2==0.3.5
+future==0.18.2
 importlib-metadata==1.6.0
 ipykernel==5.2.0
 ipython==7.13.0
@@ -47,6 +49,7 @@ pytz==2019.3
 pyzmq==19.0.0
 qtconsole==4.7.2
 QtPy==1.9.0
+rocketcea==1.1.16
 scipy==1.4.1
 Send2Trash==1.5.0
 six==1.14.0
