@@ -63,3 +63,6 @@ def calcTropoAltitude(p,p_0,T_0,a,g_0, R_air):
 
 def kiloNewtonToNewton(f):
     return 1e3*f
+
+def calcFuelRate(m_p,r):
+    return m_p/(r+1)
