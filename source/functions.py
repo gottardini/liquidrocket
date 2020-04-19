@@ -66,3 +66,24 @@ def kiloNewtonToNewton(f):
 
 def calcFuelRate(m_p,r):
     return m_p/(r+1)
+
+def calcOxidizerRate(m_f, r):
+    return r*m_f
+
+def calcMass(m, t_b, k_s):
+    return m*t_b*k_s
+
+def calcVolume(M, rho):
+    return M/rho
+
+def calcRhoAvg(M_f, M_ox, V_f, V_ox):
+    return (M_f+M_ox)/(V_f+V_ox)
+
+def calcSpecificImpulse(thr, m_p, g_0):
+    return np.divide(thr, m_p*g_0)
+
+def calcVolumetricSpecificImpulse(I_s, rho_avg):
+    return I_s*rho_avg
+
+def calcTotalVolumetricImpulse(I_s, M_ox, M_f, g_0):
+    return I_s*(M_ox+M_f)*g_0

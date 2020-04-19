@@ -13,7 +13,8 @@ constants={
     "p_0":InputVariable("Pressione a quota zero", 101325), # [Pa]
     "T_0":InputVariable("Temperatura a quota zero", 288.16), # [K]
     "GUESS":InputVariable("Stima pressione all'efflusso",20000),
-    "R_air":InputVariable("Costante specifica dell'aria",287.058)
+    "R_air":InputVariable("Costante specifica dell'aria",287.058),
+    "k_s":InputVariable("Coefficiente di sicurezza massa", 1.05)
 }
 
 variables_gas={
@@ -39,7 +40,13 @@ variables_static={
     "D_t":UnknownVariable("Diametro di gola",CalcFunction(calcThroatDiameter,'A_t')),
     "A_e":UnknownVariable("Area di efflusso",CalcFunction(calcExitArea,'eps','A_t')),
     "D_e":UnknownVariable("Diametro di efflusso",CalcFunction(calcExitDiameter,'A_e')),
-    "m_f":UnknownVariable("Portata massica di combustibile",CalcFunction(calcFuelRate,'m_p','r'))
+    "m_f":UnknownVariable("Portata massica di combustibile",CalcFunction(calcFuelRate,'m_p','r')),
+    "m_ox":UnknownVariable("Portata massica di ossidante", CalcFunction(calcOxidizerRate, 'm_f', 'r')),
+    "M_f":UnknownVariable("Massa di combustibile", CalcFunction(calcMass, 'm_f', 't_b', 'k_s')),
+    "M_ox":UnknownVariable("Massa di ossidante", CalcFunction(calcMass, 'm_ox', 't_b', 'k_s')),
+    "V_f":UnknownVariable("Volume di combustibile", CalcFunction(calcVolume, 'M_f', 'rho_f')),
+    "V_ox":UnknownVariable("Volume di ossidante", CalcFunction(calcVolume, 'M_ox', 'rho_ox')),
+    "rho_avg":UnknownVariable("Densità media propellente", CalcFunction(calcRhoAvg, 'M_f', 'M_ox', 'V_f', 'V_ox'))
 }
 
 
@@ -48,7 +55,9 @@ variables_var={
     "p_tropo":UnknownVariable("Pressione troposferica",CalcFunction(calcTropoPressure,'z','p_0','T_0','a','g_0','R_air')),
     "ct_var":UnknownVariable("Coefficiente di spinta",CalcFunction(calcThrustCoefficient,'p','y_c','eps','p_e','p_c')),
     "thr_var":UnknownVariable("Spinta",CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p')),
-
+    "I_s":UnknownVariable("Impulso specifico", CalcFunction(calcSpecificImpulse, 'thr_var', 'm_p', 'g_0')),
+    "I_v":UnknownVariable("Impulso specifico volumetrico", CalcFunction(calcVolumetricSpecificImpulse, 'I_s', 'rho_avg')),
+    "I_tot":UnknownVariable("Impulso specifico totale", CalcFunction(calcTotalVolumetricImpulse, 'I_s', 'M_ox', 'M_f', 'g_0'))
 }
 
 variables={**variables_gas,**variables_fluid,**variables_static,**variables_array,**variables_var}
