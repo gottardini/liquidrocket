@@ -52,9 +52,9 @@ class Grapher:
         #self.pos = nx.spiral_layout(self.G)
         #self.pos = nx.kamada_kawai_layout(self.G)
         #self.pos = nx.spectral_layout(self.G)
-        #self.pos = nx.circular_layout(self.G)
+        self.pos = nx.circular_layout(self.G)
         #self.pos= forceatlas2.forceatlas2_networkx_layout(self.G, pos=None, iterations=50)
-        self.pos = graphviz_layout(self.G, prog='twopi', args='')
+        #self.pos = graphviz_layout(self.G, prog='twopi', args='')
 
     def drawGraph(self):
         if not self.view:
@@ -77,7 +77,7 @@ class Grapher:
         #plt.tick_params(axis='both',which='both',bottom=False,left=False,labelbottom=False,labelleft=False)
         pos_attrs = {}
         for node, coords in self.pos.items():
-            pos_attrs[node] = (coords[0] + 0.2, coords[1] + 0.2)
+            pos_attrs[node] = (coords[0] + 0.02, coords[1] + 0.06)
         node_attrs = nx.get_node_attributes(self.G, 'description')
         nx.draw_networkx_labels(self.G, pos_attrs, ax=self.ax, labels=node_attrs)
 
