@@ -49,6 +49,44 @@ variables_static={
     "rho_avg":UnknownVariable("Densità media propellente", CalcFunction(calcRhoAvg, 'M_f', 'M_ox', 'V_f', 'V_ox'))
 }
 
+constants_feed={
+    "p_loss_inj":InputVariable("Frazione perdite di carico piastra di iniezione",0.2),
+    "p_loss_exc":InputVariable("Frazione perdite di carico scambiatore di calore",0.15),
+    "p_loss_feed":InputVariable("Frazione perdite di carico linee di alimentazione",0.1),
+    "p_loss_valves":InputVariable("Frazione perdite di carico valvole",0.15),
+    "r_preburner":InputVariable("Rapporto massico di miscela preburner",0.9),
+    "eta_pump_f":InputVariable("Rendimento della pompa di combustibile",1),
+    "eta_pump_ox":InputVariable("Rendimento della pompa di ossidante",1),
+    "eta_mt":InputVariable("Rendimento meccanico della turbina",1),
+    "eta_ad":InputVariable("Rendimento adiabatico della turbina",1),
+    "cp_cpb":InputVariable("Cp gas combusti preburner",6000), #tirare fuori da cea
+    "T_cpb":InputVariable("Temperatura di combustione preburner",2500), #tirare fuori da cea
+    "y_cpb":InputVariable("Rapporto calori specifici gas combusti preburner",1.14), #tirare fuori da cea
+    "p_out_pb":InputVariable("Pressione di uscita turbina",300000), #non lo so, a caso
+    "p_cpb":InputVariable("Pressione di combustione preburner",1e7) #non lo so, a caso
+}
+
+variables_feed={
+    "pstar_f":UnknownVariable("Pressione combustibile a valle della pompa",CalcFunction(calcPStarF,'p_c','p_loss_inj','p_loss_exc','p_loss_feed','p_loss_valves')),
+    "pstar_ox":UnknownVariable("Pressione ossidante a valle della pompa",CalcFunction(calcPStarOx,'p_c','p_loss_inj','p_loss_feed','p_loss_valves')),
+    "deltap_pump_f":UnknownVariable("Delta P pompa combustibile",CalcFunction(lambda pstar,ptank: pstar-ptank,'pstar_f','p_tank_f')),
+    "deltap_pump_ox":UnknownVariable("Delta P pompa ossidante",CalcFunction(lambda pstar,ptank: pstar-ptank,'pstar_ox','p_tank_ox')),
+    "q_eng_f":UnknownVariable("Portata volumetrica di combustibile al motore",CalcFunction(lambda m,rho: m/rho,'m_f','rho_f')),
+    "q_eng_ox":UnknownVariable("Portata volumetrica di ossidante al motore",CalcFunction(lambda m,rho: m/rho,'m_ox','rho_ox')),
+    "q_spil_f":UnknownVariable("Portata volumetrica di combustibile spillato",CalcFunction(calcSpilF,'q_eng_f','deltap_pump_f','deltap_pump_ox','eta_pump_f','eta_pump_ox','rho_f','rho_ox','r','r_preburner','eta_mt','eta_ad','cp_cpb','T_cpb','p_out_pb','p_cpb','y_cpb')),
+    "q_tot_f":UnknownVariable("Portata volumetrica totale di combustibile",CalcFunction(lambda qsp,qeng: qsp+qeng,'q_spil_f','q_eng_f')),
+    "q_spil_ox":UnknownVariable("Portata volumetrica di ossidante spillato",CalcFunction(lambda qspf,tau,rhof,rhoox: qspf*tau*rhof/rhoox,'q_spil_f','r_preburner','rho_f','rho_ox')),
+    "q_tot_ox":UnknownVariable("Portata volumetrica totale di ossidante",CalcFunction(lambda qsp,qeng: qsp+qeng,'q_spil_ox','q_eng_ox')),
+    "m_tot_f":UnknownVariable("Portata massica di combustibile totale",CalcFunction(lambda q,rho: q*rho,'q_tot_f','rho_f')),
+    "m_tot_ox":UnknownVariable("Portata massica di ossidante totale",CalcFunction(lambda q,rho: q*rho,'q_tot_ox','rho_ox')),
+}
+
+variables_cea={
+    "cc_output":UnknownVariable("Output del cea per la camera di combustione",CalcFunction(getCeaOutput,)),
+    "pb_output":UnknownVariable("Output del cea per la camera di combustione",CalcFunction(getCeaOutput,)),
+
+}
+
 
 variables_var={
     "p":UnknownVariable("Pressione atmosferica",CalcFunction(calcPressureFromAltitude,'z','p_0','T_0','a','g_0','R_air')),
@@ -60,4 +98,4 @@ variables_var={
     "I_tot":UnknownVariable("Impulso specifico totale", CalcFunction(calcTotalVolumetricImpulse, 'I_s', 'M_ox', 'M_f', 'g_0'))
 }
 
-variables={**variables_gas,**variables_fluid,**variables_static,**variables_array,**variables_var}
+variables={**variables_gas,**variables_fluid,**variables_static,**variables_array,**variables_var,**constants_feed,**variables_feed}

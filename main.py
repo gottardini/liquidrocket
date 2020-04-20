@@ -1,3 +1,4 @@
+import sys
 import utils
 print(utils.getLogo())
 from solver import Solver
@@ -26,8 +27,12 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser(description='Liquid rocket solver.')
     parser.add_argument('--graph', dest='graph', action='store_true')
     parser.add_argument('--debug', dest='debug', action='store_true')
+    parser.add_argument('--all', dest='all', action='store_true')
+    parser.add_argument('--postproc', dest='postproc', action='store_true')
     parser.set_defaults(graph=False)
     parser.set_defaults(debug=False)
+    parser.set_defaults(all=False)
+    parser.set_defaults(postproc=False)
     args = parser.parse_args()
 
 
@@ -46,10 +51,14 @@ if __name__=="__main__":
     logger.addHandler(stream)
 
 
-    outputs=utils.getOutputs()
     data=utils.getData(0)
+    
+    if args.all:
+        outputs= data.keys()
+    else:
+        outputs=utils.getOutputs()
     grph=Grapher(view=args.graph,debug=args.debug)
-    postprocesser=PostProcesser()
+
     try:
         logger.info("Requested outputs: ")
         logger.info(pp.pformat([(out,data[out].description) for out in outputs]))
@@ -66,8 +75,10 @@ if __name__=="__main__":
             logger.info("Done! Solving took %s seconds. Here are your results:"%(utils.toc()))
             logger.info(res)
             logger.debug("\n"+pp.pformat({key:val.getValue() for key,val in slvr.data.items()}))
-            logger.info("Postprocessing...")
-            postprocesser.make(slvr.data)
+            if args.postproc:
+                logger.info("Postprocessing...")
+                postprocesser=PostProcesser()
+                postprocesser.make(slvr.data)
     except Exception:
          print(traceback.format_exc())
     plt.show()

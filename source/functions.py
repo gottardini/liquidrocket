@@ -1,5 +1,6 @@
 import numpy as np
 from scipy.optimize import fsolve
+from rocketcea.cea_obj import CEA_Obj
 
 def calcGasConstant(Ru,MM):
     return Ru*1e3/MM;
@@ -87,3 +88,19 @@ def calcVolumetricSpecificImpulse(I_s, rho_avg):
 
 def calcTotalVolumetricImpulse(I_s, M_ox, M_f, g_0):
     return I_s*(M_ox+M_f)*g_0
+
+def calcPStarF(p_c,P_loss_inj,P_loss_exc,P_loss_feed,P_loss_valves):
+    return p_c*(1-P_loss_inj-P_loss_exc-P_loss_feed-P_loss_valves)
+
+def calcPStarOx(p_c,P_loss_inj,P_loss_feed,P_loss_valves):
+    return p_c*(1-P_loss_inj-P_loss_feed-P_loss_valves)
+
+def getCeaOutput(fuelName, oxName,p_c, r, eps):
+    ispObj = CEA_Obj( oxName=oxName, fuelName=fuelName)
+    return ispObj.get_full_cea_output( Pc=p_c*1e-5, MR=r, eps=eps, short_output=1, pc_units='bar', frozenAtThroat=1)
+
+def calcSpilF(q_eng_f,deltap_pump_f,deltap_pump_ox,eta_pump_f,eta_pump_ox,rho_f,rho_ox,tau_cc,tau_pb,eta_mt,eta_ad,cp_cpb,T_c,p_out,p_c,y_cpb):
+    psi=lambda tau: tau*rho_f/rho_ox
+    bl=lambda tau: deltap_pump_f/eta_pump_f + psi(tau)*deltap_pump_ox/eta_pump_ox
+    denp=rho_f*(1+tau_pb)*eta_mt*eta_ad*cp_cpb*T_c*(1-(p_out/p_c)**((y_cpb-1)/y_cpb))
+    return bl(tau_cc)/(denp+bl(tau_pb))*q_eng_f

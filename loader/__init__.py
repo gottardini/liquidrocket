@@ -18,12 +18,16 @@ class DataLoader:
         engines=OrderedDict()
         for i in range(nEngines):
             engines[data[0][firstEngineCol+i]]={}
-        for row in data[1:-6]:
+        for row in data[1:]:
             #print(row)
             for i in range(nEngines):
+                rawval=row[firstEngineCol+i]
                 try:
-                    val=float(row[firstEngineCol+i])
+                    val=float(rawval)
                 except:
-                    val=None
+                    if rawval!='':
+                        val=rawval
+                    else:
+                        val=None
                 engines[data[0][firstEngineCol+i]][row[symbolCol]]=InputVariable(row[nameCol],val)
         return engines
