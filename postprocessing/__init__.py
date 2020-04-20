@@ -38,7 +38,7 @@ class PostProcesser:
             ax.set_ylabel(data[dat[1][0]].description)
             for jndex in range(len(dat[1])):
                 ydata=data[dat[1][jndex]].getValue()
-                print(ydata)
+                #print(ydata)
                 if len(ydata)!=len(xdata):
                     if len(ydata)==1:
                         ydata=np.full(len(xdata),ydata)
