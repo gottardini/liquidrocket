@@ -14,7 +14,10 @@ constants={
     "T_0":InputVariable("Temperatura a quota zero", 288.16), # [K]
     "GUESS":InputVariable("Stima pressione all'efflusso",20000),
     "R_air":InputVariable("Costante specifica dell'aria",287.058),
-    "k_s":InputVariable("Coefficiente di sicurezza massa", 1.05)
+    "k_s":InputVariable("Coefficiente di sicurezza massa", 1.05),
+    "Ma_c":InputVariable("Numero di Mach in camera di combustione", 0.2),
+    "C_d":InputVariable("Coefficiente di efflusso piastra di iniezione", 0.88),
+    "alpha_ox":InputVariable("Inclinazione linea iniezione ossidante[rad]", 0.5236)
 }
 
 variables_gas={
@@ -37,16 +40,34 @@ variables_static={
     "ct_n":UnknownVariable("Coefficiente di spinta nominale",CalcFunction(calcThrustCoefficient,'p_n', 'y_c', 'eps', 'p_e', 'p_c')),
     "m_p":UnknownVariable("Portata massica di propellente",CalcFunction(calcPropFlowRate,'thr_n','u_e','eps','p_c','ct_n','p_e','p_n')),
     "A_t":UnknownVariable("Sezione di gola",CalcFunction(calcThroatArea,'m_p','u_e','p_c','ct_n')),
-    "D_t":UnknownVariable("Diametro di gola",CalcFunction(calcThroatDiameter,'A_t')),
+    "D_t":UnknownVariable("Diametro di gola",CalcFunction(calcDiameter,'A_t')),
     "A_e":UnknownVariable("Area di efflusso",CalcFunction(calcExitArea,'eps','A_t')),
-    "D_e":UnknownVariable("Diametro di efflusso",CalcFunction(calcExitDiameter,'A_e')),
+    "D_e":UnknownVariable("Diametro di efflusso",CalcFunction(calcDiameter,'A_e')),
     "m_f":UnknownVariable("Portata massica di combustibile",CalcFunction(calcFuelRate,'m_p','r')),
     "m_ox":UnknownVariable("Portata massica di ossidante", CalcFunction(calcOxidizerRate, 'm_f', 'r')),
     "M_f":UnknownVariable("Massa di combustibile", CalcFunction(calcMass, 'm_f', 't_b', 'k_s')),
     "M_ox":UnknownVariable("Massa di ossidante", CalcFunction(calcMass, 'm_ox', 't_b', 'k_s')),
     "V_f":UnknownVariable("Volume di combustibile", CalcFunction(calcVolume, 'M_f', 'rho_f')),
     "V_ox":UnknownVariable("Volume di ossidante", CalcFunction(calcVolume, 'M_ox', 'rho_ox')),
-    "rho_avg":UnknownVariable("Densità media propellente", CalcFunction(calcRhoAvg, 'M_f', 'M_ox', 'V_f', 'V_ox'))
+    "rho_avg":UnknownVariable("Densità media propellente", CalcFunction(calcRhoAvg, 'M_f', 'M_ox', 'V_f', 'V_ox')),
+    "u_c":UnknownVariable("Velocità in camera di combustione", CalcFunction(calcChamberVelocity, 'Ma_c', 'y_c', 'R_c', 'T_c')),
+    "rho_c":UnknownVariable("Dennsità dei gas in camera di combustione", CalcFunction(calcDensity, 'p_c', 'R_c', 'T_c')),
+    "A_c":UnknownVariable("Area camera di combustione", CalcFunction(calcChamberArea, 'm_p', 'rho_c', 'u_c')),
+    "D_c":UnknownVariable("Diametro camera di combustione", CalcFunction(calcDiameter, 'A_c')),
+    "V_c":UnknownVariable("Volume camera di combustione", CalcFunction(calcChamberVolume, 'L_star', 'A_c')),
+    "L_c":UnknownVariable("Lunghezza camera di combustione", CalcFunction(calcChamberLength, 'V_c', 'A_c')),
+    "A_th_f":UnknownVariable("Area di tutti i fori piastra combustibile", CalcFunction(calcTotalHolesArea, 'm_f', 'C_d', 'rho_f', 'p_loss_inj', 'p_c')),
+    "A_th_ox":UnknownVariable("Area di tutti i fori piastra ossidante", CalcFunction(calcTotalHolesArea, 'm_ox', 'C_d', 'rho_ox', 'p_loss_inj', 'p_c')),
+    "n_h_f":UnknownVariable("Numero di fori piastra combustibile di diametro 1mm", CalcFunction(calcNumber1Holes, 'A_th_f')),
+    "n_h_ox":UnknownVariable("Numero di fori piastra ossidante di diametro 1mm", CalcFunction(calcNumber1Holes, 'A_th_ox')),
+    "n_h":UnknownVariable("Numero di fori di ciascunna linea", CalcFunction(calcNumberHoles, 'n_h_f', 'n_h_ox')),
+    "A_1h_f":UnknownVariable("Area di un foro-combustibile", CalcFunction(calcHoleArea, 'A_th_f', 'n_h')),
+    "A_1h_ox":UnknownVariable("Area di un foro-ossidante", CalcFunction(calcHoleArea, 'A_th_ox', 'n_h')),
+    "D_1h_f":UnknownVariable("Diametro di un foro-combustibile", CalcFunction(calcDiameter, 'A_1h_f')),
+    "D_1h_ox":UnknownVariable("Diametro di un foro-ossidante", CalcFunction(calcDiameter, 'A_1h_ox')),
+    "u_f":UnknownVariable("Velocità iniezione combustibile", CalcFunction(calcInjectionVelocity, 'C_d', 'p_loss_inj', 'p_c', 'rho_f')),
+    "u_ox":UnknownVariable("Velocità iniezione ossidante", CalcFunction(calcInjectionVelocity, 'C_d', 'p_loss_inj', 'p_c', 'rho_ox')),
+    "alpha_f":UnknownVariable("Inclinazione linea iniezione combustibile", CalcFunction(calcFuelInjectionAngle, 'm_ox', 'm_f', 'u_ox', 'u_f', 'alfa_ox'))
 }
 
 constants_feed={
