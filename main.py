@@ -52,12 +52,13 @@ if __name__=="__main__":
 
 
     data=utils.getData(0)
-    
+    print(len(data))
+    #sys.exit()
     if args.all:
         outputs= data.keys()
     else:
         outputs=utils.getOutputs()
-    grph=Grapher(view=args.graph,debug=args.debug)
+    grph=Grapher(view=args.graph,debug=args.debug,cool=False)
 
     try:
         logger.info("Requested outputs: ")
