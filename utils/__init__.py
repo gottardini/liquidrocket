@@ -8,7 +8,12 @@ import time
 def mergeData(sources):
     merged={}
     for elem in sources:
-        merged={**merged,**elem}
+        for key,val in elem.items():
+            if key in merged:
+                raise ValueError("Dupilcate found")
+                return False
+            else:
+                merged[key]=val
     return merged
 
 def getEngineData(inputData,chosenEngine):
@@ -28,7 +33,11 @@ def getData(chosenEngine):
     inputData=loader.load()
     #print(inputData)
     #######
-    sources=[source.constants,source.variables,getEngineData(inputData,chosenEngine)]
+    sources=[getEngineData(inputData,chosenEngine)]
+    for varname in dir(source):
+        varblock=getattr(source,varname)
+        if not varname.startswith("__") and type(varblock)==dict:
+            sources.append(varblock)
     #######
 
     return mergeData(sources)
