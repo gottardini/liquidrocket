@@ -124,9 +124,24 @@ def calcPStarF(p_c,P_loss_inj,P_loss_exc,P_loss_feed,P_loss_valves):
 def calcPStarOx(p_c,P_loss_inj,P_loss_feed,P_loss_valves):
     return p_c*(1-P_loss_inj-P_loss_feed-P_loss_valves)
 
-def getCeaOutput(fuelName, oxName,p_c, r, eps):
-    ispObj = CEA_Obj( oxName=oxName, fuelName=fuelName)
-    return ispObj.get_full_cea_output( Pc=p_c*1e-5, MR=r, eps=eps, short_output=1, pc_units='bar', frozenAtThroat=1)
+def getCeaObj(fuelName, oxName):
+    print(type(fuelName),type(oxName))
+    return CEA_Obj( oxName=oxName, fuelName=fuelName)
+
+def getCeaChamberMM(obj,pc,mr,eps):
+    return obj.get_Chamber_MolWt_gamma(Pc=Pa2Psia(pc),MR=mr,eps=eps)[0]
+
+def getCeaChamberGam(obj,pc,mr,eps):
+    return obj.get_Chamber_MolWt_gamma(Pc=Pa2Psia(pc),MR=mr,eps=eps)[1]
+
+def getCeaThroatMM(obj,pc,mr,eps):
+    return obj.get_Chamber_MolWt_gamma(Pc=Pa2Psia(pc),MR=mr,eps=eps)[0]
+
+def getCeaThroatGam(obj,pc,mr,eps):
+    return obj.get_Chamber_MolWt_gamma(Pc=Pa2Psia(pc),MR=mr,eps=eps)[1]
+
+def Pa2Psia(pr):
+    return pr / 6894.75728
 
 def calcSpilF(q_eng_f,deltap_pump_f,deltap_pump_ox,eta_pump_f,eta_pump_ox,rho_f,rho_ox,tau_cc,tau_pb,eta_mt,eta_ad,cp_cpb,T_c,p_out,p_c,y_cpb):
     psi=lambda tau: tau*rho_f/rho_ox
