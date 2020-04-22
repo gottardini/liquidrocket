@@ -1,4 +1,4 @@
-from collections import OrderedDict
+from collections import OrderedDict,Iterable
 
 class Solver:
     def __init__(self,data,outputs,grph,logger):
@@ -27,7 +27,9 @@ class Solver:
 
     def solveRecursively(self,nodename):
         self.logger.debug("Solver is currently at node '%s'"%(nodename))
-        if None not in self.data[nodename].getValue():
+        nodeval=self.data[nodename].getValue()
+        nodevalit=isinstance(nodeval,Iterable)
+        if (type(nodeval)==str and nodeval!="") or (nodevalit and None not in nodeval) or (not nodevalit and nodeval!=None):
             self.logger.debug("Node '%s' has a value. Branch dies here"%(nodename))
             self.grapher.changeNodeColor(nodename,'#8DFF33')
             return True

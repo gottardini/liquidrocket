@@ -11,7 +11,9 @@ class Variable:
         self.description=description
         self.calcFunction=calcFunction
         if type(value)!=np.array:
-            if isinstance(value,collections.Iterable):
+            if type(value)==str:
+                pass
+            elif isinstance(value,collections.Iterable):
                 value=np.array(value)
             else:
                 value=np.array([value])
