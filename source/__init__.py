@@ -89,7 +89,7 @@ feed_system_constants={
 preburner={
     'cp_pb':UnknownVariable("CP preburner",CalcFunction(getCeaChamberCp,'pb_cea','p_pb','r_pb')),
     'T_pb':UnknownVariable("Temperatura preburner",CalcFunction(getCeaChamberTemperature,'pb_cea','p_pb','r_pb')),
-    'y_pb':UnknownVariable("Rapporto calori specifici preburner",CalcFunction(getCeaThroatGam,'pb_cea','p_pb','r_pb','eps')),
+    'y_pb':UnknownVariable("Rapporto calori specifici preburner",CalcFunction(getCeaThroatGam,'pb_cea','p_pb','r_pb')),
 }
 
 feed_system_variables={
