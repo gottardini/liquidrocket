@@ -7,8 +7,8 @@ J-2 (II° stadio)","Saturn V
 J-2 (III° stadio)"
 Rapporto aree ugello,eps,-,n,58.2,83.1,0,16,27.5,27.5
 Tempo di combustione,t_b,s,n,540,945,230,150.7,367,156+336
-Pressione statica in camera di combustione,p_c,Pa,n,1.15E+07,3.70E+06,1.10E+07,7000000,5.26E+06,5.26E+06
-Temperatura in camera di combustione,T_c,K,n,3570,3235.22,3571,3670,3449.82,3449.82
+Pressione statica in camera di combustione,p_cc,Pa,n,1.15E+07,3.70E+06,1.10E+07,7000000,5.26E+06,5.26E+06
+Temperatura in camera di combustione,T_cc_DEPR,K,y,3570,3235.22,3571,3670,3449.82,3449.82
 Quota nominale,z_n,m,n,1.00E+99,1.00E+99,0,0,1.00E+06,1.00E+06
 Spinta nominale (a quota nominale),T_n,kN,n,1359,62.2,845,6770,1014,903
 Pressione nominale (a quota nominale),p_n,Pa,n,0,0,101325,101325,0,0
@@ -20,16 +20,16 @@ Massa molare combustibile,Mm_f,Kg/kmol,n,2.01588,2.01588,175,175,2.016,2.016
 Densità combustibile,rho_f,kg/m3,n,70.85,70.85,810,806,,
 Temperatura congelamento combustibile,T_cong_f,K,n,14.01,14.01,225,0,14,14
 Temperatura ebollizione combustibile,T_ebol_f,K,n,20.28,20.28,530,530,20.27,20.27
-Rapporto massico di miscela,r,-,n,6.1,5,2.24,2.27,5,5
+Rapporto massico di miscela,r_cc,-,n,6.1,5,2.24,2.27,5,5
 Massa molare media dei prodotti di combustione,Mm_cp_DEPR,kg/kmol,y,13.846,11.764,,22.5,8.9,8.9
 Rapporto calori specifici dei prodotti di combustione,y_c_DEPR,-,y,1.1411,1.1524,,1.24,1.26,1.26
 Impulso specifico nominale,Isp_z,s,n,429,444.6,285.4,304,424,424
 Fattore di correzione velocità ,eta_2D,-,n,1,1,1,0.92,1,
 Lunghezza caratteristica (Sutton),L_star,m,n,-1,,,1,,
-Inclinazione linea mandata ossidante,alfa_ox,rad,n,-1,,,0.5236,,
 Angolo di inclinazione del divergente,alpha,rad,n,-1,,,,,
 Angolo di inclinazione del convergente,beta,rad,n,-1,,,,,
 Pressione serbatoio combustibile,p_tank_f,Pa,n,3.00E+05,,,,,
 Pressione serbatoio ossidante,p_tank_ox,Pa,n,3.00E+05,,,,,
-Nome ossidante (per il CEA),oxName,-,n,LOX,,,,,
-Nome combustibile (per il CEA),fuelName,-,n,LH2,,,,,
+Nome ossidante (per il CEA),oxName,-,n,LOX,LOX,,,,
+Nome combustibile (per il CEA),fuelName,-,n,LH2,LH2,,,,
+Pressione preburner,p_pb,Pa,n,1.00E+06,,,,,

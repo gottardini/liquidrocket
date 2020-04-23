@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.optimize import fsolve
-from rocketcea.cea_obj import CEA_Obj
+from rocketcea.cea_obj_w_units import CEA_Obj
 
 def calcGasConstant(Ru,MM):
     return Ru*1e3/MM;
@@ -125,20 +125,32 @@ def calcPStarOx(p_c,P_loss_inj,P_loss_feed,P_loss_valves):
     return p_c*(1-P_loss_inj-P_loss_feed-P_loss_valves)
 
 def getCeaObj(fuelName, oxName):
-    print(type(fuelName),type(oxName))
-    return CEA_Obj( oxName=oxName, fuelName=fuelName)
+    #print(type(fuelName),type(oxName))
+    return CEA_Obj( oxName=oxName, fuelName=fuelName, pressure_units='Pa', temperature_units='K', density_units='kg/m^3')
 
-def getCeaChamberMM(obj,pc,mr,eps):
-    return obj.get_Chamber_MolWt_gamma(Pc=Pa2Psia(pc),MR=mr,eps=eps)[0]
+def getCeaChamberMM(obj,pc,mr,eps=1):
+    return obj.get_Chamber_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[0]
 
-def getCeaChamberGam(obj,pc,mr,eps):
-    return obj.get_Chamber_MolWt_gamma(Pc=Pa2Psia(pc),MR=mr,eps=eps)[1]
+def getCeaChamberGam(obj,pc,mr,eps=1):
+    return obj.get_Chamber_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[1]
 
-def getCeaThroatMM(obj,pc,mr,eps):
-    return obj.get_Chamber_MolWt_gamma(Pc=Pa2Psia(pc),MR=mr,eps=eps)[0]
+def getCeaThroatMM(obj,pc,mr,eps=1):
+    return obj.get_Chamber_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[0]
 
-def getCeaThroatGam(obj,pc,mr,eps):
-    return obj.get_Chamber_MolWt_gamma(Pc=Pa2Psia(pc),MR=mr,eps=eps)[1]
+def getCeaThroatGam(obj,pc,mr,eps=1):
+    return obj.get_Chamber_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[1]
+
+def getCeaChamberTemperature(obj,pc,mr,eps=1):
+    return obj.get_Temperatures(Pc=pc,MR=mr,eps=eps,frozen=1,frozenAtThroat=1)[0]
+
+def getCeaThroatTemperature(obj,pc,mr,eps=1):
+    return obj.get_Temperatures(Pc=pc,MR=mr,eps=eps,frozen=1,frozenAtThroat=1)[1]
+
+def getCeaExitTemperature(obj,pc,mr,eps=1):
+    return obj.get_Temperatures(Pc=pc,MR=mr,eps=eps,frozen=1,frozenAtThroat=1)[2]
+
+def getCeaChamberCp(obj,pc,mr,eps=1,frozen=0):
+    return obj.get_Chamber_Cp(Pc=pc,MR=mr,eps=eps)
 
 def Pa2Psia(pr):
     return pr / 6894.75728
