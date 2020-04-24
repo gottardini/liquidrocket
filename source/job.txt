@@ -1,2 +1,1 @@
-y_c
-y_c_DEPR
+GAMMA
