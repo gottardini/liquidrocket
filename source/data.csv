@@ -6,12 +6,10 @@ F-1","Saturn V
 J-2 (II° stadio)","Saturn V
 J-2 (III° stadio)"
 Rapporto aree ugello,eps,-,n,58.2,83.1,0,16,27.5,27.5
-Tempo di combustione,t_b,s,n,540,945,230,150.7,367,156+336
 Pressione statica in camera di combustione,p_cc,Pa,n,1.15E+07,3.70E+06,1.10E+07,7000000,5.26E+06,5.26E+06
-Temperatura in camera di combustione,T_cc_DEPR,K,y,3570,3235.22,3571,3670,3449.82,3449.82
-Quota nominale,z_n,m,n,1.00E+99,1.00E+99,0,0,1.00E+06,1.00E+06
-Spinta nominale (a quota nominale),T_n,kN,n,1359,62.2,845,6770,1014,903
-Pressione nominale (a quota nominale),p_n,Pa,n,0,0,101325,101325,0,0
+Temperatura in camera di combustione,T_cc_DEPR,K,y,3.57E+03,3.24E+03,3.57E+03,3670,3.45E+03,3.45E+03
+Spinta nominale (tabulata),T_n,kN,n,1359,62.2,845,6770,1014,903
+Pressione nominale (a spinta nominale),p_n,Pa,n,0.00E+00,0.00E+00,101325,101325,0.00E+00,0.00E+00
 Massa molare ossidante,Mm_ox,kg/kmol,n,32,32,32,32,32,32
 Densità ossidante,rho_ox,kg/m3,n,1141,1141,1410,1141,,
 Temperatura congelamento ossidante,T_cong_ox,K,n,54.36,54.36,54.36,54.36,54.36,54.36
@@ -29,7 +27,9 @@ Lunghezza caratteristica (Sutton),L_star,m,n,-1,,,1,,
 Angolo di inclinazione del divergente,alpha,rad,n,-1,,,,,
 Angolo di inclinazione del convergente,beta,rad,n,-1,,,,,
 Pressione serbatoio combustibile,p_tank_f,Pa,n,3.00E+05,,,,,
+Angolo iniziale divergente,theta_n,,,,,,,,
+Angolo finale divergete,TETA_e,,,,,,,,
 Pressione serbatoio ossidante,p_tank_ox,Pa,n,3.00E+05,,,,,
-Nome ossidante (per il CEA),oxName,-,n,LOX,LOX,,,,
-Nome combustibile (per il CEA),fuelName,-,n,LH2,LH2,,,,
+Nome ossidante (per il CEA),oxName,-,n,LOX,LOX,,LOX,LOX,LOX
+Nome combustibile (per il CEA),fuelName,-,n,LH2,LH2,,RP-1,LH2,LH2
 Pressione preburner,p_pb,Pa,n,1.00E+06,,,,,

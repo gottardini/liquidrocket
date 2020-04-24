@@ -3,7 +3,7 @@ from source.functions import *
 import numpy as np
 
 flight={
-    'z':InputVariable("Quota [m]",np.linspace(0,1e5,50)),
+    'z':InputVariable("Quota [m]",np.linspace(0,400e3,50)),
 }
 
 atmoshpere={
@@ -82,8 +82,7 @@ feed_system_constants={
     'eta_pump_ox':InputVariable("Rendimento della pompa di ossidante",1),
     'eta_mt':InputVariable("Rendimento meccanico della turbina",1),
     'eta_ad':InputVariable("Rendimento adiabatico della turbina",1),
-    'p_out_pb':InputVariable("Pressione di uscita turbina",300000), #non lo so, a caso
-    'p_cpb':InputVariable("Pressione di combustione preburner",1e7) #non lo so, a caso
+    'p_out_pb':InputVariable("Pressione di uscita turbina",300000), #non lo so, dobbiamo capire
 }
 
 preburner={
@@ -127,7 +126,7 @@ nonstatic_propulsive_parameters={
 }
 
 nozzle={
-    'theta':UnknownVariable("Half expansion angle", np.pi/12),#CAPIRE SE È DATO GLOBALE O RELATIVO AL SINGOLO STADIO. SE RELATIVO, ALLORA AGGIUNGI SU GOOGLE SPREADSHEET
+    'theta':InputVariable("Half expansion angle", np.pi/12),#CAPIRE SE È DATO GLOBALE O RELATIVO AL SINGOLO STADIO. SE RELATIVO, ALLORA AGGIUNGI SU GOOGLE SPREADSHEET
     'A_t':UnknownVariable("Sezione di gola",CalcFunction(calcThroatArea,'m_p','u_e','p_cc','ct_n')),
     'D_t':UnknownVariable("Diametro di gola",CalcFunction(calcDiameter,'A_t')),
     'A_e':UnknownVariable("Area di efflusso",CalcFunction(calcExitArea,'eps','A_t')),
