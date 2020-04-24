@@ -131,7 +131,7 @@ nozzle={
     'D_t':UnknownVariable("Diametro di gola",CalcFunction(calcDiameter,'A_t')),
     'A_e':UnknownVariable("Area di efflusso",CalcFunction(calcExitArea,'eps','A_t')),
     'D_e':UnknownVariable("Diametro di efflusso",CalcFunction(calcDiameter,'A_e')),
-    'L_cone':UnknownVariable("Lunghezza cono", CalcFunction(calcConeLength, 'eps', 'D_t', 'teta')),
+    'L_cone':UnknownVariable("Lunghezza cono", CalcFunction(calcConeLength, 'eps', 'D_t', 'theta')),
     'L_bell':UnknownVariable("Lunghezza campana", CalcFunction(calcBellLength, 'L_cone')),#CALCOLATA ALL'80% DI L_cone
     'theta_i':UnknownVariable("Angolo iniziale tratto convergente", CalcFunction(calcThetai, 'D_c', 'D_t')),
     'x_conv':UnknownVariable("Array contenente coordinate x dei punti della funzione, il cui grafico "
