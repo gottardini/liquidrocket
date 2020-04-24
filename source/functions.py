@@ -159,7 +159,7 @@ def calcXDivPlus(theta_n, D_t):
     interval = np.arange(-np.pi/2, theta_n-np.pi/2, 0.01)
     return 0.382*(D_t/2)*np.cos(interval)
 
-def calcXDivPlus(theta_n, D_t):
+def calcYDivPlus(theta_n, D_t):
     interval = np.arange(-np.pi/2, theta_n-np.pi/2, 0.01)
     return 0.382*(D_t/2)*(np.sin(interval)+1)+D_t/2
 

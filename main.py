@@ -1,9 +1,12 @@
 import sys
 import utils
+import config
 print(utils.getLogo())
 from solver import Solver
+from models import InputVariable, UnknownVariable
 from grapher import Grapher
 from postprocessing import PostProcesser
+from loader import DataLoader
 import time
 import matplotlib.pyplot as plt
 import traceback
@@ -35,12 +38,9 @@ if __name__=="__main__":
     parser.set_defaults(postproc=False)
     args = parser.parse_args()
 
-
     ###SOME SETUP
     pp=pprint.PrettyPrinter()
     LOG_LEVEL = logging.DEBUG if args.debug else logging.INFO
-
-
     logging.root.setLevel(LOG_LEVEL)
     formatter = ColoredFormatter(LOGFORMAT)
     stream = logging.StreamHandler()
@@ -50,36 +50,37 @@ if __name__=="__main__":
     logger.setLevel(LOG_LEVEL)
     logger.addHandler(stream)
 
+    ###BEGINNING OF THE ACTUAL PROBLEM
+    loader=DataLoader(config.datafile)
+    inputData=loader.load()
+    #pp.pprint(inputData)
+    rocketModels=config.rockets.copy()
+    for rocketName,rocketData in rocketModels.items():
+        for blockIndex in range(len(rocketData)):
+            engineName,engineData=utils.getEngineData(inputData, rocketData[blockIndex]['index'])
+            unsolvedModel=utils.getUnsolvedModel()
+            #INJECT SPECIFIC STAGE DATA
+            unsolvedModel['t_b']=InputVariable("Tempo di combustione",rocketData[blockIndex]['tEnd']-rocketData[blockIndex]['tStart'])
+            ###
+            modelData=utils.mergeData([engineData,unsolvedModel])
+            task=[key for key,val in modelData.items() if isinstance(val,UnknownVariable)]
 
-    data=utils.getData(0)
-    print(len(data))
-    #sys.exit()
-    if args.all:
-        outputs= data.keys()
-    else:
-        outputs=utils.getOutputs()
-    grph=Grapher(view=args.graph,debug=args.debug,cool=False)
-
-    try:
-        logger.info("Requested outputs: ")
-        logger.info(pp.pformat([(out,data[out].description) for out in outputs]))
-        print()
-        logger.info("Building problem tree...")
-        slvr=Solver(data,outputs,grph,logger)
-        #time.sleep(6)
-        utils.tic()
-        if slvr.validateTree():
-            logger.info("Tree building took %s seconds"%(utils.toc()))
-            logger.info("Solving tree...")
+            pp.pprint(modelData)
+            #LET'S SOLVE
+            grph=Grapher(view=args.graph,debug=args.debug,cool=False)
+            slvr=Solver(modelData,task,grph,logger)
             utils.tic()
-            res=slvr.solve()
-            logger.info("Done! Solving took %s seconds. Here are your results:"%(utils.toc()))
-            logger.info(res)
-            logger.debug("\n"+pp.pformat({key:val.getValue() for key,val in slvr.data.items()}))
-            if args.postproc:
-                logger.info("Postprocessing...")
-                postprocesser=PostProcesser()
-                postprocesser.make(slvr.data)
-    except Exception:
-         print(traceback.format_exc())
+            try:
+                if slvr.validateTree():
+                    logger.info("Tree building took %s seconds"%(utils.toc()))
+                    logger.info("Solving tree...")
+                    utils.tic()
+                    res=slvr.solve()
+                    logger.info("Done! Solving took %s seconds."%(utils.toc()))
+                    logger.debug(res)
+                    logger.debug("\n"+pp.pformat({key:val.getValue() for key,val in slvr.data.items()}))
+                    rocketModels[rocketName][blockIndex]['solvedData']=slvr.data.copy()
+            except Exception:
+                 print(traceback.format_exc())
+            plt.show()
     plt.show()
