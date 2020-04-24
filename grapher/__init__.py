@@ -86,9 +86,9 @@ class Grapher:
             nx.draw_networkx_edges(self.G, self.pos, ax=self.ax, node_size=40, linewidths=2, edge_color='#000000', alpha=0.2)
             pos_attrs = {}
             for node, coords in self.pos.items():
-                pos_attrs[node] = (coords[0] + 0.02, coords[1] + 0.06)
+                pos_attrs[node] = (coords[0] + 0.02, coords[1] + 5)
             node_attrs = nx.get_node_attributes(self.G, 'description')
-            #nx.draw_networkx_labels(self.G, pos_attrs, ax=self.ax, labels=node_attrs)
+            nx.draw_networkx_labels(self.G, pos_attrs, ax=self.ax, labels=node_attrs)
 
         self.fig.canvas.draw()
         self.pause(0.01)
