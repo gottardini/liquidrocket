@@ -7,10 +7,9 @@ J-2 (II° stadio)","Saturn V
 J-2 (III° stadio)"
 Rapporto aree ugello,eps,-,n,58.2,83.1,0,16,27.5,27.5
 Pressione statica in camera di combustione,p_cc,Pa,n,1.15E+07,3.70E+06,1.10E+07,7000000,5.26E+06,5.26E+06
-Temperatura in camera di combustione,T_cc_DEPR,K,y,3.57E+03,3.24E+03,3.57E+03,3670,3.45E+03,3.45E+03
-Spinta nominale (tabulata),T_n,kN,n,1359,62.2,845,6770,1014,903
+Spinta nominale (tabulata),T_n,kN,n,1.36E+03,6.22E+01,8.45E+02,6770,1.01E+03,9.03E+02
 Pressione nominale (a spinta nominale),p_n,Pa,n,0.00E+00,0.00E+00,101325,101325,0.00E+00,0.00E+00
-Massa molare ossidante,Mm_ox,kg/kmol,n,32,32,32,32,32,32
+Massa molare ossidante,Mm_ox,kg/kmol,n,3.20E+01,3.20E+01,32,32,3.20E+01,3.20E+01
 Densità ossidante,rho_ox,kg/m3,n,1141,1141,1410,1141,,
 Temperatura congelamento ossidante,T_cong_ox,K,n,54.36,54.36,54.36,54.36,54.36,54.36
 Temperatura ebollizione ossidante,T_ebol_ox,K,n,90.19,90.19,90.19,90.19,90.19,90.19
@@ -19,16 +18,12 @@ Densità combustibile,rho_f,kg/m3,n,70.85,70.85,810,806,,
 Temperatura congelamento combustibile,T_cong_f,K,n,14.01,14.01,225,0,14,14
 Temperatura ebollizione combustibile,T_ebol_f,K,n,20.28,20.28,530,530,20.27,20.27
 Rapporto massico di miscela,r_cc,-,n,6.1,5,2.24,2.27,5,5
-Massa molare media dei prodotti di combustione,Mm_cp_DEPR,kg/kmol,y,13.846,11.764,,22.5,8.9,8.9
-Rapporto calori specifici dei prodotti di combustione,y_c_DEPR,-,y,1.1411,1.1524,,1.24,1.26,1.26
 Impulso specifico nominale,Isp_z,s,n,429,444.6,285.4,304,424,424
 Fattore di correzione velocità ,eta_2D,-,n,1,1,1,0.92,1,
-Lunghezza caratteristica (Sutton),L_star,m,n,-1,,,1,,
-Angolo di inclinazione del divergente,alpha,rad,n,-1,,,,,
-Angolo di inclinazione del convergente,beta,rad,n,-1,,,,,
+Lunghezza caratteristica (Sutton),L_star,m,n,1,,,1,,
 Pressione serbatoio combustibile,p_tank_f,Pa,n,3.00E+05,,,,,
-Angolo iniziale divergente,theta_n,,,,,,,,
-Angolo finale divergete,TETA_e,,,,,,,,
+Angolo iniziale divergente,theta_n,,n,5.24E-01,,,,,
+Angolo finale divergete,theta_e,,n,1.40E-01,,,,,
 Pressione serbatoio ossidante,p_tank_ox,Pa,n,3.00E+05,,,,,
 Nome ossidante (per il CEA),oxName,-,n,LOX,LOX,,LOX,LOX,LOX
 Nome combustibile (per il CEA),fuelName,-,n,LH2,LH2,,RP-1,LH2,LH2
