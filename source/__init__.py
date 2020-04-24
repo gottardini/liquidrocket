@@ -127,10 +127,27 @@ nonstatic_propulsive_parameters={
 }
 
 nozzle={
+    'theta':UnknownVariable("Half expansion angle", np.pi/12),#CAPIRE SE È DATO GLOBALE O RELATIVO AL SINGOLO STADIO. SE RELATIVO, ALLORA AGGIUNGI SU GOOGLE SPREADSHEET
     'A_t':UnknownVariable("Sezione di gola",CalcFunction(calcThroatArea,'m_p','u_e','p_cc','ct_n')),
     'D_t':UnknownVariable("Diametro di gola",CalcFunction(calcDiameter,'A_t')),
     'A_e':UnknownVariable("Area di efflusso",CalcFunction(calcExitArea,'eps','A_t')),
     'D_e':UnknownVariable("Diametro di efflusso",CalcFunction(calcDiameter,'A_e')),
+    'L_cone':UnknownVariable("Lunghezza cono", CalcFunction(calcConeLength, 'eps', 'D_t', 'teta')),
+    'L_bell':UnknownVariable("Lunghezza campana", CalcFunction(calcBellLength, 'L_cone')),#CALCOLATA ALL'80% DI L_cone
+    'theta_i':UnknownVariable("Angolo iniziale tratto convergente", CalcFunction(calcThetai, 'D_c', 'D_t')),
+    'x_conv':UnknownVariable("Array contenente coordinate x dei punti della funzione, il cui grafico "
+                             "disegna il tratto convergente dell'ugello", CalcFunction(calcXConv, 'theta_i', 'D_t')),
+    'y_conv':UnknownVariable("Array contenente coordinate y dei punti della funzione, il cui grafico "
+                             "disegna il tratto convergente dell'ugello", CalcFunction(calcYConv, 'theta_i', 'D_t')),
+    'x_div_plus':UnknownVariable("Array contenente coordinate x dei punti della funzione, il cui grafico disegna il "
+                                 "tratto divergente a concavità verso l'alto dell'ugello", CalcFunction(calcXDivPlus, 'theta_n', 'D_t')),
+    'y_div_plus':UnknownVariable("Array contenente coordinate y dei punti della funzione, il cui grafico disegna il "
+                                 "tratto divergente a concavità verso l'alto dell'ugello", CalcFunction(calcYDivPlus,'theta_n', 'D_t')),
+    'x_div_minus':UnknownVariable("Array contenente coordinate x dei punti della funzione, il cui grafico disegna il "
+                                 "tratto divergente a concavità verso il basso dell'ugello", CalcFunction(calcXDivMinus, 'theta_n', 'theta_e', 'D_t', 'L_bell', 'D_e')),
+    'y_div_minus':UnknownVariable("Array contenente coordinate y dei punti della funzione, il cui grafico disegna il "
+                                 "tratto divergente a concavità verso il basso dell'ugello", CalcFunction(calcYDivMinus, 'theta_n', 'theta_e', 'D_t', 'L_bell', 'D_e')),
+#DISEGNAMO METÀ UGELLO, SOLO LA PARTE SOPRA. TROVARE MODO PER FARE MIRROR
 }
 
 tanks={
