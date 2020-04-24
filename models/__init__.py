@@ -7,6 +7,12 @@ class Node:
 
 
 class Variable:
+    def __str__(self):
+        return self.getValue()
+
+    def __repr__(self):
+        return str(self.getValue())
+
     def __init__(self,description,value=None,calcFunction=None):
         self.description=description
         self.calcFunction=calcFunction
@@ -15,8 +21,8 @@ class Variable:
                 pass
             elif isinstance(value,collections.Iterable):
                 value=np.array(value)
-            else:
-                value=np.array([value])
+            #else:
+            #    value=np.array([value])
         self.value=value
 
     def getDependencies(self):
