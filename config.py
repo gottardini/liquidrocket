@@ -7,9 +7,10 @@ postprocfile="source/postproc.txt"
 rockets={
     "Ariane 5 ECA":[
         {
-        'name':"Vulcain 2",
+        'name':"Core stage",
         'index':0,
         'qty':1,
+        'type':'liquid',
         'tStart':0,
         'tEnd':100
         },

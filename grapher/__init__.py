@@ -21,13 +21,14 @@ except ImportError:
 forceatlas2 = ForceAtlas2()
 
 class Grapher:
-    def __init__(self,view=False,debug=False,cool=False):
+    def __init__(self,view=False,debug=False,cool=False,labels=False):
         self.G=nx.DiGraph()
         self.initialized=False
         self.colors=OrderedDict()
         self.view=view
         self.debug=debug
         self.cool=cool
+        self.labels=labels
 
 
     def addNode(self,name,description,parent=None):
@@ -84,11 +85,12 @@ class Grapher:
             #nx.draw_networkx(self.G, self.pos, ax=self.ax, node_size=50, alpha=1, with_labels=False, node_color='#222222',linewidths=1, edge_color=(0.5,0.5,0.5,0.01))
             nx.draw_networkx_nodes(self.G, self.pos, ax=self.ax, node_size=30, node_color='#222222')
             nx.draw_networkx_edges(self.G, self.pos, ax=self.ax, node_size=40, linewidths=2, edge_color='#000000', alpha=0.2)
-            pos_attrs = {}
-            for node, coords in self.pos.items():
-                pos_attrs[node] = (coords[0] + 0.02, coords[1] + 0.06)
-            node_attrs = nx.get_node_attributes(self.G, 'description')
-            #nx.draw_networkx_labels(self.G, pos_attrs, ax=self.ax, labels=node_attrs)
+            if self.labels:
+                pos_attrs = {}
+                for node, coords in self.pos.items():
+                    pos_attrs[node] = (coords[0] + 0.02, coords[1] + 5)
+                node_attrs = nx.get_node_attributes(self.G, 'description')
+                nx.draw_networkx_labels(self.G, pos_attrs, ax=self.ax, labels=node_attrs)
 
         self.fig.canvas.draw()
         self.pause(0.01)

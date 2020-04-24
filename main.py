@@ -32,10 +32,14 @@ if __name__=="__main__":
     parser.add_argument('--debug', dest='debug', action='store_true')
     parser.add_argument('--all', dest='all', action='store_true')
     parser.add_argument('--postproc', dest='postproc', action='store_true')
+    parser.add_argument('--cool', dest='cool', action='store_true')
+    parser.add_argument('--labels', dest='labels', action='store_true')
     parser.set_defaults(graph=False)
     parser.set_defaults(debug=False)
     parser.set_defaults(all=False)
     parser.set_defaults(postproc=False)
+    parser.set_defaults(cool=False)
+    parser.set_defaults(labels=False)
     args = parser.parse_args()
 
     ###SOME SETUP
@@ -63,11 +67,14 @@ if __name__=="__main__":
             unsolvedModel['t_b']=InputVariable("Tempo di combustione",rocketData[blockIndex]['tEnd']-rocketData[blockIndex]['tStart'])
             ###
             modelData=utils.mergeData([engineData,unsolvedModel])
-            task=[key for key,val in modelData.items() if isinstance(val,UnknownVariable)]
+            if args.all:
+                task=[key for key,val in modelData.items() if isinstance(val,UnknownVariable)]
+            else:
+                task=utils.getOutputs()
 
-            pp.pprint(modelData)
+            #pp.pprint(modelData)
             #LET'S SOLVE
-            grph=Grapher(view=args.graph,debug=args.debug,cool=False)
+            grph=Grapher(view=args.graph,debug=args.debug,cool=args.cool,labels=args.labels)
             slvr=Solver(modelData,task,grph,logger)
             utils.tic()
             try:
@@ -83,4 +90,5 @@ if __name__=="__main__":
             except Exception:
                  print(traceback.format_exc())
             plt.show()
+    #pp.pprint(rocketModels)
     plt.show()
