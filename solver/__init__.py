@@ -1,4 +1,5 @@
 from collections import OrderedDict,Iterable
+from models import InputVariable
 
 class Solver:
     def __init__(self,data,outputs,grph,logger):
@@ -23,7 +24,6 @@ class Solver:
         self.logger.debug("Solving concluded successfully")
         self.grapher.drawGraph()
         return result
-
 
     def solveRecursively(self,nodename):
         self.logger.debug("Solver is currently at node '%s'"%(nodename))
@@ -52,8 +52,6 @@ class Solver:
         self.grapher.changeNodeColor(nodename,'#8DFF33')
         return True
 
-
-
     def validateTree(self):
         if len(self.outKeys)!=len(self.outputs):
             self.logger.error("There are duplicates in the requested outputs")
@@ -68,7 +66,6 @@ class Solver:
             self.grapher.drawGraph()
             return True
         return False
-
 
     def validateNodeRecursively(self,nodename,localvisited):
         self.logger.debug("Visiting node '%s'"%(nodename))
@@ -106,3 +103,13 @@ class Solver:
                 self.logger.debug("Node '%s' has no dependencies, fine!")
                 self.grapher.changeNodeColor(nodename,'#F9FF33')
                 return True
+
+    def findUnusedVariables(self):
+        usedVariables=set()
+        inputVariables=set([key for key,val in self.data.items() if isinstance(val,InputVariable)])
+        for nodename, node in self.data.items():
+            deps=node.getDependencies()
+            if deps!=None:
+                for dep in deps:
+                    usedVariables.add(dep)
+        return list(inputVariables.difference(usedVariables))

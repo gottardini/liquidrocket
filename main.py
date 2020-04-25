@@ -87,6 +87,9 @@ if __name__=="__main__":
                     logger.debug(res)
                     logger.debug("\n"+pp.pformat({key:val.getValue() for key,val in slvr.data.items()}))
                     rocketModels[rocketName][blockIndex]['solvedData']=slvr.data.copy()
+                    unusedVariables=slvr.findUnusedVariables()
+                    if len(unusedVariables):
+                        logger.warning("There are some unused input varables: %s"%(str(unusedVariables)))
             except Exception:
                  print(traceback.format_exc())
             plt.show()
