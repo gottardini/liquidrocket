@@ -1,1 +1,4 @@
-GAMMA
+c_star
+u_e
+ct_var
+I_s

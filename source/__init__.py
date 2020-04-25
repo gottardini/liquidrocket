@@ -36,12 +36,15 @@ outflow_gases={
     'R_cc_e':UnknownVariable("Costante dei gas di scarico",CalcFunction(calcGasConstant,'R_u','Mm_cc_e')),
     'GAMMA':UnknownVariable("Funzione di Van Kerckhove",CalcFunction(vanker,'y_cc_e')),
     'p_e':UnknownVariable("Pressione all'efflusso",CalcFunction(calcExitPressure,'y_cc_e','p_cc','eps','GUESS')),
-    'u_e':UnknownVariable("Velocità all'efflusso",CalcFunction(calcExitVelocity,'eta_2D','y_cc_e','R_cc_e','T_cc','p_e','p_cc')),
-    'c_star':UnknownVariable("Velocità caratteristica",CalcFunction(calcCharacteristicVelocity,'R_cc_e','T_cc','GAMMA')),
     'm_p':UnknownVariable("Portata massica di propellente",CalcFunction(calcPropFlowRate,'thr_n','u_e','eps','p_cc','ct_n','p_e','p_n')),
 
+    #ANALYTICAL VALUES
+    #'u_e':UnknownVariable("Velocità all'efflusso",CalcFunction(calcExitVelocity,'eta_2D','y_cc_e','R_cc_e','T_cc','p_e','p_cc')),
+    #'c_star':UnknownVariable("Velocità caratteristica",CalcFunction(calcCharacteristicVelocity,'R_cc_e','T_cc','GAMMA')),
+
     #CEA VALUES
-    #'c_star':UnknownVariable("Velocità caratteristica",CalcFunction(getCeaCharacteristicVelocity, 'cc_cea', 'p_cc', 'r_cc')),
+    'c_star':UnknownVariable("Velocità caratteristica",CalcFunction(getCeaCharacteristicVelocity, 'cc_cea', 'p_cc', 'r_cc')),
+    'u_e':UnknownVariable("Velocità all'efflusso",CalcFunction(getCeaExitVelocity, 'cc_cea', 'p_cc', 'r_cc', 'eps')),
 }
 
 combustion_chamber={
@@ -121,18 +124,18 @@ static_propulsive_parameters={
 
 nonstatic_propulsive_parameters={
     #ANALYTICAL VALUES
-    'ct_var':UnknownVariable("Coefficiente di spinta",CalcFunction(calcThrustCoefficient,'p','y_cc_e','eps','p_e','p_cc')),
-    'thr_var':UnknownVariable("Spinta",CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p')),
-    'I_s':UnknownVariable("Impulso specifico", CalcFunction(calcSpecificImpulse, 'thr_var', 'm_p', 'g_0')),
-    'I_v':UnknownVariable("Impulso specifico volumetrico", CalcFunction(calcVolumetricSpecificImpulse, 'I_s', 'rho_avg')),
-    'I_tot':UnknownVariable("Impulso specifico totale", CalcFunction(calcTotalVolumetricImpulse, 'I_s', 'M_ox', 'M_f', 'g_0')),
-
-    #CEA VALUES
-    #'ct_var':UnknownVariable("Coefficiente di spinta",CalcFunction(getCeaThrustCoefficient, 'cc_cea', 'p', 'p_cc', 'r_cc', 'eps')),
+    #'ct_var':UnknownVariable("Coefficiente di spinta",CalcFunction(calcThrustCoefficient,'p','y_cc_e','eps','p_e','p_cc')),
     #'thr_var':UnknownVariable("Spinta",CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p')),
-    #'I_s':UnknownVariable("Impulso specifico", CalcFunction(getCeaSpecificImpulse, 'cc_cea', 'p_cc', 'r_cc', 'eps', 'p')),
+    #'I_s':UnknownVariable("Impulso specifico", CalcFunction(calcSpecificImpulse, 'thr_var', 'm_p', 'g_0')),
     #'I_v':UnknownVariable("Impulso specifico volumetrico", CalcFunction(calcVolumetricSpecificImpulse, 'I_s', 'rho_avg')),
     #'I_tot':UnknownVariable("Impulso specifico totale", CalcFunction(calcTotalVolumetricImpulse, 'I_s', 'M_ox', 'M_f', 'g_0')),
+
+    #CEA VALUES
+    'ct_var':UnknownVariable("Coefficiente di spinta",CalcFunction(getCeaThrustCoefficient, 'cc_cea', 'p', 'p_cc', 'r_cc', 'eps')),
+    'thr_var':UnknownVariable("Spinta",CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p')),
+    'I_s':UnknownVariable("Impulso specifico", CalcFunction(getCeaSpecificImpulse, 'cc_cea', 'p_cc', 'r_cc', 'eps', 'p')),
+    'I_v':UnknownVariable("Impulso specifico volumetrico", CalcFunction(calcVolumetricSpecificImpulse, 'I_s', 'rho_avg')),
+    'I_tot':UnknownVariable("Impulso specifico totale", CalcFunction(calcTotalVolumetricImpulse, 'I_s', 'M_ox', 'M_f', 'g_0')),
 }
 
 nozzle={

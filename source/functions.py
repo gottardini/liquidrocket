@@ -32,6 +32,7 @@ def calcCharacteristicVelocity(R_cp,T_c,GAMMA):
 
 def calcExitVelocity(eta_2D,y,R_cp,T_c,p_e,p_c):
     return eta_2D*np.sqrt(2*(y/(y-1))*R_cp*T_c*(1-(p_e/p_c)**((y-1)/y)));
+    #RITORNA UN ARRAY
 
 def calcAdaptedSpecificImpulse(u_e,g_0):
     return u_e/g_0
@@ -212,18 +213,21 @@ def getCeaChamberCp(obj,pc,mr,eps=1,frozen=0):
     return obj.get_Chamber_Cp(Pc=pc,MR=mr,eps=eps)
 
 def getCeaThrustCoefficient(obj, pamb, pc, mr, eps):
-    c_t = []
+    c_t = np.array([])
     for x in pamb:
-        c_t = c_t.append(obj.getFrozen_PambCf(Pamb=x, Pc=pc, MR=mr, eps=eps, frozenAtThroat=1))
+        c_t = np.append(c_t, obj.getFrozen_PambCf(Pamb=x, Pc=pc, MR=mr, eps=eps, frozenAtThroat=1))
     return c_t
 
 def getCeaCharacteristicVelocity(obj, pc, mr):
-    return obj.get_Cstar(PC=pc, MR=mr)
+    return obj.get_Cstar(Pc=pc, MR=mr)
+
+def getCeaExitVelocity(obj, pc, mr, eps):
+    return obj.get_SonicVelocities(Pc=pc, MR=mr, eps=eps)[2]*obj.get_MachNumber(Pc=pc, MR=mr, eps=eps)
 
 def getCeaSpecificImpulse(obj, pc, mr, eps, pamb):
-    Isp = []
+    Isp = np.array([])
     for x in pamb:
-        Isp = Isp.append(obj.estimate_Ambient_Isp(Pc=pc, MR=mr, eps=eps, Pamb=x, frozen=1, frozenAtThroat=1)[0])
+        Isp = np.append(Isp, obj.estimate_Ambient_Isp(Pc=pc, MR=mr, eps=eps, Pamb=x, frozen=1, frozenAtThroat=1)[0])
     return Isp
 
 def Pa2Psia(pr):
