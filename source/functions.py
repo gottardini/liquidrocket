@@ -211,6 +211,21 @@ def getCeaExitTemperature(obj,pc,mr,eps=1):
 def getCeaChamberCp(obj,pc,mr,eps=1,frozen=0):
     return obj.get_Chamber_Cp(Pc=pc,MR=mr,eps=eps)
 
+def getCeaThrustCoefficient(obj, pamb, pc, mr, eps):
+    c_t = []
+    for x in pamb:
+        c_t = c_t.append(obj.getFrozen_PambCf(Pamb=x, Pc=pc, MR=mr, eps=eps, frozenAtThroat=1))
+    return c_t
+
+def getCeaCharacteristicVelocity(obj, pc, mr):
+    return obj.get_Cstar(PC=pc, MR=mr)
+
+def getCeaSpecificImpulse(obj, pc, mr, eps, pamb):
+    Isp = []
+    for x in pamb:
+        Isp = Isp.append(obj.estimate_Ambient_Isp(Pc=pc, MR=mr, eps=eps, Pamb=x, frozen=1, frozenAtThroat=1)[0])
+    return Isp
+
 def Pa2Psia(pr):
     return pr / 6894.75728
 
