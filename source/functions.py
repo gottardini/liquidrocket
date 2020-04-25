@@ -194,10 +194,10 @@ def getCeaChamberGam(obj,pc,mr,eps=1):
     return obj.get_Chamber_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[1]
 
 def getCeaThroatMM(obj,pc,mr,eps=1):
-    return obj.get_Chamber_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[0]
+    return obj.get_Throat_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[0]
 
 def getCeaThroatGam(obj,pc,mr,eps=1):
-    return obj.get_Chamber_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[1]
+    return obj.get_Throat_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[1]
 
 def getCeaChamberTemperature(obj,pc,mr,eps=1):
     return obj.get_Temperatures(Pc=pc,MR=mr,eps=eps,frozen=1,frozenAtThroat=1)[0]
