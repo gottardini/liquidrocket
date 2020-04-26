@@ -198,6 +198,7 @@ def getCeaThroatMM(obj,pc,mr,eps=1):
     return obj.get_Throat_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[0]
 
 def getCeaThroatGam(obj,pc,mr,eps=1):
+    print(obj,pc,mr,eps)
     return obj.get_Throat_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[1]
 
 def getCeaChamberTemperature(obj,pc,mr,eps=1):
@@ -212,11 +213,15 @@ def getCeaExitTemperature(obj,pc,mr,eps=1):
 def getCeaChamberCp(obj,pc,mr,eps=1,frozen=0):
     return obj.get_Chamber_Cp(Pc=pc,MR=mr,eps=eps)
 
+#def getCeaThrustCoefficient(obj, pamb, pc, mr, eps):
+#    c_t = np.array([])
+#    for x in pamb:
+#        c_t = np.append(c_t, obj.getFrozen_PambCf(Pamb=x, Pc=pc, MR=mr, eps=eps, frozenAtThroat=1))
+#    return c_t
+
 def getCeaThrustCoefficient(obj, pamb, pc, mr, eps):
-    c_t = np.array([])
-    for x in pamb:
-        c_t = np.append(c_t, obj.getFrozen_PambCf(Pamb=x, Pc=pc, MR=mr, eps=eps, frozenAtThroat=1))
-    return c_t
+    print(obj,pamb,pc,mr,eps)
+    return obj.getFrozen_PambCf(Pamb=pamb, Pc=pc, MR=mr, eps=eps, frozenAtThroat=1)
 
 def getCeaCharacteristicVelocity(obj, pc, mr):
     return obj.get_Cstar(Pc=pc, MR=mr)
@@ -224,11 +229,14 @@ def getCeaCharacteristicVelocity(obj, pc, mr):
 def getCeaExitVelocity(obj, pc, mr, eps):
     return obj.get_SonicVelocities(Pc=pc, MR=mr, eps=eps)[2]*obj.get_MachNumber(Pc=pc, MR=mr, eps=eps)
 
+#def getCeaSpecificImpulse(obj, pc, mr, eps, pamb):
+#    Isp = np.array([])
+#    for x in pamb:
+#        Isp = np.append(Isp, obj.estimate_Ambient_Isp(Pc=pc, MR=mr, eps=eps, Pamb=x, frozen=1, frozenAtThroat=1)[0])
+#    return Isp
+
 def getCeaSpecificImpulse(obj, pc, mr, eps, pamb):
-    Isp = np.array([])
-    for x in pamb:
-        Isp = np.append(Isp, obj.estimate_Ambient_Isp(Pc=pc, MR=mr, eps=eps, Pamb=x, frozen=1, frozenAtThroat=1)[0])
-    return Isp
+    return obj.estimate_Ambient_Isp(Pc=pc, MR=mr, eps=eps, Pamb=pamb, frozen=1, frozenAtThroat=1)[0]
 
 def Pa2Psia(pr):
     return pr / 6894.75728

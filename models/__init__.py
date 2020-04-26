@@ -1,5 +1,6 @@
 import numpy as np
 import collections
+from rocketcea.cea_obj_w_units import CEA_Obj
 
 class Node:
     def __init__(self,variable):
@@ -7,11 +8,11 @@ class Node:
 
 
 class Variable:
-    def __str__(self):
-        return self.getValue()
+    #def __str__(self):
+    #    return str(self.getValue())
 
-    def __repr__(self):
-        return str(self.getValue())
+    #def __repr__(self):
+    #    return str(self.getValue())
 
     def __init__(self,description,value=None,calcFunction=None):
         self.description=description
@@ -21,8 +22,8 @@ class Variable:
                 pass
             elif isinstance(value,collections.Iterable):
                 value=np.array(value)
-            #else:
-            #    value=np.array([value])
+            else:
+                value=np.array([value])
         self.value=value
 
     def getDependencies(self):
@@ -50,10 +51,44 @@ class UnknownVariable(Variable):
 
 
 class CalcFunction:
-    def __init__(self, fun, *bindings):
+    def __init__(self, fun, *bindings, iter=False):
         self.fun=fun
         self.bindings=bindings
+        self.manualIter=iter
 
     def execute(self,values): #values is represented with a dictionary e.g. {"g":9.81}
-        params=[values[key] for key in self.bindings]
-        return self.fun(*params)
+        if not self.manualIter:
+            params=[values[key] for key in self.bindings]
+            res = self.fun(*params)
+            if type(res)!=np.ndarray:
+                if isinstance(res,CEA_Obj):
+                    pass
+                elif isinstance(res,list):
+                    res=np.array(res)
+                else:
+                    res=np.array([res])
+            return res
+        else:
+            res=np.array([])
+            #lens=[len(values[key]) for key in self.bindings]
+            lens=[]
+            for key in self.bindings:
+                val=values[key]
+                if isinstance(val,np.ndarray) or isinstance(val,list):
+                    lens.append(len(val))
+                else:
+                    lens.append(1)
+
+            for i in range(np.amax(lens)):
+                params=[]
+                for j in range(len(self.bindings)):
+                    val=values[self.bindings[j]]
+                    if lens[j]>1:
+                        params.append(val[i])
+                    else:
+                        if isinstance(val,np.ndarray):
+                            params.append(val[0])
+                        else:
+                            params.append(val)
+                res=np.append(res,self.fun(*params))
+            return res
