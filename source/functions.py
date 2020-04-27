@@ -114,7 +114,7 @@ def calcTotalHolesArea(m, C_d, rho, p_loss_inj, p_c):
     return m/(C_d*np.sqrt(2*rho*p_loss_inj*p_c))
 
 def calcNumber1Holes(A_th):
-    return 4*A_th/np.pi
+    return 4*A_th/(np.pi*1e-6)
 
 def calcNumberHoles(n_h_f, n_h_ox):
     return min(n_h_f, n_h_ox)
@@ -198,7 +198,7 @@ def getCeaThroatMM(obj,pc,mr,eps=1):
     return obj.get_Throat_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[0]
 
 def getCeaThroatGam(obj,pc,mr,eps=1):
-    print(obj,pc,mr,eps)
+    #print(obj,pc,mr,eps)
     return obj.get_Throat_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[1]
 
 def getCeaChamberTemperature(obj,pc,mr,eps=1):
