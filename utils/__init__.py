@@ -21,7 +21,7 @@ def mergeData(sources):
     for elem in sources:
         for key,val in elem.items():
             if key in merged:
-                raise ValueError("Dupilcate found")
+                raise ValueError("Dupilcate found: %s"%(key))
                 return False
             else:
                 merged[key]=val
