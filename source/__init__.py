@@ -61,7 +61,7 @@ combustion_chamber={
     'rho_c':UnknownVariable("Densità dei gas in camera di combustione", CalcFunction(calcDensity, 'p_cc', 'R_cc_c', 'T_cc')),
     'A_c':UnknownVariable("Area camera di combustione", CalcFunction(calcChamberArea, 'm_p', 'rho_c', 'u_c')),
     'D_c':UnknownVariable("Diametro camera di combustione", CalcFunction(calcDiameter, 'A_c')),
-    'V_c':UnknownVariable("Volume camera di combustione", CalcFunction(calcChamberVolume, 'L_star', 'A_c')),
+    'V_c':UnknownVariable("Volume camera di combustione", CalcFunction(calcChamberVolume, 'L_star', 'A_t')),
     'L_c':UnknownVariable("Lunghezza camera di combustione", CalcFunction(calcChamberLength, 'V_c', 'A_c')),
     'A_th_f':UnknownVariable("Area di tutti i fori piastra combustibile", CalcFunction(calcTotalHolesArea, 'm_f', 'C_d', 'rho_f', 'p_loss_inj', 'p_cc')),
     'A_th_ox':UnknownVariable("Area di tutti i fori piastra ossidante", CalcFunction(calcTotalHolesArea, 'm_ox', 'C_d', 'rho_ox', 'p_loss_inj', 'p_cc')),
@@ -147,19 +147,20 @@ nozzle={
     'L_cone':UnknownVariable("Lunghezza cono", CalcFunction(calcConeLength, 'eps', 'D_t', 'theta')),
     'L_bell':UnknownVariable("Lunghezza campana", CalcFunction(calcBellLength, 'L_cone')),#CALCOLATA ALL'80% DI L_cone
     'theta_i':UnknownVariable("Angolo iniziale tratto convergente", CalcFunction(calcThetai, 'D_c', 'D_t')),
-    'x_conv':UnknownVariable("Array contenente coordinate x dei punti della funzione, il cui grafico "
-                             "disegna il tratto convergente dell'ugello", CalcFunction(calcXConv, 'theta_i', 'D_t')),
-    'y_conv':UnknownVariable("Array contenente coordinate y dei punti della funzione, il cui grafico "
-                             "disegna il tratto convergente dell'ugello", CalcFunction(calcYConv, 'theta_i', 'D_t')),
-    'x_div_plus':UnknownVariable("Array contenente coordinate x dei punti della funzione, il cui grafico disegna il "
-                                 "tratto divergente a concavità verso l'alto dell'ugello", CalcFunction(calcXDivPlus, 'theta_n', 'D_t')),
-    'y_div_plus':UnknownVariable("Array contenente coordinate y dei punti della funzione, il cui grafico disegna il "
-                                 "tratto divergente a concavità verso l'alto dell'ugello", CalcFunction(calcYDivPlus,'theta_n', 'D_t')),
-    'x_div_minus':UnknownVariable("Array contenente coordinate x dei punti della funzione, il cui grafico disegna il "
-                                 "tratto divergente a concavità verso il basso dell'ugello", CalcFunction(calcXDivMinus, 'theta_n', 'theta_e', 'D_t', 'L_bell', 'D_e')),
-    'y_div_minus':UnknownVariable("Array contenente coordinate y dei punti della funzione, il cui grafico disegna il "
-                                 "tratto divergente a concavità verso il basso dell'ugello", CalcFunction(calcYDivMinus, 'theta_n', 'theta_e', 'D_t', 'L_bell', 'D_e')),
-#DISEGNAMO METÀ UGELLO, SOLO LA PARTE SOPRA. TROVARE MODO PER FARE MIRROR
+    'x_conv':UnknownVariable("Tratto convergente ugello-x", CalcFunction(calcXConv, 'theta_i', 'D_t')),
+    #Array contenente coordinate x dei punti della funzione, il cui grafico disegna il tratto convergente dell'ugello
+    'y_conv':UnknownVariable("Tratto convergente ugello-y", CalcFunction(calcYConv, 'theta_i', 'D_t')),
+    #Array contenente coordinate y dei punti della funzione, il cui grafico disegna il tratto convergente dell'ugello
+    'x_div_plus':UnknownVariable("Tratto divergente + ugello-x", CalcFunction(calcXDivPlus, 'theta_n', 'D_t')),
+    #Array contenente coordinate x dei punti della funzione, il cui grafico disegna il tratto divergente a concavità verso l'alto dell'ugello
+    'y_div_plus':UnknownVariable("Tratto divergente + ugello-y", CalcFunction(calcYDivPlus,'theta_n', 'D_t')),
+    #Array contenente coordinate y dei punti della funzione, il cui grafico disegna il tratto divergente a concavità verso l'alto dell'ugello
+    'x_div_minus':UnknownVariable("Tratto divergente - ugello-x", CalcFunction(calcXDivMinus, 'theta_n', 'theta_e', 'D_t', 'L_bell', 'D_e')),
+    #Array contenente coordinate x dei punti della funzione, il cui grafico disegna il tratto divergente a concavità verso il basso dell'ugello
+    'y_div_minus':UnknownVariable("Tratto divergente - ugello-y", CalcFunction(calcYDivMinus, 'theta_n', 'theta_e', 'D_t', 'L_bell', 'D_e')),
+    #Array contenente coordinate y dei punti della funzione, il cui grafico disegna il tratto divergente a concavità verso il basso dell'ugello
+
+    #DISEGNAMO METÀ UGELLO, SOLO LA PARTE SOPRA. TROVARE MODO PER FARE MIRROR
 }
 
 tanks={

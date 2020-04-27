@@ -102,8 +102,8 @@ def calcChamberVelocity(Ma_c, y_c, R_c, T_c):
 def calcChamberArea(m_p, rho_c, u_c):
     return m_p/(rho_c*u_c)
 
-def calcChamberVolume(L_star, A_c):
-    return L_star*A_c
+def calcChamberVolume(L_star, A_t):
+    return L_star*A_t
 
 def calcChamberLength(V_c, A_c):
     return V_c/A_c
