@@ -39,7 +39,10 @@ class Variable:
         return self.value
 
     def getReadableValue(self):
-        return np.array2string(self.value,edgeitems=2,threshold=3)
+        if isinstance(self.value,np.ndarray):
+            return np.array2string(self.value,edgeitems=2,threshold=3)
+        else:
+            return str(self.value)
 
     def setValue(self,val):
         self.value=val
