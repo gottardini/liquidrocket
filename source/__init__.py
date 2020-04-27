@@ -3,11 +3,11 @@ from source.functions import *
 import numpy as np
 
 flight={
-    'z':InputVariable("Quota [m]",np.linspace(0,400e3,50)),
+    'z':InputVariable("Quota",'m',np.linspace(0,400e3,50)),
 }
 
 atmoshpere={
-    'p':UnknownVariable("Pressione atmosferica",CalcFunction(calcPressureFromAltitude,'z','p_0','T_0','a','g_0','R_air')),
+    'p':UnknownVariable("Pressione atmosferica",'Pa',CalcFunction(calcPressureFromAltitude,'z','p_0','T_0','a','g_0','R_air')),
     #"p_tropo':UnknownVariable("Pressione troposferica",CalcFunction(calcTropoPressure,'z','p_0','T_0','a','g_0','R_air')),
 }
 
