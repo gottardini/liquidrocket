@@ -64,7 +64,7 @@ if __name__=="__main__":
             engineName,engineData=utils.getEngineData(inputData, rocketData[blockIndex]['index'])
             unsolvedModel=utils.getUnsolvedModel()
             #INJECT SPECIFIC STAGE DATA
-            unsolvedModel['t_b']=InputVariable("Tempo di combustione",rocketData[blockIndex]['tEnd']-rocketData[blockIndex]['tStart'])
+            unsolvedModel['t_b']=InputVariable("Tempo di combustione",'s',rocketData[blockIndex]['tEnd']-rocketData[blockIndex]['tStart'])
             ###
             modelData=utils.mergeData([engineData,unsolvedModel])
             if args.all:
