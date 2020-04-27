@@ -84,7 +84,7 @@ if __name__=="__main__":
                     utils.tic()
                     res=slvr.solve()
                     logger.info("Done! Solving took %s seconds."%(utils.toc()))
-                    logger.info("Here are your outputs:\n"+utils.formatData(slvr.data,task))
+                    logger.info("Here are your outputs:\n"+utils.formatData(slvr.data,engineData,task))
                     logger.debug("\n"+pp.pformat({key:val.getValue() for key,val in slvr.data.items()}))
                     rocketModels[rocketName][blockIndex]['solvedData']=slvr.data.copy()
                     unusedVariables=slvr.findUnusedVariables()

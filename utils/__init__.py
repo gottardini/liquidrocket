@@ -3,17 +3,22 @@ import source
 import loader as ld
 import logging
 import time
-from models import UnknownVariable
+from models import UnknownVariable, InputVariable, Variable
 
-def formatData(data,task):
-    out="\n   {:<15}{:<60}{:<10}\n".format("Simbolo", "Descrizione", "Valore")
+def formatData(data, inputData, task):
+    out="\n   {:<15}{:<60}{:<20}{:<60}\n".format("Simbolo", "Descrizione", "Unità di misura","Valore")
+
+    out+="\nINPUT_DATA\n"
+    for _varname,_vardata in inputData.items():
+        out+= "   {:<15}{:<60}{:<20}{:<60}\n".format(_varname, _vardata.description,inputData[_varname].units, inputData[_varname].getReadableValue())
+
     for varname in dir(source):
         varblock=getattr(source,varname)
         if not varname.startswith("__") and type(varblock)==dict:
             out+="\n>"+varname.upper()+"\n"
             for _varname,_vardata in varblock.items():
-                if isinstance(_vardata,UnknownVariable) and _varname in task:
-                    out+= "   {:<15}{:<60}{:<10}\n".format(_varname, _vardata.description, data[_varname].getReadableValue())
+                if isinstance(_vardata,InputVariable) or (isinstance(_vardata,UnknownVariable) and _varname in task):
+                    out+= "   {:<15}{:<60}{:<20}{:<60}\n".format(_varname, _vardata.description,data[_varname].units, data[_varname].getReadableValue())
     return out
 
 def mergeData(sources):

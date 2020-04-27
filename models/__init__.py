@@ -41,7 +41,7 @@ class Variable:
 
     def getReadableValue(self):
         if isinstance(self.value,np.ndarray):
-            return np.array2string(self.value,edgeitems=2,threshold=3)
+            return np.array2string(self.value,edgeitems=1,threshold=3,precision=4)
         else:
             return str(self.value)
 
