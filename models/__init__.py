@@ -38,6 +38,9 @@ class Variable:
     def getValue(self):
         return self.value
 
+    def getReadableValue(self):
+        return np.array2string(self.value,edgeitems=2,threshold=3)
+
     def setValue(self,val):
         self.value=val
 

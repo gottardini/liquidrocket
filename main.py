@@ -84,7 +84,7 @@ if __name__=="__main__":
                     utils.tic()
                     res=slvr.solve()
                     logger.info("Done! Solving took %s seconds."%(utils.toc()))
-                    logger.debug(res)
+                    logger.info("Here are your outputs:\n"+utils.formatData(slvr.data,task))
                     logger.debug("\n"+pp.pformat({key:val.getValue() for key,val in slvr.data.items()}))
                     rocketModels[rocketName][blockIndex]['solvedData']=slvr.data.copy()
                     unusedVariables=slvr.findUnusedVariables()
@@ -92,6 +92,10 @@ if __name__=="__main__":
                         logger.warning("There are some unused input varables: %s"%(str(unusedVariables)))
             except Exception:
                  print(traceback.format_exc())
-            plt.show()
+
+    if args.postproc:
+        postProcesser=PostProcesser(rocketModels)
+        postProcesser.make()
+
     #pp.pprint(rocketModels)
     plt.show()
