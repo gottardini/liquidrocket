@@ -14,8 +14,9 @@ class Variable:
     #def __repr__(self):
     #    return str(self.getValue())
 
-    def __init__(self,description,value=None,calcFunction=None):
+    def __init__(self,description,units,value,calcFunction):
         self.description=description
+        self.units=units
         self.calcFunction=calcFunction
         if type(value)!=np.array:
             if type(value)==str:
@@ -48,12 +49,12 @@ class Variable:
         self.value=val
 
 class InputVariable(Variable):
-    def __init__(self,description,value):
-        super().__init__(description,value,None)
+    def __init__(self,description,units,value):
+        super().__init__(description,units,value,None)
 
 class UnknownVariable(Variable):
-    def __init__(self,description,calcFunction):
-        super().__init__(description,None,calcFunction)
+    def __init__(self,description,units,calcFunction):
+        super().__init__(description,units,None,calcFunction)
 
 
 class CalcFunction:
