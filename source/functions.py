@@ -186,7 +186,7 @@ def calcYDivMinus(theta_n, theta_e, D_t, L_bell, D_e):
 
 def getCeaObj(fuelName, oxName):
     #print(type(fuelName),type(oxName))
-    return CEA_Obj( oxName=oxName, fuelName=fuelName, pressure_units='Pa', temperature_units='K', density_units='kg/m^3')
+    return CEA_Obj( oxName=oxName, fuelName=fuelName, pressure_units='Pa', temperature_units='K', density_units='kg/m^3', sonic_velocity_units='m/s')
 
 def getCeaChamberMM(obj,pc,mr,eps=1):
     return obj.get_Chamber_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[0]
@@ -227,7 +227,10 @@ def getCeaCharacteristicVelocity(obj, pc, mr):
     return obj.get_Cstar(Pc=pc, MR=mr)
 
 def getCeaExitVelocity(obj, pc, mr, eps):
-    return obj.get_SonicVelocities(Pc=pc, MR=mr, eps=eps)[2]*obj.get_MachNumber(Pc=pc, MR=mr, eps=eps)
+    son=obj.get_SonicVelocities(Pc=pc, MR=mr, eps=eps)[2]
+    mach=obj.get_MachNumber(Pc=pc, MR=mr, eps=eps)
+    #print(son,mach)
+    return son*mach
 
 #def getCeaSpecificImpulse(obj, pc, mr, eps, pamb):
 #    Isp = np.array([])

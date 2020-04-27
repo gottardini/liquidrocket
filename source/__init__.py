@@ -39,12 +39,12 @@ outflow_gases={
     'm_p':UnknownVariable("Portata massica di propellente",CalcFunction(calcPropFlowRate,'thr_n','u_e','eps','p_cc','ct_n','p_e','p_n')),
 
     #ANALYTICAL VALUES
-    #'u_e':UnknownVariable("Velocità all'efflusso",CalcFunction(calcExitVelocity,'eta_2D','y_cc_e','R_cc_e','T_cc','p_e','p_cc')),
-    #'c_star':UnknownVariable("Velocità caratteristica",CalcFunction(calcCharacteristicVelocity,'R_cc_e','T_cc','GAMMA')),
+    'u_e':UnknownVariable("Velocità all'efflusso",CalcFunction(calcExitVelocity,'eta_2D','y_cc_e','R_cc_e','T_cc','p_e','p_cc')),
+    'c_star':UnknownVariable("Velocità caratteristica",CalcFunction(calcCharacteristicVelocity,'R_cc_e','T_cc','GAMMA')),
 
     #CEA VALUES
-    'c_star':UnknownVariable("Velocità caratteristica",CalcFunction(getCeaCharacteristicVelocity, 'cc_cea', 'p_cc', 'r_cc',iter=True)),
-    'u_e':UnknownVariable("Velocità all'efflusso",CalcFunction(getCeaExitVelocity, 'cc_cea', 'p_cc', 'r_cc', 'eps')),
+    #'c_star':UnknownVariable("Velocità caratteristica",CalcFunction(getCeaCharacteristicVelocity, 'cc_cea', 'p_cc', 'r_cc',iter=True)),
+    #'u_e':UnknownVariable("Velocità all'efflusso",CalcFunction(getCeaExitVelocity, 'cc_cea', 'p_cc', 'r_cc', 'eps')),
 }
 
 combustion_chamber={
@@ -87,7 +87,7 @@ feed_system_constants={
     'eta_pump_ox':InputVariable("Rendimento della pompa di ossidante",1),
     'eta_mt':InputVariable("Rendimento meccanico della turbina",1),
     'eta_ad':InputVariable("Rendimento adiabatico della turbina",1),
-    'p_out_pb':InputVariable("Pressione di uscita turbina",300000), #non lo so, dobbiamo capire
+    'p_out_pb':InputVariable("Pressione di uscita turbina",30000), #non lo so, dobbiamo capire
 }
 
 preburner={
@@ -124,18 +124,18 @@ static_propulsive_parameters={
 
 nonstatic_propulsive_parameters={
     #ANALYTICAL VALUES
-    #'ct_var':UnknownVariable("Coefficiente di spinta",CalcFunction(calcThrustCoefficient,'p','y_cc_e','eps','p_e','p_cc')),
-    #'thr_var':UnknownVariable("Spinta",CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p')),
-    #'I_s':UnknownVariable("Impulso specifico", CalcFunction(calcSpecificImpulse, 'thr_var', 'm_p', 'g_0')),
-    #'I_v':UnknownVariable("Impulso specifico volumetrico", CalcFunction(calcVolumetricSpecificImpulse, 'I_s', 'rho_avg')),
-    #'I_tot':UnknownVariable("Impulso specifico totale", CalcFunction(calcTotalVolumetricImpulse, 'I_s', 'M_ox', 'M_f', 'g_0')),
-
-    #CEA VALUES
-    'ct_var':UnknownVariable("Coefficiente di spinta",CalcFunction(getCeaThrustCoefficient, 'cc_cea', 'p', 'p_cc', 'r_cc', 'eps',iter=True)),
+    'ct_var':UnknownVariable("Coefficiente di spinta",CalcFunction(calcThrustCoefficient,'p','y_cc_e','eps','p_e','p_cc')),
     'thr_var':UnknownVariable("Spinta",CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p')),
-    'I_s':UnknownVariable("Impulso specifico", CalcFunction(getCeaSpecificImpulse, 'cc_cea', 'p_cc', 'r_cc', 'eps', 'p',iter=True)),
+    'I_s':UnknownVariable("Impulso specifico", CalcFunction(calcSpecificImpulse, 'thr_var', 'm_p', 'g_0')),
     'I_v':UnknownVariable("Impulso specifico volumetrico", CalcFunction(calcVolumetricSpecificImpulse, 'I_s', 'rho_avg')),
     'I_tot':UnknownVariable("Impulso specifico totale", CalcFunction(calcTotalVolumetricImpulse, 'I_s', 'M_ox', 'M_f', 'g_0')),
+
+    #CEA VALUES
+    #'ct_var':UnknownVariable("Coefficiente di spinta",CalcFunction(getCeaThrustCoefficient, 'cc_cea', 'p', 'p_cc', 'r_cc', 'eps',iter=True)),
+    #'thr_var':UnknownVariable("Spinta",CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p')),
+    #'I_s':UnknownVariable("Impulso specifico", CalcFunction(getCeaSpecificImpulse, 'cc_cea', 'p_cc', 'r_cc', 'eps', 'p',iter=True)),
+    #'I_v':UnknownVariable("Impulso specifico volumetrico", CalcFunction(calcVolumetricSpecificImpulse, 'I_s', 'rho_avg')),
+    #'I_tot':UnknownVariable("Impulso specifico totale", CalcFunction(calcTotalVolumetricImpulse, 'I_s', 'M_ox', 'M_f', 'g_0')),
 }
 
 nozzle={
