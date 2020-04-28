@@ -5,6 +5,7 @@ import loader as ld
 import logging
 import time
 from models import UnknownVariable, InputVariable, Variable
+import copy
 
 def formatData(data, inputData, task,typ):
     out="\n   {:<15}{:<60}{:<20}{:<60}\n".format("Simbolo", "Descrizione", "Unità di misura","Valore")
@@ -58,7 +59,7 @@ def getUnsolvedModel(typ):
         varblock=getattr(source,varname)
         if not varname.startswith("__") and type(varblock)==dict:
             sources.append(varblock)
-    return mergeData(sources).copy()
+    return copy.deepcopy(mergeData(sources))
 
 def getOutputs():
     return list(filter(lambda x: x!='',open(config.jobfile).read().split("\n")))
