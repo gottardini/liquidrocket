@@ -58,9 +58,11 @@ class Grapher:
             #self.pos = nx.kamada_kawai_layout(self.G)
             #self.pos = nx.spectral_layout(self.G)
             #self.pos = nx.circular_layout(self.G)
+            #self.pos = nx.random_layout(self.G)
             self.pos = graphviz_layout(self.G, prog='twopi', args='')
 
     def drawGraph(self):
+        #print(self.G.number_of_nodes())
         if not self.view:
             return
         if not self.initialized:
