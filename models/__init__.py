@@ -11,8 +11,8 @@ class Variable:
     #def __str__(self):
     #    return str(self.getValue())
 
-    #def __repr__(self):
-    #    return str(self.getValue())
+    def __repr__(self):
+        return str(self.getValue())
 
     def __init__(self,description,units,value,calcFunction):
         self.description=description
