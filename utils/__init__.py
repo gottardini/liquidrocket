@@ -1,5 +1,6 @@
 import config
 import source
+import source.solid as source_solid
 import loader as ld
 import logging
 import time
@@ -46,9 +47,11 @@ def getInputData():
     loader=ld.DataLoader(config.datafile)
     return loader.load()
 
-def getUnsolvedModel():
+def getUnsolvedModel(typ):
     sources=[]
-    for varname in dir(source):
+    varlist=dir(source if typ=='liquid' else source_solid)
+    print(varlist)
+    for varname in varlist:
         varblock=getattr(source,varname)
         if not varname.startswith("__") and type(varblock)==dict:
             sources.append(varblock)

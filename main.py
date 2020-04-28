@@ -62,7 +62,7 @@ if __name__=="__main__":
     for rocketName,rocketData in rocketModels.items():
         for blockIndex in range(len(rocketData)):
             engineName,engineData=utils.getEngineData(inputData, rocketData[blockIndex]['index'])
-            unsolvedModel=utils.getUnsolvedModel()
+            unsolvedModel=utils.getUnsolvedModel(rocketData[blockIndex]['type'])
             #INJECT SPECIFIC STAGE DATA
             unsolvedModel['t_b']=InputVariable("Tempo di combustione",'s',rocketData[blockIndex]['tEnd']-rocketData[blockIndex]['tStart'])
             ###
