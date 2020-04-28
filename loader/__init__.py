@@ -4,6 +4,7 @@ from collections import OrderedDict
 #settings
 symbolCol=1
 nameCol=0
+unitsCol=2
 firstEngineCol=3
 
 class DataLoader:
@@ -29,5 +30,5 @@ class DataLoader:
                         val=rawval
                     else:
                         val=None
-                engines[data[0][firstEngineCol+i]][row[symbolCol]]=InputVariable(row[nameCol],'',val)
+                engines[data[0][firstEngineCol+i]][row[symbolCol]]=InputVariable(row[nameCol],row[unitsCol],val)
         return engines
