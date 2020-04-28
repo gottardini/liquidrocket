@@ -20,13 +20,13 @@ Temperatura congelamento combustibile,T_cong_f,K,14.01,14.01,225,225,0,14,14
 Temperatura ebollizione combustibile,T_ebol_f,K,20.28,20.28,530,530,530,20.27,20.27
 Rapporto massico di miscela,r_cc,-,6.1,5,2.24,2.24,2.27,5,5
 Impulso specifico nominale,Isp_z,s,429,444.6,285.4,348,304,421,421
-Fattore di correzione velocità ,eta_2D,-,0.95,1,1,,0.92,1,1
-Lunghezza caratteristica (Sutton),L_star,m,1,,,,1,,
-Pressione serbatoio combustibile,p_tank_f,Pa,3.00E+05,,,,,vedi flight manual,vedi flight manual
-Pressione serbatoio ossidante,p_tank_ox,Pa,3.00E+05,,,,,vedi flight manual,vedi flight manual
+Fattore di correzione velocità ,eta_2D,-,0.95,0.95,1,,0.92,1,1
+Lunghezza caratteristica (Sutton),L_star,m,1,1,,,1,,
+Pressione serbatoio combustibile,p_tank_f,Pa,2.00E+05,2.00E+05,,,,vedi flight manual,vedi flight manual
+Pressione serbatoio ossidante,p_tank_ox,Pa,2.00E+05,2.00E+05,,,,vedi flight manual,vedi flight manual
 Nome ossidante (per il CEA),oxName,-,LOX,LOX,,,LOX,LOX,LOX
 Nome combustibile (per il CEA),fuelName,-,LH2,LH2,,,RP-1,LH2,LH2
-Pressione preburner,p_pb,Pa,1.15E+07,,,,,no preburner,no preburner
-Angolo iniziale divergente,theta_n,rad,5.24E-01,,,,,0.5236,0.5236
-Angolo finale divergente,theta_e,rad,1.40E-01,,,,,1.48E-01,1.48E-01
-Stima pressione efflusso per metodo numerico,GUESS,Pa,2.00E+04,,,,,,
+Pressione preburner,p_pb,Pa,1.15E+07,1.15E+07,,,,no preburner,no preburner
+Angolo iniziale divergente,theta_n,rad,5.24E-01,5.24E-01,,,,0.5236,0.5236
+Angolo finale divergente,theta_e,rad,1.40E-01,1.40E-01,,,,1.48E-01,1.48E-01
+Stima pressione efflusso per metodo numerico,GUESS,Pa,2.00E+04,1.00E+04,,,,,

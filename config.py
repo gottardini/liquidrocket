@@ -27,5 +27,15 @@ rockets={
         'zStart':0,
         'zEnd':66.7e3,
         },
+        {
+        'name':"Second stage",
+        'index':1,
+        'qty':1,
+        'type':'liquid',
+        'tStart':540,
+        'tEnd':1485,
+        'zStart':157.7e3,
+        'zEnd':639.7e3,
+        },
     ]
 }
