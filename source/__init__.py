@@ -26,7 +26,7 @@ variables_cea={
 }
 
 outflow_gases={
-    #CEA DATA#######################################################################à
+    #CEA DATA
     'Mm_cc_e':UnknownVariable("Massa molare dei gas combusti",'kg/kmol',CalcFunction(getCeaThroatMM,'cc_cea','p_cc','r_cc','eps')),
     'y_cc_e':UnknownVariable("Rapporto calori specifici dei gas combusti",'-',CalcFunction(getCeaThroatGam,'cc_cea','p_cc','r_cc','eps')),
     'T_cc':UnknownVariable("Temperatura alla fine della camera di combustione",'K',CalcFunction(getCeaThroatTemperature,'cc_cea','p_cc','r_cc','eps')),
@@ -47,7 +47,7 @@ outflow_gases={
 }
 
 combustion_chamber={
-    #CEA DATA############################################################################
+    #CEA DATA
     'Mm_cc_c':UnknownVariable("Massa molare dei gas in camera di combustione",'kg/kmol',CalcFunction(getCeaChamberMM,'cc_cea','p_cc','r_cc','eps')),
     'y_cc_c':UnknownVariable("Rapporto calori specifici dei gas combusti",'-',CalcFunction(getCeaThroatGam,'cc_cea','p_cc','r_cc','eps')),
 
