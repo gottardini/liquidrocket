@@ -1,5 +1,6 @@
 jobfile="source/job.txt"
-datafile="source/data.csv"
+liquiddatafile="source/liquiddata.csv"
+soliddatafile="source/soliddata.csv"
 postprocfile="source/postproc.txt"
 
 
@@ -18,7 +19,7 @@ rockets={
         },
         {
         'name':"Boosters",
-        'index':2,
+        'index':0,
         'qty':2,
         'type':'solid',
         'tStart':0,

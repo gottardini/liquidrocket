@@ -55,14 +55,19 @@ if __name__=="__main__":
     logger.addHandler(stream)
 
     ###BEGINNING OF THE ACTUAL PROBLEM
-    loader=DataLoader(config.datafile)
-    inputData=loader.load()
+    liquidLoader=DataLoader(config.liquiddatafile)
+    solidLoader=DataLoader(config.soliddatafile)
+    inputData={}
+    inputData['liquid']=liquidLoader.load()
+    inputData['solid']=solidLoader.load()
     #pp.pprint(inputData)
     rocketModels=config.rockets.copy()
     for rocketName,rocketData in rocketModels.items():
         for blockIndex in range(len(rocketData)):
-            engineName,engineData=utils.getEngineData(inputData, rocketData[blockIndex]['index'])
-            unsolvedModel=utils.getUnsolvedModel(rocketData[blockIndex]['type'])
+            logger.info("Solving rocket "+rocketName.upper() + " | " + rocketData[blockIndex]['name'])
+            engineType=rocketData[blockIndex]['type']
+            engineName,engineData=utils.getEngineData(inputData[engineType], rocketData[blockIndex]['index'])
+            unsolvedModel=utils.getUnsolvedModel(engineType)
             #INJECT SPECIFIC STAGE DATA
             unsolvedModel['t_b']=InputVariable("Tempo di combustione",'s',rocketData[blockIndex]['tEnd']-rocketData[blockIndex]['tStart'])
             ###
@@ -72,24 +77,23 @@ if __name__=="__main__":
             else:
                 task=utils.getOutputs()
 
-            #pp.pprint(modelData)
             #LET'S SOLVE
             grph=Grapher(view=args.graph,debug=args.debug,cool=args.cool,labels=args.labels)
             slvr=Solver(modelData,task,grph,logger)
             utils.tic()
             try:
                 if slvr.validateTree():
-                    logger.info("Tree building took %s seconds"%(utils.toc()))
-                    logger.info("Solving tree...")
+                    logger.debug("Tree building took %s seconds"%(utils.toc()))
+                    logger.debug("Solving tree...")
                     utils.tic()
                     res=slvr.solve()
-                    logger.info("Done! Solving took %s seconds."%(utils.toc()))
-                    logger.info("Here are your outputs:\n"+utils.formatData(slvr.data,engineData,task))
+                    logger.debug("Done! Solving took %s seconds."%(utils.toc()))
+                    logger.info("Here are your outputs:\n"+utils.formatData(slvr.data,engineData,task,engineType))
                     logger.debug("\n"+pp.pformat({key:val.getValue() for key,val in slvr.data.items()}))
                     rocketModels[rocketName][blockIndex]['solvedData']=slvr.data.copy()
                     unusedVariables=slvr.findUnusedVariables()
                     if len(unusedVariables):
-                        logger.warning("There are some unused input varables: %s"%(str(unusedVariables)))
+                        logger.warning("There are some unused input varables: %s\n"%(str(unusedVariables)))
             except Exception:
                  print(traceback.format_exc())
 

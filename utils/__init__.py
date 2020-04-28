@@ -6,14 +6,17 @@ import logging
 import time
 from models import UnknownVariable, InputVariable, Variable
 
-def formatData(data, inputData, task):
+def formatData(data, inputData, task,typ):
     out="\n   {:<15}{:<60}{:<20}{:<60}\n".format("Simbolo", "Descrizione", "Unità di misura","Valore")
 
     out+="\nINPUT_DATA\n"
+
     for _varname,_vardata in inputData.items():
         out+= "   {:<15}{:<60}{:<20}{:<60}\n".format(_varname, _vardata.description,inputData[_varname].units, inputData[_varname].getReadableValue())
 
-    for varname in dir(source):
+    varlist=dir(source if typ=='liquid' else source_solid)
+
+    for varname in varlist:
         varblock=getattr(source,varname)
         if not varname.startswith("__") and type(varblock)==dict:
             out+="\n>"+varname.upper()+"\n"
@@ -50,7 +53,7 @@ def getInputData():
 def getUnsolvedModel(typ):
     sources=[]
     varlist=dir(source if typ=='liquid' else source_solid)
-    print(varlist)
+    #print(varlist)
     for varname in varlist:
         varblock=getattr(source,varname)
         if not varname.startswith("__") and type(varblock)==dict:
