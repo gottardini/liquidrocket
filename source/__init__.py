@@ -3,7 +3,7 @@ from source.functions import *
 import numpy as np
 
 flight={
-    'z':InputVariable("Quota",'m',np.linspace(0,400e3,50)),
+    'z':InputVariable("Quota",'m',np.linspace(0,200e3,500)),
 }
 
 atmoshpere={
@@ -119,6 +119,7 @@ feed_system_variables={
 }
 
 static_propulsive_parameters={
+    'Is_n':UnknownVariable("Impulso specifico nominale",'s',CalcFunction(calcSpecificImpulse,'thr_n','m_p','g_0')),
     'thr_ad':UnknownVariable("Spinta a quota di adattamento",'N',CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p_e')),
     'z_ad':UnknownVariable("Quota di adattamento",'m',CalcFunction(calcAltitudeFromPressure,'p_e','p_0','T_0','a','g_0','R_air')),
     'thr_n':UnknownVariable("Spinta nominale",'N',CalcFunction(kiloNewtonToNewton,'T_n')),
