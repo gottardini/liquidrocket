@@ -62,7 +62,7 @@ class Solver:
             self.grapher.changeNodeColor(out,'#C70039')
 
         if all([self.validateNodeRecursively(out,[out]) for out in self.outputs]):
-            self.logger.info("Valid tree")
+            self.logger.debug("Valid tree")
             self.grapher.drawGraph()
             return True
         return False

@@ -1,7 +1,6 @@
 import sys
 import utils
 import config
-print(utils.getLogo())
 from solver import Solver
 from models import InputVariable, UnknownVariable
 from grapher import Grapher
@@ -47,6 +46,8 @@ if __name__=="__main__":
     pp=pprint.PrettyPrinter()
     LOG_LEVEL = logging.DEBUG if args.debug else logging.INFO
     logging.root.setLevel(LOG_LEVEL)
+    fh = logging.FileHandler('out/logs.txt')
+    fh.setLevel(logging.DEBUG)
     formatter = ColoredFormatter(LOGFORMAT)
     stream = logging.StreamHandler()
     stream.setLevel(LOG_LEVEL)
@@ -54,6 +55,8 @@ if __name__=="__main__":
     logger = logging.getLogger('pythonConfig')
     logger.setLevel(LOG_LEVEL)
     logger.addHandler(stream)
+    logger.addHandler(fh)
+    logger.info(utils.getLogo())
 
     ###BEGINNING OF THE ACTUAL PROBLEM
     liquidLoader=DataLoader(config.liquiddatafile)
@@ -61,11 +64,13 @@ if __name__=="__main__":
     inputData={}
     inputData['liquid']=liquidLoader.load()
     inputData['solid']=solidLoader.load()
-    #pp.pprint(inputData)
     rocketModels=config.rockets.copy()
+
     for rocketName,rocketData in rocketModels.items():
         for blockIndex in range(len(rocketData)):
-            logger.info("Solving rocket "+rocketName.upper() + " | " + rocketData[blockIndex]['name'])
+            analysisName=rocketName + " | " + rocketData[blockIndex]['name']
+            logger.info(''.join(["#"]*(len(analysisName)+15)))
+            logger.info("Solving rocket "+analysisName)
             engineType=rocketData[blockIndex]['type']
             engineName,engineData=utils.getEngineData(inputData[engineType], rocketData[blockIndex]['index'])
             unsolvedModel=utils.getUnsolvedModel(engineType)
@@ -80,7 +85,7 @@ if __name__=="__main__":
                 task=utils.getOutputs()
 
             #LET'S SOLVE
-            grph=Grapher(view=args.graph,debug=args.debug,cool=args.cool,labels=args.labels)
+            grph=Grapher(analysisName,view=args.graph,debug=args.debug,cool=args.cool,labels=args.labels)
             slvr=Solver(modelData,task,grph,logger)
             utils.tic()
             try:
@@ -104,4 +109,5 @@ if __name__=="__main__":
         postProcesser.make()
 
     #pp.pprint(rocketModels)
+    plt.ioff()
     plt.show()
