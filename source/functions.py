@@ -129,12 +129,12 @@ def calcFuelInjectionAngle(m_ox, m_f, u_ox, u_f, alfa_ox):
     return np.arcsin(np.sin(alfa_ox)*(m_ox*u_ox)/(m_f*u_f))
 
 def calcPStarF(p_c,P_loss_inj,P_loss_exc,P_loss_feed,P_loss_valves):
-    return p_c*(1-P_loss_inj-P_loss_exc-P_loss_feed-P_loss_valves)
+    return p_c*(1+P_loss_inj+P_loss_exc+P_loss_feed+P_loss_valves)
 
 #FEED LINE
 
 def calcPStarOx(p_c,P_loss_inj,P_loss_feed,P_loss_valves):
-    return p_c*(1-P_loss_inj-P_loss_feed-P_loss_valves)
+    return p_c*(1+P_loss_inj+P_loss_feed+P_loss_valves)
 
 #NOZZLE
 
