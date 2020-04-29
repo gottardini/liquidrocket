@@ -1,32 +1,25 @@
 Descrizione variabile,Simbolo,Unità di misura,"Ariane V
 Vulcain II","Ariane V
 HM7B","Falcon Heavy
-Merlin 1D","Falcon Heavy
-Merlin 1D+","Saturn V
+Merlin 1D+","Falcon Heavy
+Merlin 1D+ vac","Saturn V
 F-1","Saturn V
 J-2 (II° stadio)","Saturn V
 J-2 (III° stadio)"
 Rapporto aree ugello,eps,-,58.2,83.1,16,165,16,27.5,27.5
-Pressione statica in camera di combustione,p_cc,Pa,1.15E+07,3.70E+06,1.10E+07,1.10E+07,7000000,5.26E+06,5.26E+06
-Spinta nominale (tabulata),T_n,kN,1.36E+03,6.22E+01,8.45E+02,9.34E+02,6770,1.01E+03,9.03E+02
-Pressione nominale (a spinta nominale),p_n,Pa,0.00E+00,0.00E+00,1.01E+05,1.01E+05,101325,0.00E+00,0.00E+00
-Massa molare ossidante,Mm_ox,kg/kmol,3.20E+01,3.20E+01,32,32,32,3.20E+01,3.20E+01
-Densità ossidante,rho_ox,kg/m3,1.14E+03,1.14E+03,1410,1410,1141,1.14E+03,1.14E+03
-Temperatura congelamento ossidante,T_cong_ox,K,54.36,54.36,54.36,54.36,54.36,54.36,54.36
-Temperatura ebollizione ossidante,T_ebol_ox,K,90.19,90.19,90.19,90.19,90.19,90.19,90.19
-Massa molare combustibile,Mm_f,Kg/kmol,2.01588,2.01588,175,175,175,2.016,2.016
-Densità combustibile,rho_f,kg/m3,70.85,70.85,810,810,806,70.85,70.85
-Temperatura congelamento combustibile,T_cong_f,K,14.01,14.01,225,225,0,14,14
-Temperatura ebollizione combustibile,T_ebol_f,K,20.28,20.28,530,530,530,20.27,20.27
-Rapporto massico di miscela,r_cc,-,6.1,5,2.24,2.24,2.27,5,5
-Impulso specifico nominale,Isp_z,s,429,444.6,285.4,348,304,421,421
-Fattore di correzione velocità ,eta_2D,-,0.95,0.95,1,,0.92,1,1
-Lunghezza caratteristica (Sutton),L_star,m,1,1,,,1,,
-Pressione serbatoio combustibile,p_tank_f,Pa,2.00E+05,2.00E+05,,,,vedi flight manual,vedi flight manual
-Pressione serbatoio ossidante,p_tank_ox,Pa,2.00E+05,2.00E+05,,,,vedi flight manual,vedi flight manual
-Nome ossidante (per il CEA),oxName,-,LOX,LOX,,,LOX,LOX,LOX
-Nome combustibile (per il CEA),fuelName,-,LH2,LH2,,,RP-1,LH2,LH2
-Pressione preburner,p_pb,Pa,1.15E+07,1.15E+07,,,,no preburner,no preburner
-Angolo iniziale divergente,theta_n,rad,5.24E-01,5.24E-01,,,,0.5236,0.5236
-Angolo finale divergente,theta_e,rad,1.40E-01,1.40E-01,,,,1.48E-01,1.48E-01
-Stima pressione efflusso per metodo numerico,GUESS,Pa,2.00E+04,1.00E+04,,,,,
+Pressione statica in camera di combustione,p_cc,Pa,1.15E+07,3.70E+06,1.10E+07,1.10E+07,7.00E+06,5.26E+06,5.26E+06
+"Spinta nominale (tabulata, a pressione nominale)",T_n,kN,1.36E+03,6.22E+01,8.45E+02,9.34E+02,6770,1.01E+03,9.03E+02
+Pressione ambiente nominale ,p_n,Pa,0.00E+00,0.00E+00,1.01E+05,0.00E+00,101325,0.00E+00,0.00E+00
+Densità ossidante,rho_ox,kg/m3,1.14E+03,1.14E+03,1410,1410,1143,1.14E+03,1.14E+03
+Densità combustibile,rho_f,kg/m3,7.09E+01,7.09E+01,810,810,808,7.09E+01,7.09E+01
+Rapporto massico di miscela,r_cc,-,6.1,5,2.36,2.37,2.27,5,5
+Fattore di correzione velocità ,eta_2D,-,0.988,0.99,0.987,0.99,0.95,0.9875,0.9875
+Lunghezza caratteristica (Sutton),L_star,m,0.78,0.78,1,1,1,0.78,0.78
+Pressione serbatoio combustibile,p_tank_f,Pa,2.30E+05,2.30E+05,3.45E+05,3.45E+05,1.67E+05,2.28E+05,2.24E+05
+Pressione serbatoio ossidante,p_tank_ox,Pa,2.70E+05,2.70E+05,3.45E+05,3.45E+05,1.31E+05,2.72E+05,2.72E+05
+Nome ossidante (per il CEA),oxName,-,LOX,LOX,LOX,LOX,LOX,LOX,LOX
+Nome combustibile (per il CEA),fuelName,-,LH2,LH2,RP-1,RP-1,RP-1,LH2,LH2
+Pressione preburner,p_pb,Pa,7.67E+06,2.47E+06,7.33E+06,7.33E+06,6.34E+06,4.00E+06,4.00E+06
+Angolo iniziale divergente,theta_n,rad,5.24E-01,5.24E-01,4.89E-01,5.93E-01,4.54E-01,5.24E-01,5.24E-01
+Angolo finale divergente,theta_e,rad,1.31E-01,1.31E-01,1.66E-01,1.22E-01,1.66E-01,1.48E-01,1.48E-01
+Stima pressione efflusso per metodo numerico,GUESS,Pa,2.00E+04,1.00E+04,7.16E+04,3.21E+04,1.01E+05,3.00E+04,3.00E+04

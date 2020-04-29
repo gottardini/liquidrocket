@@ -1,26 +1,5 @@
 Descrizione variabile,Simbolo,Unità di misura,"Ariane V
 P241"
-Rapporto aree ugello,eps,-,
-Pressione statica in camera di combustione,p_cc,Pa,
-Spinta nominale (tabulata),T_n,kN,7.08E+03
-Pressione nominale (a spinta nominale),p_n,Pa,
-Massa molare ossidante,Mm_ox,kg/kmol,
-Densità ossidante,rho_ox,kg/m3,
-Temperatura congelamento ossidante,T_cong_ox,K,
-Temperatura ebollizione ossidante,T_ebol_ox,K,
-Massa molare combustibile,Mm_f,Kg/kmol,
-Densità combustibile,rho_f,kg/m3,
-Temperatura congelamento combustibile,T_cong_f,K,
-Temperatura ebollizione combustibile,T_ebol_f,K,
-Rapporto massico di miscela,r_cc,-,
-Impulso specifico nominale,Isp_z,s,
-Fattore di correzione velocità ,eta_2D,-,
-Lunghezza caratteristica (Sutton),L_star,m,
-Pressione serbatoio combustibile,p_tank_f,Pa,
-Pressione serbatoio ossidante,p_tank_ox,Pa,
-Nome ossidante (per il CEA),oxName,-,
-Nome combustibile (per il CEA),fuelName,-,
-Pressione preburner,p_pb,Pa,
-Angolo iniziale divergente,theta_n,rad,
-Angolo finale divergente,theta_e,rad,
-Stima pressione efflusso per metodo numerico,GUESS,Pa,
+Spinta nominale (tabulata),T_n,kN,6.47E+03
+Impulso specifico nominale,Is_vac,s,2.75E+02
+Impulso specifico sealevel,Is_sl,s,2.50E+02
