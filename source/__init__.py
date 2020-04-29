@@ -2,9 +2,10 @@ from models import *
 from source.functions import *
 import numpy as np
 
-flight={
-    'z':InputVariable("Quota",'m',np.linspace(0,200e3,500)),
-}
+### DEPRECATED, NOW INJECTED FOR EACH STAGE
+#flight={
+#    'z':InputVariable("Quota",'m',np.linspace(0,200e3,500)),
+#}
 
 atmoshpere={
     'p':UnknownVariable("Pressione atmosferica",'Pa',CalcFunction(calcPressureFromAltitude,'z','p_0','T_0','a','g_0','R_air')),

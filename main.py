@@ -13,6 +13,7 @@ import traceback
 import argparse
 import pprint
 import logging
+import numpy as np
 from colorlog import ColoredFormatter
 LOGFORMAT = "  %(log_color)s%(levelname)-8s%(reset)s | %(log_color)s%(message)s%(reset)s"
 
@@ -70,6 +71,7 @@ if __name__=="__main__":
             unsolvedModel=utils.getUnsolvedModel(engineType)
             #INJECT SPECIFIC STAGE DATA
             unsolvedModel['t_b']=InputVariable("Tempo di combustione",'s',rocketData[blockIndex]['tEnd']-rocketData[blockIndex]['tStart'])
+            unsolvedModel['z']=InputVariable("Quota",'m',np.linspace(rocketData[blockIndex]['zStart'],rocketData[blockIndex]['zEnd'],50))
             ###
             modelData=utils.mergeData([engineData,unsolvedModel])
             if args.all:
