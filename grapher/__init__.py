@@ -4,6 +4,7 @@ from collections import OrderedDict
 from matplotlib.collections import LineCollection
 from fa2 import ForceAtlas2
 from grapher.curved_edges import curved_edges
+import copy
 
 #plt.ion()
 
@@ -21,7 +22,8 @@ except ImportError:
 forceatlas2 = ForceAtlas2()
 
 class Grapher:
-    def __init__(self,view=False,debug=False,cool=False,labels=False):
+    def __init__(self,name,view=False,debug=False,cool=False,labels=False):
+        self.name=name
         self.G=nx.DiGraph()
         self.initialized=False
         self.colors=OrderedDict()
@@ -66,10 +68,13 @@ class Grapher:
         if not self.view:
             return
         if not self.initialized:
-            self.fig, self.ax = plt.subplots(figsize=(8, 8),num='Liquid rocket analysis',facecolor='white')
+            self.fig=plt.figure(figsize=(8, 8),num=self.name)
+            self.ax=self.fig.add_subplot()
+            #self.fig, self.ax = plt.subplots(figsize=(8, 8),num='Liquid rocket analysis',facecolor='white')
+            plt.ion()
+            plt.show()
             self.fig.tight_layout()
             self.ax.set_axis_off()
-            self.pause(1)
             self.initialized=True
         self.ax.cla()
         self.ax.set_axis_off()
@@ -94,6 +99,6 @@ class Grapher:
                 node_attrs = nx.get_node_attributes(self.G, 'description')
                 nx.draw_networkx_labels(self.G, pos_attrs, ax=self.ax, labels=node_attrs)
 
-        self.fig.canvas.draw()
+        #self.fig.canvas.draw()
         self.pause(0.01)
         #plt.show(block=True)
