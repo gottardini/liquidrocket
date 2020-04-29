@@ -15,10 +15,10 @@ def formatData(data, inputData, task,typ):
     for _varname,_vardata in inputData.items():
         out+= "   {:<15}{:<60}{:<20}{:<60}\n".format(_varname, _vardata.description,inputData[_varname].units, inputData[_varname].getReadableValue())
 
-    varlist=dir(source if typ=='liquid' else source_solid)
+    varmodule=source if typ=='liquid' else source_solid
 
-    for varname in varlist:
-        varblock=getattr(source,varname)
+    for varname in dir(varmodule):
+        varblock=getattr(varmodule,varname)
         if not varname.startswith("__") and type(varblock)==dict:
             out+="\n>"+varname.upper()+"\n"
             for _varname,_vardata in varblock.items():
@@ -53,10 +53,10 @@ def getInputData():
 
 def getUnsolvedModel(typ):
     sources=[]
-    varlist=dir(source if typ=='liquid' else source_solid)
+    varmodule=source if typ=='liquid' else source_solid
     #print(varlist)
-    for varname in varlist:
-        varblock=getattr(source,varname)
+    for varname in dir(varmodule):
+        varblock=getattr(varmodule,varname)
         if not varname.startswith("__") and type(varblock)==dict:
             sources.append(varblock)
     return copy.deepcopy(mergeData(sources))
