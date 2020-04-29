@@ -6,6 +6,7 @@ class PostProcesser:
     def __init__(self,rockets):
         self.rockets=rockets
 
+        """
         ###GRAFICI
         self.figures=OrderedDict({
             "Pressione in funzione della quota":['z',['p','p_tropo','p_e']],
@@ -30,6 +31,29 @@ class PostProcesser:
             ("Pressione [Pa]","Spinta [N]"),
             ("Quota [m]","Spinta [N]"),
         ]
+        """
 
+    ###THIS IS ABOUT TO GET MESSY AND NOT FLEXIBLE, BUT I HAVE NO TIME TO MAKE IT BTFL
     def make(self):
-        pass
+        unified={}
+        ###THRUST-Z
+        figThrust_z, axThrust_z = plt.subplots(figsize=(8, 8),num="Spinta in funzione della quota")
+        axThrust_z.set_xlabel("Quota [m]")
+        axThrust_z.set_ylabel("Spinta [N]")
+
+        for rocketName, rocket in self.rockets.items():
+            ###THRUST-Z
+            sep_figThrust_z, sep_axThrust_z = plt.subplots(figsize=(8, 8),num="Spinta in funzione della quota - %s"%(rocketName))
+            sep_axThrust_z.set_xlabel("Quota [m]")
+            sep_axThrust_z.set_ylabel("Spinta [N]")
+
+            for blockIndex in range(len(rocket)):
+                block=rocket[blockIndex]
+                blockSolved=block['solvedData']
+
+                ###THRUST-Z
+                sep_axThrust_z.plot(blockSolved['z'].getValue(),blockSolved['thr_var'].getValue()*block['qty'],label=block['name'])
+                sep_axThrust_z.legend()
+                sep_axThrust_z.set_yscale('log')
+                sep_axThrust_z.grid(True, which="both")
+                sep_axThrust_z.set_title("Contributo spinta dei vari stadi - "+rocketName)
