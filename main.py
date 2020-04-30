@@ -80,6 +80,7 @@ if __name__=="__main__":
             logger.info("Solving rocket "+analysisName)
             engineType=rocketData[blockIndex]['type']
             engineName,engineData=utils.getEngineData(inputData[engineType], rocketData[blockIndex]['index'])
+            rocketModels[rocketName][blockIndex]['engName']=engineName
             unsolvedModel=utils.getUnsolvedModel(engineType)
             #INJECT SPECIFIC STAGE DATA
             unsolvedModel['t_b']=InputVariable("Tempo di combustione",'s',rocketData[blockIndex]['tEnd']-rocketData[blockIndex]['tStart'])

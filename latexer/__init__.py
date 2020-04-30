@@ -21,6 +21,7 @@ Each block is a dictionary defined as follows:
 'tEnd': <cut-off time>,
 'zStart': <ignition altitude>,
 'zEnd': <cut-off altitude>,
+'engName': "<engine name>"
 'solvedData': <data dictionary of the solved model>
 }
 
