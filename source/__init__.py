@@ -178,3 +178,7 @@ tanks={
     'rho_avg':UnknownVariable("Densità media propellente",'kg/m^3', CalcFunction(calcRhoAvg, 'M_f', 'M_ox', 'V_f', 'V_ox')),
     'k_s':InputVariable("Coefficiente di sicurezza massa",'-', 1.05),
 }
+
+misc={
+    'Ltot':UnknownVariable("Lunghezza totale motore",'m',CalcFunction(lambda a,b: a+b ,'L_bell','L_c')),
+}
