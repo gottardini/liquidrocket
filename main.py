@@ -6,6 +6,7 @@ from models import InputVariable, UnknownVariable
 from grapher import Grapher
 from postprocessing import PostProcesser
 from loader import DataLoader
+from latexer import Latexer
 import time
 import matplotlib.pyplot as plt
 import traceback
@@ -113,6 +114,10 @@ if __name__=="__main__":
     if args.postproc:
         postProcesser=PostProcesser(rocketModels)
         postProcesser.make()
+
+    if args.latex:
+        latexer=Latexer(rocketModels)
+        latexer.make()
 
     #pp.pprint(rocketModels)
     plt.ioff()
