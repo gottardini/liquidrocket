@@ -34,12 +34,16 @@ if __name__=="__main__":
     parser.add_argument('--postproc', dest='postproc', action='store_true')
     parser.add_argument('--cool', dest='cool', action='store_true')
     parser.add_argument('--labels', dest='labels', action='store_true')
+    parser.add_argument('--latex', dest='latex', action='store_true')
+    parser.add_argument('--logs', dest='logs', action='store_true')
     parser.set_defaults(graph=False)
     parser.set_defaults(debug=False)
     parser.set_defaults(all=False)
     parser.set_defaults(postproc=False)
     parser.set_defaults(cool=False)
     parser.set_defaults(labels=False)
+    parser.set_defaults(latex=False)
+    parser.set_defaults(logs=False)
     args = parser.parse_args()
 
     ###SOME SETUP
@@ -55,7 +59,8 @@ if __name__=="__main__":
     logger = logging.getLogger('pythonConfig')
     logger.setLevel(LOG_LEVEL)
     logger.addHandler(stream)
-    logger.addHandler(fh)
+    if args.logs:
+        logger.addHandler(fh)
     logger.info(utils.getLogo())
 
     ###BEGINNING OF THE ACTUAL PROBLEM
