@@ -7,6 +7,7 @@ from grapher import Grapher
 from postprocessing import PostProcesser
 from loader import DataLoader
 from latexer import Latexer
+from comparer import Comparer
 import time
 import matplotlib.pyplot as plt
 import traceback
@@ -14,6 +15,7 @@ import argparse
 import pprint
 import logging
 import numpy as np
+import copy
 from colorlog import ColoredFormatter
 LOGFORMAT = "  %(log_color)s%(levelname)-8s%(reset)s | %(log_color)s%(message)s%(reset)s"
 
@@ -31,20 +33,22 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser(description='Liquid rocket solver.')
     parser.add_argument('--graph', dest='graph', action='store_true')
     parser.add_argument('--debug', dest='debug', action='store_true')
-    parser.add_argument('--all', dest='all', action='store_true')
+    parser.add_argument('--job', dest='all', action='store_false')
     parser.add_argument('--postproc', dest='postproc', action='store_true')
     parser.add_argument('--cool', dest='cool', action='store_true')
     parser.add_argument('--labels', dest='labels', action='store_true')
     parser.add_argument('--latex', dest='latex', action='store_true')
     parser.add_argument('--logs', dest='logs', action='store_true')
+    parser.add_argument('--compare', dest='compare', action='store_true')
     parser.set_defaults(graph=False)
     parser.set_defaults(debug=False)
-    parser.set_defaults(all=False)
+    parser.set_defaults(all=True)
     parser.set_defaults(postproc=False)
     parser.set_defaults(cool=False)
     parser.set_defaults(labels=False)
     parser.set_defaults(latex=False)
     parser.set_defaults(logs=False)
+    parser.set_defaults(compare=False)
     args = parser.parse_args()
 
     ###SOME SETUP
@@ -105,12 +109,16 @@ if __name__=="__main__":
                     logger.debug("Done! Solving took %s seconds."%(utils.toc()))
                     logger.info("Here are your outputs:\n"+utils.formatData(slvr.data,engineData,task,engineType))
                     logger.debug("\n"+pp.pformat({key:val.getValue() for key,val in slvr.data.items()}))
-                    rocketModels[rocketName][blockIndex]['solvedData']=slvr.data.copy()
+                    rocketModels[rocketName][blockIndex]['solvedData']=copy.deepcopy(slvr.data)
                     unusedVariables=slvr.findUnusedVariables()
                     if len(unusedVariables):
                         logger.warning("There are some unused input varables: %s\n"%(str(unusedVariables)))
             except Exception:
                  print(traceback.format_exc())
+
+    if args.compare:
+        comparer=Comparer(rocketModels)
+        comparer.make()
 
     if args.postproc:
         postProcesser=PostProcesser(rocketModels)
