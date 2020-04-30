@@ -8,6 +8,7 @@ from postprocessing import PostProcesser
 from loader import DataLoader
 from latexer import Latexer
 from comparer import Comparer
+from nozzleplotter import NozzlePlotter
 import time
 import matplotlib.pyplot as plt
 import traceback
@@ -40,6 +41,8 @@ if __name__=="__main__":
     parser.add_argument('--latex', dest='latex', action='store_true')
     parser.add_argument('--logs', dest='logs', action='store_true')
     parser.add_argument('--compare', dest='compare', action='store_true')
+    parser.add_argument('--nozzleplot', dest='nozzleplot', action='store_true')
+    parser.add_argument('--nooutput', dest='nooutput', action='store_true')
     parser.set_defaults(graph=False)
     parser.set_defaults(debug=False)
     parser.set_defaults(all=True)
@@ -49,11 +52,13 @@ if __name__=="__main__":
     parser.set_defaults(latex=False)
     parser.set_defaults(logs=False)
     parser.set_defaults(compare=False)
+    parser.set_defaults(nozzleplot=False)
+    parser.set_defaults(nooutput=False)
     args = parser.parse_args()
 
     ###SOME SETUP
     pp=pprint.PrettyPrinter()
-    LOG_LEVEL = logging.DEBUG if args.debug else logging.INFO
+    LOG_LEVEL = logging.ERROR if args.nooutput else (logging.DEBUG if args.debug else logging.INFO)
     logging.root.setLevel(LOG_LEVEL)
 
     formatter = ColoredFormatter(LOGFORMAT)
@@ -122,6 +127,10 @@ if __name__=="__main__":
                         logger.warning("There are some unused input varables: %s\n"%(str(unusedVariables)))
             except Exception:
                  print(traceback.format_exc())
+
+    if args.nozzleplot:
+        nozzleplotter=NozzlePlotter(rocketModels)
+        nozzleplotter.make()
 
     if args.compare:
         comparer=Comparer(rocketModels)
