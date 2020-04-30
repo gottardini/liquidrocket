@@ -50,8 +50,7 @@ if __name__=="__main__":
     pp=pprint.PrettyPrinter()
     LOG_LEVEL = logging.DEBUG if args.debug else logging.INFO
     logging.root.setLevel(LOG_LEVEL)
-    fh = logging.FileHandler('out/logs.txt')
-    fh.setLevel(logging.DEBUG)
+
     formatter = ColoredFormatter(LOGFORMAT)
     stream = logging.StreamHandler()
     stream.setLevel(LOG_LEVEL)
@@ -60,6 +59,8 @@ if __name__=="__main__":
     logger.setLevel(LOG_LEVEL)
     logger.addHandler(stream)
     if args.logs:
+        fh = logging.FileHandler('out/logs.txt')
+        fh.setLevel(logging.DEBUG)
         logger.addHandler(fh)
     logger.info(utils.getLogo())
 
