@@ -76,7 +76,7 @@ if __name__=="__main__":
     inputData['liquid']=liquidLoader.load()
     inputData['solid']=solidLoader.load()
     rocketModels=config.rockets.copy()
-
+    graphed=[]
     for rocketName,rocketData in rocketModels.items():
         for blockIndex in range(len(rocketData)):
             analysisName=rocketName + " | " + rocketData[blockIndex]['name']
@@ -97,7 +97,14 @@ if __name__=="__main__":
                 task=utils.getOutputs()
 
             #LET'S SOLVE
-            grph=Grapher(analysisName,view=args.graph,debug=args.debug,cool=args.cool,labels=args.labels)
+            if engineType not in graphed:
+                view=args.graph
+                graphed.append(engineType)
+            else:
+                view=False
+
+            grph=Grapher(analysisName,view=view,debug=args.debug,cool=args.cool,labels=args.labels)
+
             slvr=Solver(modelData,task,grph,logger)
             utils.tic()
             try:
