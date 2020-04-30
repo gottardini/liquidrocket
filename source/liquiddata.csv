@@ -1,11 +1,4 @@
-Descrizione variabile,Simbolo,Unità di misura,"Ariane V
-Vulcain II","Ariane V
-HM7B","Falcon Heavy
-Merlin 1D+","Falcon Heavy
-Merlin 1D+ vac","Saturn V
-F-1","Saturn V
-J-2 (II° stadio)","Saturn V
-J-2 (III° stadio)"
+Descrizione variabile,Simbolo,Unità di misura,Vulcain II,HM7B,Merlin 1D+,Merlin 1D+ vac,F-1,J-2 (II° stadio),J-2 (III° stadio)
 Rapporto aree ugello,eps,-,58.2,83.1,16,165,16,27.5,27.5
 Pressione statica in camera di combustione,p_cc,Pa,1.15E+07,3.70E+06,1.10E+07,1.10E+07,7.00E+06,5.26E+06,5.26E+06
 "Spinta nominale (tabulata, a pressione nominale)",T_n,kN,1.36E+03,6.22E+01,8.45E+02,9.34E+02,6770,1.01E+03,9.03E+02
