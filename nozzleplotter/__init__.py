@@ -32,6 +32,8 @@ class NozzlePlotter:
 
         for engName,engData in engines.items():
             fig, ax = plt.subplots(figsize=(10, 10),num=engName)
+            ax.set_xlabel("m")
+            ax.set_ylabel("m")
             ax.set_aspect('equal')
             ax.set_title(engName)
             ax.grid()
