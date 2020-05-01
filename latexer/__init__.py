@@ -29,6 +29,11 @@ The "solved data dictionary" is just the big dictionary with every imaginable va
 
 """
 
+tables={
+    "Parametri propulsivi":(['Is_vac','u_e'],["Vulcain II","HM7B","Merlin 1D+","Merlin 1D+ vac","F-1","J-2 (II° stadio)","J-2 (III° stadio)"])
+}
+
+
 class Latexer:
     def __init__(self,rockets):
         self.rockets=rockets
