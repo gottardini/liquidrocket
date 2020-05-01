@@ -9,6 +9,7 @@ import numpy as np
 
 atmoshpere={
     'p':UnknownVariable("Pressione atmosferica",'Pa',CalcFunction(calcPressureFromAltitude,'z','p_0','T_0','a','g_0','R_air')),
+    'p_vac':InputVariable("Pressione nel vuoto",'Pa',0),
     #"p_tropo':UnknownVariable("Pressione troposferica",CalcFunction(calcTropoPressure,'z','p_0','T_0','a','g_0','R_air')),
 }
 
@@ -127,6 +128,8 @@ static_propulsive_parameters={
     'Is_ad':UnknownVariable("Impulso specifico a quota di adattamento",'s',CalcFunction(calcAdaptedSpecificImpulse,'u_e','g_0')),
     'ct_ad':UnknownVariable("Coefficiente di spinta a quota di adattamento",'-',CalcFunction(calcAdaptedThrustCoefficient,'eta_2D','Is_ad','g_0','c_star')),
     'ct_n':UnknownVariable("Coefficiente di spinta nominale",'-',CalcFunction(calcThrustCoefficient,'p_n', 'y_cc_e', 'eps', 'p_e', 'p_cc')),
+    'Is_vac':UnknownVariable("Impulso specifico nel vuoto",'s',CalcFunction(calcSpecificImpulse,'thr_vac','m_p','g_0')),
+    'thr_vac':UnknownVariable("Spinta nel vuoto",'N',CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p_vac'))
 }
 
 nonstatic_propulsive_parameters={
