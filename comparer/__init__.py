@@ -27,9 +27,10 @@ class Comparer:
         for plotIndex in range(len(self.plots)):
             varname=self.plots[plotIndex]
             var=self.vars[varname]
-            fig, ax = plt.subplots(figsize=(12, 6),num=var.description)
+            fig= plt.figure(figsize=(12, 6),num=var.description)
+            ax= fig.add_axes([0.06,0.05,0.9,0.9])
             ax.set_ylabel(var.units)
-            ax.set_title(var.description)
+            #ax.set_title(var.description)
             #ax.grid()
             engines=OrderedDict()
             for rocketName,rocketData in self.rockets.items():
