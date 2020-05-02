@@ -51,8 +51,8 @@ class Comparer:
             x = np.arange(len(labels))  # the label locations
             width = 0.35  # the width of the bars
 
-            rects1 = ax.bar(x - width/2, real, width, label='Valore reale', color="black")
-            rects2 = ax.bar(x + width/2, calc, width, label='Valore calcolato', color="blue")
+            rects1 = ax.bar(x - width/2, real, width, label='Valore reale',)
+            rects2 = ax.bar(x + width/2, calc, width, label='Valore calcolato',)
 
             # Add some text for labels, title and custom x-axis tick labels, etc.
             ax.set_xticks(x)
