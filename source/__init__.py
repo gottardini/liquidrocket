@@ -183,5 +183,5 @@ tanks={
 }
 
 misc={
-    'Ltot':UnknownVariable("Lunghezza totale motore",'m',CalcFunction(lambda a,b: a+b ,'L_bell','L_c')),
+    'Ltot':UnknownVariable("Lunghezza totale motore",'m',CalcFunction(lambda lc,conv,div: lc+(div[-1]-conv[0]) ,'L_c','x_conv','x_div_minus')),
 }
