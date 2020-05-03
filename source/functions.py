@@ -148,20 +148,22 @@ def calcThetai(D_c, D_t):
     f = lambda x: D_c/2-1.5*(D_t/2)*np.sin(x)-1.5*(D_t/2)-D_t/2
     return fsolve(f, (-3/4)*np.pi)#VALORE TIPICO theta_i
 
-def calcXConv(theta_i, D_t):
-    interval = np.arange(theta_i, -np.pi/2, 0.01)
-    return 1.5*(D_t/2)*np.cos(interval)
+def calcXConv(alpha, D_t):
+    a=D_t/2
+    interval = np.linspace(alpha, np.pi*3/2, 20)
+    return 1.5*a*np.cos(interval)
 
-def calcYConv(theta_i, D_t):
-    interval = np.arange(theta_i, -np.pi/2, 0.01)
-    return 0.382*(D_t/2)*(np.sin(interval)+1)+(D_t/2)
+def calcYConv(alpha, D_t):
+    a=D_t/2
+    interval = np.linspace(alpha, np.pi*3/2, 20)
+    return 1.5*a*(np.sin(interval)+1)+a
 
 def calcXDivPlus(theta_n, D_t):
-    interval = np.arange(-np.pi/2, theta_n-np.pi/2, 0.01)
+    interval = np.linspace(-np.pi/2, theta_n-np.pi/2, 50)
     return 0.382*(D_t/2)*np.cos(interval)
 
 def calcYDivPlus(theta_n, D_t):
-    interval = np.arange(-np.pi/2, theta_n-np.pi/2, 0.01)
+    interval = np.linspace(-np.pi/2, theta_n-np.pi/2, 50)
     return 0.382*(D_t/2)*(np.sin(interval)+1)+D_t/2
 
 def calcXDivMinus(theta_n, theta_e, D_t, L_bell, D_e):
@@ -170,7 +172,7 @@ def calcXDivMinus(theta_n, theta_e, D_t, L_bell, D_e):
     C_1 = N_y-np.tan(theta_n)*N_x
     C_2 = (D_e/2)-np.tan(theta_e)*L_bell
     Q_x = (C_2-C_1)/(np.tan(theta_n)-np.tan(theta_e))
-    t = np.arange(0, 1, 0.01)
+    t = np.linspace(0, 1, 50)
     return N_x*(1-t)**2 + 2*Q_x*(1-t)*t + L_bell*t**2
 
 def calcYDivMinus(theta_n, theta_e, D_t, L_bell, D_e):
@@ -179,8 +181,40 @@ def calcYDivMinus(theta_n, theta_e, D_t, L_bell, D_e):
     C_1 = N_y - np.tan(theta_n) * N_x
     C_2 = (D_e / 2) - np.tan(theta_e) * L_bell
     Q_y = (np.tan(theta_n)*C_2-np.tan(theta_e)*C_1)/(np.tan(theta_n)-np.tan(theta_e))
-    t = np.arange(0, 1, 0.01)
+    t = np.linspace(0, 1, 50)
     return N_y*(1-t)**2 + 2*Q_y*(1-t)*t + (D_e/2)*t**2
+
+def calcAlpha(D_c,D_t,rad):
+    a=D_t/2
+    b=D_c/2
+    return np.arcsin((rad+5/2*a-b)/(rad+3/2*a))+np.pi
+
+def calcLTC(D_c,D_t,alpha):
+    a=D_t/2
+    b=D_c/2
+    return np.cos(alpha)/(1+np.sin(alpha))*(a-b)
+
+def calcRad(D_c,D_t,alpha):
+    a=D_t/2
+    b=D_c/2
+    return (b-a*(5/2+3/2*np.sin(alpha)))/(1+np.sin(alpha))
+
+def calcXRac(alpha,l_tc,rad):
+    beta=alpha-np.pi
+    interval = np.linspace(beta, np.pi/2, 50)
+    return -l_tc + rad*np.cos(interval)
+
+def calcYRac(alpha,D_c,rad):
+    b=D_c/2
+    beta=alpha-np.pi
+    interval = np.linspace(beta, np.pi/2, 50)
+    return b - rad + rad*np.sin(interval)
+
+def calcXCc(l_tc,L_c):
+    return np.array([-l_tc-L_c,-l_tc-L_c,-l_tc])
+
+def calcYCc(D_c):
+    return np.array([0,D_c/2,D_c/2])
 
 #CEA
 

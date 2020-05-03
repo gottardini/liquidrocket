@@ -3,11 +3,15 @@ from collections import OrderedDict
 import numpy as np
 
 xs=[
+    'x_cc',
+    'x_rac',
     'x_conv',
     'x_div_plus',
     'x_div_minus',
 ]
 ys=[
+    'y_cc',
+    'y_rac',
     'y_conv',
     'y_div_plus',
     'y_div_minus'
@@ -37,7 +41,9 @@ class NozzlePlotter:
             ax.set_aspect('equal')
             ax.set_title(engName)
             ax.grid()
+            ax.plot([engData[0][1][-1],-engData[0][1][-1]],[-engData[0][0][-1],-engData[0][0][-1]],linestyle="--",color="orange")
             for plot in engData:
+                ax.plot([engData[2][1][-1],-engData[2][1][-1]],[-engData[2][0][-1],-engData[2][0][-1]],linestyle="--",color="gray")
                 ax.plot(plot[1],-plot[0],color='black')
                 ax.plot(-plot[1],-plot[0],color='black')
             fig.savefig('out/nozzles/'+engName.replace(" ","_")+".png",dpi=fig.dpi)

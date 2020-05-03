@@ -156,21 +156,37 @@ nozzle={
     'D_e':UnknownVariable("Diametro di efflusso",'m',CalcFunction(calcDiameter,'A_e')),
     'L_cone':UnknownVariable("Lunghezza cono",'m', CalcFunction(calcConeLength, 'eps', 'D_t', 'theta')),
     'L_bell':UnknownVariable("Lunghezza campana",'m', CalcFunction(calcBellLength, 'L_cone')),#CALCOLATA ALL'80% DI L_cone
-    'theta_i':UnknownVariable("Angolo iniziale tratto convergente",'rad', CalcFunction(calcThetai, 'D_c', 'D_t')),
-    'x_conv':UnknownVariable("Tratto convergente ugello-x",'-', CalcFunction(calcXConv, 'theta_i', 'D_t')),
+    #'theta_i':UnknownVariable("Angolo iniziale tratto convergente",'rad', CalcFunction(calcThetai, 'D_c', 'D_t')),
+    #'theta_i':UnknownVariable("Angolo iniziale tratto convergente",'rad', CalcFunction(lambda x:-2*np.pi+x,'alpha')),
+    'x_conv':UnknownVariable("Tratto convergente ugello-x",'m', CalcFunction(calcXConv, 'alpha', 'D_t')),
     #Array contenente coordinate x dei punti della funzione, il cui grafico disegna il tratto convergente dell'ugello
-    'y_conv':UnknownVariable("Tratto convergente ugello-y",'-', CalcFunction(calcYConv, 'theta_i', 'D_t')),
+    'y_conv':UnknownVariable("Tratto convergente ugello-y",'m', CalcFunction(calcYConv, 'alpha', 'D_t')),
     #Array contenente coordinate y dei punti della funzione, il cui grafico disegna il tratto convergente dell'ugello
-    'x_div_plus':UnknownVariable("Tratto divergente + ugello-x",'-', CalcFunction(calcXDivPlus, 'theta_n', 'D_t')),
+    'x_div_plus':UnknownVariable("Tratto divergente + ugello-x",'m', CalcFunction(calcXDivPlus, 'theta_n', 'D_t')),
     #Array contenente coordinate x dei punti della funzione, il cui grafico disegna il tratto divergente a concavità verso l'alto dell'ugello
-    'y_div_plus':UnknownVariable("Tratto divergente + ugello-y",'-', CalcFunction(calcYDivPlus,'theta_n', 'D_t')),
+    'y_div_plus':UnknownVariable("Tratto divergente + ugello-y",'m', CalcFunction(calcYDivPlus,'theta_n', 'D_t')),
     #Array contenente coordinate y dei punti della funzione, il cui grafico disegna il tratto divergente a concavità verso l'alto dell'ugello
-    'x_div_minus':UnknownVariable("Tratto divergente - ugello-x",'-', CalcFunction(calcXDivMinus, 'theta_n', 'theta_e', 'D_t', 'L_bell', 'D_e')),
+    'x_div_minus':UnknownVariable("Tratto divergente - ugello-x",'m', CalcFunction(calcXDivMinus, 'theta_n', 'theta_e', 'D_t', 'L_bell', 'D_e')),
     #Array contenente coordinate x dei punti della funzione, il cui grafico disegna il tratto divergente a concavità verso il basso dell'ugello
-    'y_div_minus':UnknownVariable("Tratto divergente - ugello-y",'-', CalcFunction(calcYDivMinus, 'theta_n', 'theta_e', 'D_t', 'L_bell', 'D_e')),
+    'y_div_minus':UnknownVariable("Tratto divergente - ugello-y",'m', CalcFunction(calcYDivMinus, 'theta_n', 'theta_e', 'D_t', 'L_bell', 'D_e')),
     #Array contenente coordinate y dei punti della funzione, il cui grafico disegna il tratto divergente a concavità verso il basso dell'ugello
 
-    #DISEGNAMO METÀ UGELLO, SOLO LA PARTE SOPRA. TROVARE MODO PER FARE MIRROR
+    #Raccordo con la camera di combustione
+    'rad_lim':InputVariable("Raggio di curvatura minimo possibile",'m',0),
+    'rad_min':UnknownVariable("Raggio di curvatura minimo desiderato",'m',CalcFunction(lambda x: x/4,'D_c')),
+    'alpha_lim':UnknownVariable("Limite alpha raccordo",'rad',CalcFunction(calcAlpha,'D_c','D_t','rad_lim')),
+    'alpha_radmin':UnknownVariable("Alpha corrispondente a raggio di curvatura minimo",'rad',CalcFunction(calcAlpha,'D_c','D_t','rad_min')),
+    'alpha_min':InputVariable("Alpha minimo desiderato",'rad',(360-135)*np.pi/180),
+    'alpha':UnknownVariable("Alpha",'rad',CalcFunction(lambda *x: np.amax(x),'alpha_lim','alpha_min','alpha_radmin')),
+
+    'l_tc':UnknownVariable("Distanza gola-cc",'m',CalcFunction(calcLTC,'D_c','D_t','alpha')),
+    'rad_rac':UnknownVariable("Raggio di curvatura raccordo",'m',CalcFunction(calcRad,'D_c','D_t','alpha')),
+
+    'x_rac':UnknownVariable("Tratto di raccordo convergente-x",'m', CalcFunction(calcXRac, 'alpha', 'l_tc', 'rad_rac')),
+    'y_rac':UnknownVariable("Tratto di raccordo convergente-y",'m', CalcFunction(calcYRac, 'alpha', 'D_c', 'rad_rac')),
+
+    'x_cc':UnknownVariable("X camera di combustione",'m',CalcFunction(calcXCc,'l_tc','L_c')),
+    'y_cc':UnknownVariable("Y camera di combustione",'m',CalcFunction(calcYCc,'D_c')),
 }
 
 tanks={
