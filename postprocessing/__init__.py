@@ -9,6 +9,7 @@ class PostProcesser:
         self.rocketColors=['#cc3300','#009900','#003399']
         self.stageColors=['#6600cc','#997300','#008060','black']
         self.stageStyles=['-','--','-.',':']
+        self.adColors=['#222222','#555555','#777777','#999999',]
 
 
     ###THIS IS ABOUT TO GET MESSY AND NOT FLEXIBLE, BUT I HAVE NO TIME TO MAKE IT BTFL
@@ -18,7 +19,7 @@ class PostProcesser:
         axThrust_z.set_xlabel("Quota [m]")
         axThrust_z.set_ylabel("Spinta [N]")
         axThrust_z.set_title("Spinta in funzione della quota")
-        axThrust_z.set_yscale('log')
+        axThrust_z.set_yscale('linear')
         axThrust_z.grid(True, which="both")
 
         ###ISP-Z
@@ -44,7 +45,7 @@ class PostProcesser:
             sep_axThrust_z.set_xlabel("Quota [m]")
             sep_axThrust_z.set_ylabel("Spinta [N]")
             sep_axThrust_z.set_title("Spinta in funzione della quota - %s"%(rocketName))
-            sep_axThrust_z.set_yscale('log')
+            sep_axThrust_z.set_yscale('linear')
             sep_axThrust_z.grid(True, which="both")
 
             ###SEP ISP-Z
@@ -70,6 +71,8 @@ class PostProcesser:
                 ###THRUST-Z
                 sep_axThrust_z.plot(blockSolved['z'].getValue(),blockSolved['thr_var'].getValue()*block['qty'],label=block['name'],color=self.stageColors[blockIndex])
                 axThrust_z.plot(blockSolved['z'].getValue(),blockSolved['thr_var'].getValue()*block['qty'],label="%s - %s"%(rocketName,block['name']),color=self.rocketColors[i],linestyle=self.stageStyles[blockIndex])
+                if (blockIndex==0 or False) and block['type']=='liquid':
+                    sep_axThrust_z.axvline(blockSolved['z_ad'].getValue(),0,1,label="Quota di adattamento - %s"%(block['name']),linestyle="--",color=self.adColors[blockIndex])
 
                 ###ISP-Z
                 sep_axIsp_z.plot(blockSolved['z'].getValue(),blockSolved['I_s'].getValue(),label=block['name'],color=self.stageColors[blockIndex])
