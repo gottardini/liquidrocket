@@ -35,11 +35,12 @@ class NozzlePlotter:
                         engines[engName].append((block['solvedData'][xs[i]].getValue(),block['solvedData'][ys[i]].getValue()))
 
         for engName,engData in engines.items():
-            fig, ax = plt.subplots(figsize=(10, 10),num=engName)
+            fig= plt.figure(figsize=(7, 10),num=engName)
+            ax= fig.add_axes([0.06,0.05,0.9,0.9])
             ax.set_xlabel("m")
             ax.set_ylabel("m")
             ax.set_aspect('equal')
-            ax.set_title(engName)
+            #ax.set_title(engName)
             ax.grid()
             ax.plot([engData[0][1][-1],-engData[0][1][-1]],[-engData[0][0][-1],-engData[0][0][-1]],linestyle="--",color="orange")
             for plot in engData:

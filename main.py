@@ -43,6 +43,7 @@ if __name__=="__main__":
     parser.add_argument('--compare', dest='compare', action='store_true')
     parser.add_argument('--nozzleplot', dest='nozzleplot', action='store_true')
     parser.add_argument('--nooutput', dest='nooutput', action='store_true')
+    parser.add_argument('--noshow', dest='noshow', action='store_true')
     parser.set_defaults(graph=False)
     parser.set_defaults(debug=False)
     parser.set_defaults(all=True)
@@ -54,6 +55,7 @@ if __name__=="__main__":
     parser.set_defaults(compare=False)
     parser.set_defaults(nozzleplot=False)
     parser.set_defaults(nooutput=False)
+    parser.set_defaults(noshow=False)
     args = parser.parse_args()
 
     ###SOME SETUP
@@ -93,7 +95,7 @@ if __name__=="__main__":
             unsolvedModel=utils.getUnsolvedModel(engineType)
             #INJECT SPECIFIC STAGE DATA
             unsolvedModel['t_b']=InputVariable("Tempo di combustione",'s',rocketData[blockIndex]['tEnd']-rocketData[blockIndex]['tStart'])
-            unsolvedModel['z']=InputVariable("Quota",'m',np.linspace(rocketData[blockIndex]['zStart'],rocketData[blockIndex]['zEnd'],50))
+            unsolvedModel['z']=InputVariable("Quota",'m',np.linspace(rocketData[blockIndex]['zStart'],rocketData[blockIndex]['zEnd'],100))
             ###
             modelData=utils.mergeData([engineData,unsolvedModel])
             if args.all:
@@ -146,4 +148,5 @@ if __name__=="__main__":
 
     #pp.pprint(rocketModels)
     plt.ioff()
-    plt.show()
+    if not args.noshow:
+        plt.show()
