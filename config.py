@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 jobfile="source/job.txt"
 liquiddatafile="source/liquiddata.csv"
 soliddatafile="source/soliddata.csv"
@@ -5,7 +7,7 @@ postprocfile="source/postproc.txt"
 
 
 ###ROCKETS SETTINGS
-rockets={
+rockets=OrderedDict({
     "Ariane 5 ECA":[
         {
         'name':"Core stage",
@@ -79,7 +81,7 @@ rockets={
         'tStart':0,
         'tEnd':150.7,
         'zStart':0,
-        'zEnd':61e3,
+        'zEnd':65e3,
         },
         {
         'name':"2nd Stage",
@@ -88,8 +90,8 @@ rockets={
         'type':'liquid',
         'tStart':150.7,
         'tEnd':517.7,
-        'zStart':61e3,
-        'zEnd':185e3,
+        'zStart':65e3,
+        'zEnd':175e3,
         },
         {
         'name':"3rd Stage - 1st burn",
@@ -98,7 +100,7 @@ rockets={
         'type':'liquid',
         'tStart':517.7,
         'tEnd':673.7,
-        'zStart':61e3,
+        'zStart':175e3,
         'zEnd':185e3,
         },
         {
@@ -112,4 +114,4 @@ rockets={
         'zEnd':250e3,
         },
     ],
-}
+})
