@@ -71,7 +71,7 @@ if __name__=="__main__":
     logger.setLevel(LOG_LEVEL)
     logger.addHandler(stream)
     if args.logs:
-        fh = logging.FileHandler('out/logs.txt')
+        fh = logging.FileHandler('out/logs.txt','w+')
         fh.setLevel(logging.DEBUG)
         logger.addHandler(fh)
     logger.info(utils.getLogo())
@@ -101,7 +101,7 @@ if __name__=="__main__":
             if args.all:
                 task=[key for key,val in modelData.items() if isinstance(val,UnknownVariable)]
             else:
-                task=utils.getOutputs()
+                task=[key for key in utils.getOutputs() if key in modelData]
 
             #LET'S SOLVE
             if engineType not in graphed:
