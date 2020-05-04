@@ -6,6 +6,9 @@ class Node:
     def __init__(self,variable):
         pass
 
+class CeaOutput:
+    def __init(self,output):
+        self.output=output
 
 class Variable:
     #def __str__(self):
