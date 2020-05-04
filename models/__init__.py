@@ -1,13 +1,14 @@
 import numpy as np
 import collections
 from rocketcea.cea_obj_w_units import CEA_Obj
+from rocketcea.cea_obj import CEA_Obj as CEA_ObjSU
 
 class Node:
     def __init__(self,variable):
         pass
 
 class CeaOutput:
-    def __init(self,output):
+    def __init__(self,output):
         self.output=output
 
 class Variable:
@@ -71,7 +72,7 @@ class CalcFunction:
             params=[values[key] for key in self.bindings]
             res = self.fun(*params)
             if type(res)!=np.ndarray:
-                if isinstance(res,CEA_Obj):
+                if isinstance(res,CEA_Obj) or isinstance(res,CEA_ObjSU):
                     pass
                 elif isinstance(res,list):
                     res=np.array(res)
