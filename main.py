@@ -9,6 +9,7 @@ from loader import DataLoader
 from latexer import Latexer
 from comparer import Comparer
 from nozzleplotter import NozzlePlotter
+from outputcea import OutputCea
 import time
 import matplotlib.pyplot as plt
 import traceback
@@ -44,6 +45,7 @@ if __name__=="__main__":
     parser.add_argument('--nozzleplot', dest='nozzleplot', action='store_true')
     parser.add_argument('--nooutput', dest='nooutput', action='store_true')
     parser.add_argument('--noshow', dest='noshow', action='store_true')
+    parser.add_argument('--outputcea', dest='outputcea', action='store_true')
     parser.set_defaults(graph=False)
     parser.set_defaults(debug=False)
     parser.set_defaults(all=True)
@@ -56,6 +58,7 @@ if __name__=="__main__":
     parser.set_defaults(nozzleplot=False)
     parser.set_defaults(nooutput=False)
     parser.set_defaults(noshow=False)
+    parser.set_defaults(outputcea=False)
     args = parser.parse_args()
 
     ###SOME SETUP
@@ -145,6 +148,10 @@ if __name__=="__main__":
     if args.latex:
         latexer=Latexer(rocketModels)
         latexer.make()
+
+    if args.outputcea:
+        outputcea=OutputCea(rocketModels)
+        outputcea.make()
 
     #pp.pprint(rocketModels)
     plt.ioff()
