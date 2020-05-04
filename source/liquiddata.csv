@@ -7,7 +7,7 @@ Densità ossidante,rho_ox,kg/m3,1.14E+03,1.14E+03,1410,1410,1143,1.14E+03,1.14E+
 Densità combustibile,rho_f,kg/m3,7.09E+01,7.09E+01,810,810,808,7.09E+01,7.09E+01
 Rapporto massico di miscela,r_cc,-,6.1,5,2.36,2.37,2.27,5,5
 Fattore di correzione velocità ,eta_2D,-,0.988,0.99,0.987,0.99,0.95,0.9875,0.9875
-Lunghezza caratteristica (Sutton),L_star,m,0.78,0.78,1,1,1,0.78,0.78
+Lunghezza caratteristica (Sutton),L_star,m,0.78,0.78,1,1,1.4,0.78,0.78
 Pressione serbatoio combustibile,p_tank_f,Pa,2.30E+05,2.30E+05,3.45E+05,3.45E+05,1.67E+05,2.28E+05,2.24E+05
 Pressione serbatoio ossidante,p_tank_ox,Pa,2.70E+05,2.70E+05,3.45E+05,3.45E+05,1.31E+05,2.72E+05,2.72E+05
 Nome ossidante (per il CEA),oxName,-,LOX,LOX,LOX,LOX,LOX,LOX,LOX
