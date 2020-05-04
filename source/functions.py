@@ -1,6 +1,8 @@
 import numpy as np
 from scipy.optimize import fsolve
 from rocketcea.cea_obj_w_units import CEA_Obj
+from rocketcea.cea_obj import CEA_Obj as CEA_ObjSU 
+from models import CeaOutput
 
 #GENERAL FUNCTIONS
 
@@ -222,6 +224,10 @@ def getCeaObj(fuelName, oxName):
     #print(type(fuelName),type(oxName))
     return CEA_Obj( oxName=oxName, fuelName=fuelName, pressure_units='Pa', temperature_units='K', density_units='kg/m^3', sonic_velocity_units='m/s',specific_heat_units='J/kg-K')
 
+def getCeaObjSU(fuelName, oxName):
+    #print(type(fuelName),type(oxName))
+    return CEA_ObjSU( oxName=oxName, fuelName=fuelName)
+
 def getCeaChamberMM(obj,pc,mr,eps=1):
     return obj.get_Chamber_MolWt_gamma(Pc=pc,MR=mr,eps=eps)[0]
 
@@ -283,3 +289,6 @@ def calcSpilF(q_eng_f,deltap_pump_f,deltap_pump_ox,eta_pump_f,eta_pump_ox,rho_f,
     bl=lambda tau: deltap_pump_f/eta_pump_f + psi(tau)*deltap_pump_ox/eta_pump_ox
     denp=rho_f*(1+tau_pb)*eta_mt*eta_ad*cp_cpb*T_c*(1-(p_out/p_c)**((y_cpb-1)/y_cpb))
     return bl(tau_cc)/(denp+bl(tau_pb))*q_eng_f
+
+def getCeaFullOutput(obj, pc, mr, eps):
+    return CeaOutput(obj.get_full_cea_output(Pc=pc*1e-5, MR=mr, eps=eps, frozen=1, frozenAtThroat=1, pc_units='bar'))

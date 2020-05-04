@@ -24,7 +24,9 @@ global_constants={
 
 variables_cea={
     'cc_cea':UnknownVariable("Oggetto CEA per la camera di combustione",'-',CalcFunction(getCeaObj,'fuelName','oxName')),
+    'cc_cea_su':UnknownVariable("Oggetto CEA per la camera di combustione con unita di misura imperiali",'-',CalcFunction(getCeaObjSU,'fuelName','oxName')),
     'pb_cea':UnknownVariable("Oggetto CEA per il preburner",'-',CalcFunction(getCeaObj,'fuelName','oxName')),
+    'full_output_cea':UnknownVariable("Full Output CEA", 'No units', CalcFunction(getCeaFullOutput, 'cc_cea_su', 'p_cc', 'r_cc', 'eps'))
 }
 
 outflow_gases={
