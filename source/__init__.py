@@ -130,7 +130,10 @@ static_propulsive_parameters={
     'Is_ad':UnknownVariable("Impulso specifico a quota di adattamento",'s',CalcFunction(calcAdaptedSpecificImpulse,'u_e','g_0')),
     'ct_ad':UnknownVariable("Coefficiente di spinta a quota di adattamento",'-',CalcFunction(calcAdaptedThrustCoefficient,'eta_2D','Is_ad','g_0','c_star')),
     'ct_n':UnknownVariable("Coefficiente di spinta nominale",'-',CalcFunction(calcThrustCoefficient,'p_n', 'y_cc_e', 'eps', 'p_e', 'p_cc')),
+    'ct_vac':UnknownVariable("Coefficiente di spinta nel vuoto",'-',CalcFunction(calcThrustCoefficient,'p_vac', 'y_cc_e', 'eps', 'p_e', 'p_cc')),
     'Is_vac':UnknownVariable("Impulso specifico nel vuoto",'s',CalcFunction(calcSpecificImpulse,'thr_vac','m_p','g_0')),
+    'Iv_vac':UnknownVariable("Impulso specifico volumetrico nel vuoto",'s*kg/m^3', CalcFunction(calcVolumetricSpecificImpulse, 'Is_vac', 'rho_avg')),
+    'Itot_vac':UnknownVariable("Impulso specifico totale nel vuoto",'N*s', CalcFunction(calcTotalVolumetricImpulse, 'Is_vac', 'M_ox', 'M_f', 'g_0')),
     'thr_vac':UnknownVariable("Spinta nel vuoto",'N',CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p_vac'))
 }
 
