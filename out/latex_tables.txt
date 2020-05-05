@@ -1,14 +1,60 @@
-PARAMETRI PROPULSIVI
+PARAMETRI PROPULSIVI CALCOLATI ANALITICAMENTE
 
 \begin{center}\begin{tabular}{*{8}{|c}|} 
 \hline 
-\multicolumn{8}{|c|}{Parametri propulsivi} \\ 
+\multicolumn{8}{|c|}{Parametri propulsivi calcolati analiticamente} \\ 
 \hline 
 Variabile & Unità di misura & Vulcain II & HM7B & Merlin 1D+ & Merlin 1D+ vac & F-1 & J-2\\ 
 \hline 
 $Is\_vac$ & s & 445.33 & 458.47 & 324.54 & 365.62 & 311.86 & 432.28\\ 
 \hline 
+$Iv\_vac$ & s*kg/m^3 & 162519.73 & 148770.78 & 374944.55 & 422627.01 & 316348.77 & 140271.09\\ 
+\hline 
+$Itot\_vac$ & N*s & 771120000.00 & 61717950.00 & 272180592.82 & 389337900.00 & 1236712414.37 & 389203500.00\\ 
+\hline 
 $u\_e$ & m/s & 4165.15 & 4315.49 & 2959.71 & 3458.59 & 2835.24 & 4012.76\\ 
+\hline 
+$ct\_vac$ & - & 1.99 & 2.00 & 1.84 & 2.07 & 1.84 & 1.89\\ 
+\hline 
+$c\_star$ & m/s & 2228.15 & 2275.82 & 1752.22 & 1752.31 & 1745.30 & 2278.26\\ 
+\hline 
+$thr\_vac$ & N & 1360000.00 & 62200.00 & 919218.48 & 934000.00 & 7815669.19 & 1010000.00\\ 
+ \hline 
+\end{tabular}\end{center} 
+
+GRANDEZZE TIPICHE MOTORE
+
+\begin{center}\begin{tabular}{*{8}{|c}|} 
+\hline 
+\multicolumn{8}{|c|}{Grandezze tipiche motore} \\ 
+\hline 
+Variabile & Unità di misura & Vulcain II & HM7B & Merlin 1D+ & Merlin 1D+ vac & F-1 & J-2\\ 
+\hline 
+$m\_eng\_f$ & kg/s & 43.86 & 2.31 & 85.96 & 77.30 & 781.48 & 39.71\\ 
+\hline 
+$m\_eng\_ox$ & kg/s & 267.54 & 11.53 & 202.85 & 183.19 & 1773.97 & 198.54\\ 
+\hline 
+$m\_p$ & kg/s & 311.40 & 13.83 & 288.81 & 260.48 & 2555.45 & 238.24\\ 
+\hline 
+$M\_f$ & kg & 24868.12 & 2287.77 & 25451.34 & 32220.50 & 123657.88 & 15301.27\\ 
+\hline 
+$M\_ox$ & kg & 151695.51 & 11438.86 & 60065.17 & 76362.59 & 280703.40 & 76506.36\\ 
+\hline 
+$D\_e$ & m & 2.05 & 0.92 & 0.97 & 2.88 & 3.62 & 1.83\\ 
+\hline 
+$D\_t$ & m & 0.27 & 0.10 & 0.24 & 0.22 & 0.91 & 0.35\\ 
+\hline 
+$T\_cc$ & K & 3352.73 & 3028.67 & 3454.67 & 3460.35 & 3356.52 & 3047.93\\ 
+\hline 
+$D\_c$ & m & 0.48 & 0.18 & 0.42 & 0.40 & 1.56 & 0.63\\ 
+\hline 
+$L\_c$ & m & 0.24 & 0.25 & 0.33 & 0.32 & 0.47 & 0.24\\ 
+\hline 
+$W\_pump\_f$ & W & 16089580.70 & 252370.16 & 2325556.07 & 2091331.96 & 13494089.98 & 6314349.18\\ 
+\hline 
+$W\_pump\_ox$ & W & 4870559.31 & 64698.96 & 2825415.61 & 2551486.49 & 19536971.19 & 1611623.19\\ 
+\hline 
+$L\_bell$ & m & 2.66 & 1.23 & 1.08 & 3.97 & 4.06 & 2.22\\ 
  \hline 
 \end{tabular}\end{center} 
 
