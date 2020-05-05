@@ -22,7 +22,7 @@ except ImportError:
 forceatlas2 = ForceAtlas2()
 
 class Grapher:
-    def __init__(self,name,view=False,debug=False,cool=False,labels=False):
+    def __init__(self,name,graph=True,view=False,debug=False,cool=False,labels=False):
         self.name=name
         self.G=nx.DiGraph()
         self.initialized=False
@@ -31,7 +31,7 @@ class Grapher:
         self.debug=debug
         self.cool=cool
         self.labels=labels
-
+        self.graph=graph
 
     def addNode(self,name,description,parent=None):
         self.G.add_node(name,description=description)
@@ -39,7 +39,7 @@ class Grapher:
             self.colors[name]='#000000'
         if parent is not None:
             self.G.add_edge(name,parent)
-        if self.view and self.debug:
+        if self.graph and self.debug:
             self.drawGraph()
 
     def pause(self,val):
@@ -47,7 +47,7 @@ class Grapher:
 
     def changeNodeColor(self,node,color):
         self.colors[node]=color
-        if self.view and self.debug:
+        if self.graph and self.debug:
             self.drawGraph()
 
     def calcPos(self):
@@ -63,17 +63,22 @@ class Grapher:
             #self.pos = nx.random_layout(self.G)
             self.pos = graphviz_layout(self.G, prog='twopi', args='')
 
+    def export(self):
+        if self.graph:
+            self.fig.savefig("out/graph/pb_graph_%s.svg"%self.name)
+
     def drawGraph(self):
-        #print(self.G.number_of_nodes())
-        if not self.view:
+        if not self.graph:
             return
+        #print(self.G.number_of_nodes())
         if not self.initialized:
             self.fig=plt.figure(figsize=(8, 8),num=self.name)
-            self.ax=self.fig.add_subplot()
+            self.ax=self.fig.add_axes([0,0,1,1])
             #self.fig, self.ax = plt.subplots(figsize=(8, 8),num='Liquid rocket analysis',facecolor='white')
-            plt.ion()
-            plt.show()
-            self.fig.tight_layout()
+            if self.view:
+                plt.ion()
+                plt.show()
+            #self.fig.tight_layout()
             self.ax.set_axis_off()
             self.initialized=True
         self.ax.cla()
@@ -99,6 +104,4 @@ class Grapher:
                 node_attrs = nx.get_node_attributes(self.G, 'description')
                 nx.draw_networkx_labels(self.G, pos_attrs, ax=self.ax, labels=node_attrs)
 
-        #self.fig.canvas.draw()
         self.pause(0.01)
-        #plt.show(block=True)

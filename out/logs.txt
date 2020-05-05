@@ -44,7 +44,7 @@ INPUT_DATA
    GUESS          Stima pressione efflusso per metodo numerico                Pa                  [20000.]                                                    
 
 >ATMOSHPERE
-   p              Pressione atmosferica                                       Pa                  [1.0132e+05 7.0104e+04 ... 4.7203e-06 2.8417e-06]           
+   p              Pressione atmosferica                                       Pa                  [1.0132e+05 8.4166e+04 ... 3.6531e-06 2.8417e-06]           
    p_vac          Pressione nel vuoto                                         Pa                  [0]                                                         
 
 >COMBUSTION_CHAMBER
@@ -115,14 +115,14 @@ INPUT_DATA
    R_air          Costante specifica dell'aria                                J/(kg*K)            [287.058]                                                   
 
 >MISC
-   Ltot           Lunghezza totale motore                                     m                   [2.904]                                                     
+   Ltot           Lunghezza totale motore                                     m                   [3.0465]                                                    
 
 >NONSTATIC_PROPULSIVE_PARAMETERS
-   ct_var         Coefficiente di spinta                                      -                   [1.4758 1.6338 ... 1.9886 1.9886]                           
-   thr_var        Spinta                                                      N                   [1025538.7503 1128594.7692 ... 1360000.     1360000.    ]   
-   I_s            Impulso specifico                                           s                   [335.8132 369.5589 ... 445.3327 445.3327]                   
-   I_v            Impulso specifico volumetrico                               s*kg/m^3            [122551.679  134866.8531 ... 162519.7326 162519.7326]       
-   I_tot          Impulso specifico totale                                    N*s                 [5.8148e+08 6.3991e+08 ... 7.7112e+08 7.7112e+08]           
+   ct_var         Coefficiente di spinta                                      -                   [1.4758 1.5626 ... 1.9886 1.9886]                           
+   thr_var        Spinta                                                      N                   [1025538.7503 1082178.3248 ... 1360000.     1360000.    ]   
+   I_s            Impulso specifico                                           s                   [335.8132 354.3598 ... 445.3327 445.3327]                   
+   I_v            Impulso specifico volumetrico                               s*kg/m^3            [122551.679  129320.0971 ... 162519.7326 162519.7326]       
+   I_tot          Impulso specifico totale                                    N*s                 [5.8148e+08 6.1360e+08 ... 7.7112e+08 7.7112e+08]           
 
 >NOZZLE
    theta          Half expansion angle                                        rad                 [0.2618]                                                    
@@ -132,13 +132,50 @@ INPUT_DATA
    D_e            Diametro di efflusso                                        m                   [2.0501]                                                    
    L_cone         Lunghezza cono                                              m                   [3.324]                                                     
    L_bell         Lunghezza campana                                           m                   [2.6592]                                                    
-   theta_i        Angolo iniziale tratto convergente                          rad                 [-2.6449]                                                   
-   x_conv         Tratto convergente ugello-x                                 -                   [-0.1772 -0.1762 ... -0.0028 -0.0008]                       
-   y_conv         Tratto convergente ugello-y                                 -                   [0.1612 0.1608 ... 0.1344 0.1344]                           
-   x_div_plus     Tratto divergente + ugello-x                                -                   [3.1428e-18 5.1326e-04 ... 2.5056e-02 2.5503e-02]           
-   y_div_plus     Tratto divergente + ugello-y                                -                   [0.1344 0.1344 ... 0.1409 0.1411]                           
-   x_div_minus    Tratto divergente - ugello-x                                -                   [0.0257 0.0498 ... 2.6021 2.6307]                           
-   y_div_minus    Tratto divergente - ugello-y                                -                   [0.1412 0.1551 ... 1.0173 1.0212]                           
+   x_conv         Tratto convergente ugello-x                                 m                   [[-1.4251e-01]
+ [-1.3650e-01]
+ ...
+ [-8.3288e-03]
+ [-3.7023e-17]]
+   y_conv         Tratto convergente ugello-y                                 m                   [[0.1934]
+ [0.1876]
+ ...
+ [0.1345]
+ [0.1344]]               
+   x_div_plus     Tratto divergente + ugello-x                                m                   [[3.1428e-18]
+ [5.4887e-04]
+ ...
+ [2.5204e-02]
+ [2.5681e-02]]
+   y_div_plus     Tratto divergente + ugello-y                                m                   [[0.1344]
+ [0.1344]
+ ...
+ [0.141 ]
+ [0.1412]]               
+   x_div_minus    Tratto divergente - ugello-x                                m                   [0.0257 0.0749 ... 2.6009 2.6592]                           
+   y_div_minus    Tratto divergente - ugello-y                                m                   [0.1412 0.1694 ... 1.0171 1.025 ]                           
+   rad_lim        Raggio di curvatura minimo possibile                        m                   [0]                                                         
+   rad_min        Raggio di curvatura minimo desiderato                       m                   [0.1199]                                                    
+   alpha_lim      Limite alpha raccordo                                       rad                 [3.6383]                                                    
+   alpha_radmin   Alpha corrispondente a raggio di curvatura minimo           rad                 [3.8782]                                                    
+   alpha_min      Alpha minimo desiderato                                     rad                 [3.927]                                                     
+   alpha          Alpha                                                       rad                 [3.927]                                                     
+   l_tc           Distanza gola-cc                                            m                   [0.2547]                                                    
+   rad_rac        Raggio di curvatura raccordo                                m                   [0.1587]                                                    
+   x_rac          Tratto di raccordo convergente-x                            m                   [[-0.1425]
+ [-0.1443]
+ ...
+ [-0.2522]
+ [-0.2547]]           
+   y_rac          Tratto di raccordo convergente-y                            m                   [[0.1934]
+ [0.1952]
+ ...
+ [0.2398]
+ [0.2399]]               
+   x_cc           X camera di combustione                                     m                   [[-0.4995]
+ [-0.4995]
+ [-0.2547]]                           
+   y_cc           Y camera di combustione                                     m                   [0 array([0.23986737]) array([0.23986737])]                 
 
 >OUTFLOW_GASES
    Mm_cc_e        Massa molare dei gas combusti                               kg/kmol             [13.8325]                                                   
@@ -176,8 +213,10 @@ INPUT_DATA
    k_s            Coefficiente di sicurezza massa                             -                   [1.05]                                                      
 
 >VARIABLES_CEA
-   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a91990>
-   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a3c350>
+   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc86ef0>
+   cc_cea_su      Oggetto CEA per la camera di combustione con unita di misura imperiali-                   <rocketcea.cea_obj.CEA_Obj object at 0x7feb6fc3fcc0>        
+   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fcb2b38>
+   full_output_ceaFull Output CEA                                             No units            [<models.CeaOutput object at 0x7feb6fc3f780>]               
 
 ######################################
 Solving rocket Ariane 5 ECA | Boosters
@@ -191,7 +230,7 @@ INPUT_DATA
    Is_sl          Impulso specifico sealevel                                  s                   [250.]                                                      
 
 >ATMOSHPERE
-   p              Pressione atmosferica                                       Pa                  [1.0132e+05 8.6434e+04 ... 6.0061e+00 4.8459e+00]           
+   p              Pressione atmosferica                                       Pa                  [1.0132e+05 9.3602e+04 ... 5.3891e+00 4.8459e+00]           
 
 >GLOBAL_CONSTANTS
    R_u            Costante dei gas ideali                                     J/(mol*K)           [8.3145]                                                    
@@ -203,10 +242,11 @@ INPUT_DATA
 
 >PROP
    thr_n          Spinta nominale                                             N                   [6470000.]                                                  
-   thr_var        Spinta in funzione della quota                              N                   [6470000. 6470000. ... 6470000. 6470000.]                   
-   I_s            Impulso specifico                                           s                   [250.     253.6742 ... 274.9985 274.9988]                   
+   m_p            Portata massica                                             kg/s                [2399.0285]                                                 
+   thr_var        Spinta in funzione della quota                              N                   [5881818.1818 5926646.7378 ... 6469968.717  6469971.87  ]   
+   I_s            Impulso specifico                                           s                   [250.     251.9054 ... 274.9987 274.9988]                   
 
-There are some unused input varables: ['t_b', 'R_u']
+There are some unused input varables: ['R_u', 't_b']
 
 ##########################################
 Solving rocket Ariane 5 ECA | Second stage
@@ -234,7 +274,7 @@ INPUT_DATA
    GUESS          Stima pressione efflusso per metodo numerico                Pa                  [10000.]                                                    
 
 >ATMOSHPERE
-   p              Pressione atmosferica                                       Pa                  [2.8417e-06 2.1114e-06 ... 1.8270e-12 1.3575e-12]           
+   p              Pressione atmosferica                                       Pa                  [2.8417e-06 2.4532e-06 ... 1.5725e-12 1.3575e-12]           
    p_vac          Pressione nel vuoto                                         Pa                  [0]                                                         
 
 >COMBUSTION_CHAMBER
@@ -305,14 +345,14 @@ INPUT_DATA
    R_air          Costante specifica dell'aria                                J/(kg*K)            [287.058]                                                   
 
 >MISC
-   Ltot           Lunghezza totale motore                                     m                   [1.4758]                                                    
+   Ltot           Lunghezza totale motore                                     m                   [1.5296]                                                    
 
 >NONSTATIC_PROPULSIVE_PARAMETERS
    ct_var         Coefficiente di spinta                                      -                   [1.9991 1.9991 ... 1.9991 1.9991]                           
    thr_var        Spinta                                                      N                   [62200. 62200. ... 62200. 62200.]                           
    I_s            Impulso specifico                                           s                   [458.4703 458.4703 ... 458.4703 458.4703]                   
    I_v            Impulso specifico volumetrico                               s*kg/m^3            [148770.7751 148770.7751 ... 148770.7751 148770.7751]       
-   I_tot          Impulso specifico totale                                    N*s                 [61717949.9981 61717949.9986 ... 61717950.     61717950.    ]
+   I_tot          Impulso specifico totale                                    N*s                 [61717949.9981 61717949.9984 ... 61717950.     61717950.    ]
 
 >NOZZLE
    theta          Half expansion angle                                        rad                 [0.2618]                                                    
@@ -322,13 +362,50 @@ INPUT_DATA
    D_e            Diametro di efflusso                                        m                   [0.9241]                                                    
    L_cone         Lunghezza cono                                              m                   [1.5352]                                                    
    L_bell         Lunghezza campana                                           m                   [1.2282]                                                    
-   theta_i        Angolo iniziale tratto convergente                          rad                 [-2.637]                                                    
-   x_conv         Tratto convergente ugello-x                                 -                   [-0.0666 -0.0662 ... -0.0012 -0.0005]                       
-   y_conv         Tratto convergente ugello-y                                 -                   [0.0607 0.0605 ... 0.0507 0.0507]                           
-   x_div_plus     Tratto divergente + ugello-x                                -                   [1.1856e-18 1.9362e-04 ... 9.4522e-03 9.6207e-03]           
-   y_div_plus     Tratto divergente + ugello-y                                -                   [0.0507 0.0507 ... 0.0532 0.0532]                           
-   x_div_minus    Tratto divergente - ugello-x                                -                   [0.0097 0.0208 ... 1.2018 1.215 ]                           
-   y_div_minus    Tratto divergente - ugello-y                                -                   [0.0533 0.0597 ... 0.4585 0.4603]                           
+   x_conv         Tratto convergente ugello-x                                 m                   [[-5.3761e-02]
+ [-5.1493e-02]
+ ...
+ [-3.1419e-03]
+ [-1.3966e-17]]
+   y_conv         Tratto convergente ugello-y                                 m                   [[0.073 ]
+ [0.0708]
+ ...
+ [0.0508]
+ [0.0507]]               
+   x_div_plus     Tratto divergente + ugello-x                                m                   [[1.1856e-18]
+ [2.0705e-04]
+ ...
+ [9.5080e-03]
+ [9.6878e-03]]
+   y_div_plus     Tratto divergente + ugello-y                                m                   [[0.0507]
+ [0.0507]
+ ...
+ [0.0532]
+ [0.0533]]               
+   x_div_minus    Tratto divergente - ugello-x                                m                   [0.0097 0.0324 ... 1.2012 1.2282]                           
+   y_div_minus    Tratto divergente - ugello-y                                m                   [0.0533 0.0663 ... 0.4584 0.4621]                           
+   rad_lim        Raggio di curvatura minimo possibile                        m                   [0]                                                         
+   rad_min        Raggio di curvatura minimo desiderato                       m                   [0.045]                                                     
+   alpha_lim      Limite alpha raccordo                                       rad                 [3.6462]                                                    
+   alpha_radmin   Alpha corrispondente a raggio di curvatura minimo           rad                 [3.8832]                                                    
+   alpha_min      Alpha minimo desiderato                                     rad                 [3.927]                                                     
+   alpha          Alpha                                                       rad                 [3.927]                                                     
+   l_tc           Distanza gola-cc                                            m                   [0.0948]                                                    
+   rad_rac        Raggio di curvatura raccordo                                m                   [0.0581]                                                    
+   x_rac          Tratto di raccordo convergente-x                            m                   [[-0.0538]
+ [-0.0544]
+ ...
+ [-0.0939]
+ [-0.0948]]           
+   y_rac          Tratto di raccordo convergente-y                            m                   [[0.073 ]
+ [0.0736]
+ ...
+ [0.09  ]
+ [0.09  ]]               
+   x_cc           X camera di combustione                                     m                   [[-0.3424]
+ [-0.3424]
+ [-0.0948]]                           
+   y_cc           Y camera di combustione                                     m                   [0 array([0.0899605]) array([0.0899605])]                   
 
 >OUTFLOW_GASES
    Mm_cc_e        Massa molare dei gas combusti                               kg/kmol             [11.8658]                                                   
@@ -366,8 +443,10 @@ INPUT_DATA
    k_s            Coefficiente di sicurezza massa                             -                   [1.05]                                                      
 
 >VARIABLES_CEA
-   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a60690>
-   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a810d0>
+   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc6ffd0>
+   cc_cea_su      Oggetto CEA per la camera di combustione con unita di misura imperiali-                   <rocketcea.cea_obj.CEA_Obj object at 0x7feb6fc98cc0>        
+   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fcf6b70>
+   full_output_ceaFull Output CEA                                             No units            [<models.CeaOutput object at 0x7feb6fc98f60>]               
 
 ########################################
 Solving rocket Falcon Heavy | Core Stage
@@ -395,7 +474,7 @@ INPUT_DATA
    GUESS          Stima pressione efflusso per metodo numerico                Pa                  [71600.]                                                    
 
 >ATMOSHPERE
-   p              Pressione atmosferica                                       Pa                  [1.0132e+05 8.1477e+04 ... 1.2061e-01 8.9701e-02]           
+   p              Pressione atmosferica                                       Pa                  [1.0132e+05 9.0858e+04 ... 1.0386e-01 8.9701e-02]           
    p_vac          Pressione nel vuoto                                         Pa                  [0]                                                         
 
 >COMBUSTION_CHAMBER
@@ -466,14 +545,14 @@ INPUT_DATA
    R_air          Costante specifica dell'aria                                J/(kg*K)            [287.058]                                                   
 
 >MISC
-   Ltot           Lunghezza totale motore                                     m                   [1.4162]                                                    
+   Ltot           Lunghezza totale motore                                     m                   [1.5445]                                                    
 
 >NONSTATIC_PROPULSIVE_PARAMETERS
-   ct_var         Coefficiente di spinta                                      -                   [1.6915 1.7204 ... 1.8389 1.8389]                           
-   thr_var        Spinta                                                      N                   [844761.1781 859346.3653 ... 919218.3944 919218.4171]       
-   I_s            Impulso specifico                                           s                   [298.2539 303.4034 ... 324.542  324.542 ]                   
-   I_v            Impulso specifico volumetrico                               s*kg/m^3            [344573.795  350523.0188 ... 374944.5155 374944.5247]       
-   I_tot          Impulso specifico totale                                    N*s                 [2.5013e+08 2.5445e+08 ... 2.7218e+08 2.7218e+08]           
+   ct_var         Coefficiente di spinta                                      -                   [1.6915 1.7067 ... 1.8389 1.8389]                           
+   thr_var        Spinta                                                      N                   [844761.1781 852452.8064 ... 919218.4067 919218.4171]       
+   I_s            Impulso specifico                                           s                   [298.2539 300.9696 ... 324.542  324.542 ]                   
+   I_v            Impulso specifico volumetrico                               s*kg/m^3            [344573.795  347711.1711 ... 374944.5205 374944.5247]       
+   I_tot          Impulso specifico totale                                    N*s                 [2.5013e+08 2.5241e+08 ... 2.7218e+08 2.7218e+08]           
 
 >NOZZLE
    theta          Half expansion angle                                        rad                 [0.2618]                                                    
@@ -483,13 +562,50 @@ INPUT_DATA
    D_e            Diametro di efflusso                                        m                   [0.9673]                                                    
    L_cone         Lunghezza cono                                              m                   [1.3537]                                                    
    L_bell         Lunghezza campana                                           m                   [1.083]                                                     
-   theta_i        Angolo iniziale tratto convergente                          rad                 [-2.6043]                                                   
-   x_conv         Tratto convergente ugello-x                                 -                   [-0.1558 -0.1549 ... -0.0025 -0.0006]                       
-   y_conv         Tratto convergente ugello-y                                 -                   [0.1435 0.1431 ... 0.1209 0.1209]                           
-   x_div_plus     Tratto divergente + ugello-x                                -                   [2.8282e-18 4.6187e-04 ... 2.0918e-02 2.1328e-02]           
-   y_div_plus     Tratto divergente + ugello-y                                -                   [0.1209 0.1209 ... 0.1259 0.1261]                           
-   x_div_minus    Tratto divergente - ugello-x                                -                   [0.0217 0.0316 ... 1.0603 1.0716]                           
-   y_div_minus    Tratto divergente - ugello-y                                -                   [0.1263 0.1315 ... 0.4798 0.4817]                           
+   x_conv         Tratto convergente ugello-x                                 m                   [[-1.2824e-01]
+ [-1.2283e-01]
+ ...
+ [-7.4949e-03]
+ [-3.3316e-17]]
+   y_conv         Tratto convergente ugello-y                                 m                   [[0.174 ]
+ [0.1688]
+ ...
+ [0.1211]
+ [0.1209]]               
+   x_div_plus     Tratto divergente + ugello-x                                m                   [[2.8282e-18]
+ [4.6092e-04]
+ ...
+ [2.1288e-02]
+ [2.1696e-02]]
+   y_div_plus     Tratto divergente + ugello-y                                m                   [[0.1209]
+ [0.1209]
+ ...
+ [0.1261]
+ [0.1263]]               
+   x_div_minus    Tratto divergente - ugello-x                                m                   [0.0217 0.0418 ... 1.0598 1.083 ]                           
+   y_div_minus    Tratto divergente - ugello-y                                m                   [0.1263 0.1369 ... 0.4797 0.4836]                           
+   rad_lim        Raggio di curvatura minimo possibile                        m                   [0]                                                         
+   rad_min        Raggio di curvatura minimo desiderato                       m                   [0.1047]                                                    
+   alpha_lim      Limite alpha raccordo                                       rad                 [3.6789]                                                    
+   alpha_radmin   Alpha corrispondente a raggio di curvatura minimo           rad                 [3.9038]                                                    
+   alpha_min      Alpha minimo desiderato                                     rad                 [3.927]                                                     
+   alpha          Alpha                                                       rad                 [3.927]                                                     
+   l_tc           Distanza gola-cc                                            m                   [0.2138]                                                    
+   rad_rac        Raggio di curvatura raccordo                                m                   [0.1209]                                                    
+   x_rac          Tratto di raccordo convergente-x                            m                   [[-0.1282]
+ [-0.1296]
+ ...
+ [-0.2118]
+ [-0.2138]]           
+   y_rac          Tratto di raccordo convergente-y                            m                   [[0.174 ]
+ [0.1754]
+ ...
+ [0.2094]
+ [0.2095]]               
+   x_cc           X camera di combustione                                     m                   [[-0.547 ]
+ [-0.547 ]
+ [-0.2138]]                           
+   y_cc           Y camera di combustione                                     m                   [0 array([0.20945051]) array([0.20945051])]                 
 
 >OUTFLOW_GASES
    Mm_cc_e        Massa molare dei gas combusti                               kg/kmol             [22.9618]                                                   
@@ -527,8 +643,10 @@ INPUT_DATA
    k_s            Coefficiente di sicurezza massa                             -                   [1.05]                                                      
 
 >VARIABLES_CEA
-   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a67990>
-   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a2a9d0>
+   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc51f60>
+   cc_cea_su      Oggetto CEA per la camera di combustione con unita di misura imperiali-                   <rocketcea.cea_obj.CEA_Obj object at 0x7feb6fc67fd0>        
+   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc7bb38>
+   full_output_ceaFull Output CEA                                             No units            [<models.CeaOutput object at 0x7feb6fc7b978>]               
 
 ######################################
 Solving rocket Falcon Heavy | Boosters
@@ -556,7 +674,7 @@ INPUT_DATA
    GUESS          Stima pressione efflusso per metodo numerico                Pa                  [71600.]                                                    
 
 >ATMOSHPERE
-   p              Pressione atmosferica                                       Pa                  [1.0132e+05 8.7394e+04 ... 1.2413e+01 1.0168e+01]           
+   p              Pressione atmosferica                                       Pa                  [1.0132e+05 9.4123e+04 ... 1.1223e+01 1.0168e+01]           
    p_vac          Pressione nel vuoto                                         Pa                  [0]                                                         
 
 >COMBUSTION_CHAMBER
@@ -627,14 +745,14 @@ INPUT_DATA
    R_air          Costante specifica dell'aria                                J/(kg*K)            [287.058]                                                   
 
 >MISC
-   Ltot           Lunghezza totale motore                                     m                   [1.4162]                                                    
+   Ltot           Lunghezza totale motore                                     m                   [1.5445]                                                    
 
 >NONSTATIC_PROPULSIVE_PARAMETERS
-   ct_var         Coefficiente di spinta                                      -                   [1.6915 1.7118 ... 1.8389 1.8389]                           
-   thr_var        Spinta                                                      N                   [844761.1781 854998.5312 ... 919209.3613 919211.0112]       
-   I_s            Impulso specifico                                           s                   [298.2539 301.8684 ... 324.5388 324.5394]                   
-   I_v            Impulso specifico volumetrico                               s*kg/m^3            [344573.795  348749.5594 ... 374940.8309 374941.5039]       
-   I_tot          Impulso specifico totale                                    N*s                 [1.4369e+08 1.4544e+08 ... 1.5636e+08 1.5636e+08]           
+   ct_var         Coefficiente di spinta                                      -                   [1.6915 1.702  ... 1.8389 1.8389]                           
+   thr_var        Spinta                                                      N                   [844761.1781 850053.3661 ... 919210.2357 919211.0112]       
+   I_s            Impulso specifico                                           s                   [298.2539 300.1224 ... 324.5391 324.5394]                   
+   I_v            Impulso specifico volumetrico                               s*kg/m^3            [344573.795  346732.4516 ... 374941.1875 374941.5039]       
+   I_tot          Impulso specifico totale                                    N*s                 [1.4369e+08 1.4459e+08 ... 1.5636e+08 1.5636e+08]           
 
 >NOZZLE
    theta          Half expansion angle                                        rad                 [0.2618]                                                    
@@ -644,13 +762,50 @@ INPUT_DATA
    D_e            Diametro di efflusso                                        m                   [0.9673]                                                    
    L_cone         Lunghezza cono                                              m                   [1.3537]                                                    
    L_bell         Lunghezza campana                                           m                   [1.083]                                                     
-   theta_i        Angolo iniziale tratto convergente                          rad                 [-2.6043]                                                   
-   x_conv         Tratto convergente ugello-x                                 -                   [-0.1558 -0.1549 ... -0.0025 -0.0006]                       
-   y_conv         Tratto convergente ugello-y                                 -                   [0.1435 0.1431 ... 0.1209 0.1209]                           
-   x_div_plus     Tratto divergente + ugello-x                                -                   [2.8282e-18 4.6187e-04 ... 2.0918e-02 2.1328e-02]           
-   y_div_plus     Tratto divergente + ugello-y                                -                   [0.1209 0.1209 ... 0.1259 0.1261]                           
-   x_div_minus    Tratto divergente - ugello-x                                -                   [0.0217 0.0316 ... 1.0603 1.0716]                           
-   y_div_minus    Tratto divergente - ugello-y                                -                   [0.1263 0.1315 ... 0.4798 0.4817]                           
+   x_conv         Tratto convergente ugello-x                                 m                   [[-1.2824e-01]
+ [-1.2283e-01]
+ ...
+ [-7.4949e-03]
+ [-3.3316e-17]]
+   y_conv         Tratto convergente ugello-y                                 m                   [[0.174 ]
+ [0.1688]
+ ...
+ [0.1211]
+ [0.1209]]               
+   x_div_plus     Tratto divergente + ugello-x                                m                   [[2.8282e-18]
+ [4.6092e-04]
+ ...
+ [2.1288e-02]
+ [2.1696e-02]]
+   y_div_plus     Tratto divergente + ugello-y                                m                   [[0.1209]
+ [0.1209]
+ ...
+ [0.1261]
+ [0.1263]]               
+   x_div_minus    Tratto divergente - ugello-x                                m                   [0.0217 0.0418 ... 1.0598 1.083 ]                           
+   y_div_minus    Tratto divergente - ugello-y                                m                   [0.1263 0.1369 ... 0.4797 0.4836]                           
+   rad_lim        Raggio di curvatura minimo possibile                        m                   [0]                                                         
+   rad_min        Raggio di curvatura minimo desiderato                       m                   [0.1047]                                                    
+   alpha_lim      Limite alpha raccordo                                       rad                 [3.6789]                                                    
+   alpha_radmin   Alpha corrispondente a raggio di curvatura minimo           rad                 [3.9038]                                                    
+   alpha_min      Alpha minimo desiderato                                     rad                 [3.927]                                                     
+   alpha          Alpha                                                       rad                 [3.927]                                                     
+   l_tc           Distanza gola-cc                                            m                   [0.2138]                                                    
+   rad_rac        Raggio di curvatura raccordo                                m                   [0.1209]                                                    
+   x_rac          Tratto di raccordo convergente-x                            m                   [[-0.1282]
+ [-0.1296]
+ ...
+ [-0.2118]
+ [-0.2138]]           
+   y_rac          Tratto di raccordo convergente-y                            m                   [[0.174 ]
+ [0.1754]
+ ...
+ [0.2094]
+ [0.2095]]               
+   x_cc           X camera di combustione                                     m                   [[-0.547 ]
+ [-0.547 ]
+ [-0.2138]]                           
+   y_cc           Y camera di combustione                                     m                   [0 array([0.20945051]) array([0.20945051])]                 
 
 >OUTFLOW_GASES
    Mm_cc_e        Massa molare dei gas combusti                               kg/kmol             [22.9618]                                                   
@@ -688,8 +843,10 @@ INPUT_DATA
    k_s            Coefficiente di sicurezza massa                             -                   [1.05]                                                      
 
 >VARIABLES_CEA
-   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a08e90>
-   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a08290>
+   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc51f28>
+   cc_cea_su      Oggetto CEA per la camera di combustione con unita di misura imperiali-                   <rocketcea.cea_obj.CEA_Obj object at 0x7feb6fc0dda0>        
+   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc86dd8>
+   full_output_ceaFull Output CEA                                             No units            [<models.CeaOutput object at 0x7feb6fcdb320>]               
 
 ##########################################
 Solving rocket Falcon Heavy | Second Stage
@@ -717,7 +874,7 @@ INPUT_DATA
    GUESS          Stima pressione efflusso per metodo numerico                Pa                  [32100.]                                                    
 
 >ATMOSHPERE
-   p              Pressione atmosferica                                       Pa                  [8.9701e-02 5.3949e-02 ... 2.2572e-12 1.3575e-12]           
+   p              Pressione atmosferica                                       Pa                  [8.9701e-02 6.9744e-02 ... 1.7460e-12 1.3575e-12]           
    p_vac          Pressione nel vuoto                                         Pa                  [0]                                                         
 
 >COMBUSTION_CHAMBER
@@ -788,13 +945,13 @@ INPUT_DATA
    R_air          Costante specifica dell'aria                                J/(kg*K)            [287.058]                                                   
 
 >MISC
-   Ltot           Lunghezza totale motore                                     m                   [4.2874]                                                    
+   Ltot           Lunghezza totale motore                                     m                   [4.4065]                                                    
 
 >NONSTATIC_PROPULSIVE_PARAMETERS
    ct_var         Coefficiente di spinta                                      -                   [2.0697 2.0697 ... 2.0697 2.0697]                           
-   thr_var        Spinta                                                      N                   [933999.4143 933999.6478 ... 934000.     934000.    ]       
+   thr_var        Spinta                                                      N                   [933999.4143 933999.5446 ... 934000.     934000.    ]       
    I_s            Impulso specifico                                           s                   [365.6184 365.6185 ... 365.6186 365.6186]                   
-   I_v            Impulso specifico volumetrico                               s*kg/m^3            [422626.7466 422626.8522 ... 422627.0116 422627.0116]       
+   I_v            Impulso specifico volumetrico                               s*kg/m^3            [422626.7466 422626.8055 ... 422627.0116 422627.0116]       
    I_tot          Impulso specifico totale                                    N*s                 [3.8934e+08 3.8934e+08 ... 3.8934e+08 3.8934e+08]           
 
 >NOZZLE
@@ -805,13 +962,50 @@ INPUT_DATA
    D_e            Diametro di efflusso                                        m                   [2.8833]                                                    
    L_cone         Lunghezza cono                                              m                   [4.9614]                                                    
    L_bell         Lunghezza campana                                           m                   [3.9692]                                                    
-   theta_i        Angolo iniziale tratto convergente                          rad                 [-2.6352]                                                   
-   x_conv         Tratto convergente ugello-x                                 -                   [-0.1472 -0.1464 ... -0.0024 -0.0007]                       
-   y_conv         Tratto convergente ugello-y                                 -                   [0.1343 0.1339 ... 0.1122 0.1122]                           
-   x_div_plus     Tratto divergente + ugello-x                                -                   [2.6252e-18 4.2872e-04 ... 2.3495e-02 2.3853e-02]           
-   y_div_plus     Tratto divergente + ugello-y                                -                   [0.1122 0.1122 ... 0.1192 0.1195]                           
-   x_div_minus    Tratto divergente - ugello-x                                -                   [0.024  0.0545 ... 3.8725 3.9208]                           
-   y_div_minus    Tratto divergente - ugello-y                                -                   [0.1196 0.14   ... 1.4295 1.4356]                           
+   x_conv         Tratto convergente ugello-x                                 m                   [[-1.1904e-01]
+ [-1.1402e-01]
+ ...
+ [-6.9570e-03]
+ [-3.0925e-17]]
+   y_conv         Tratto convergente ugello-y                                 m                   [[0.1615]
+ [0.1567]
+ ...
+ [0.1124]
+ [0.1122]]               
+   x_div_plus     Tratto divergente + ugello-x                                m                   [[2.6252e-18]
+ [5.1883e-04]
+ ...
+ [2.3527e-02]
+ [2.3959e-02]]
+   y_div_plus     Tratto divergente + ugello-y                                m                   [[0.1122]
+ [0.1122]
+ ...
+ [0.1193]
+ [0.1196]]               
+   x_div_minus    Tratto divergente - ugello-x                                m                   [0.024  0.0864 ... 3.8706 3.9692]                           
+   y_div_minus    Tratto divergente - ugello-y                                m                   [0.1196 0.1611 ... 1.4292 1.4416]                           
+   rad_lim        Raggio di curvatura minimo possibile                        m                   [0]                                                         
+   rad_min        Raggio di curvatura minimo desiderato                       m                   [0.0995]                                                    
+   alpha_lim      Limite alpha raccordo                                       rad                 [3.6479]                                                    
+   alpha_radmin   Alpha corrispondente a raggio di curvatura minimo           rad                 [3.8843]                                                    
+   alpha_min      Alpha minimo desiderato                                     rad                 [3.927]                                                     
+   alpha          Alpha                                                       rad                 [3.927]                                                     
+   l_tc           Distanza gola-cc                                            m                   [0.2093]                                                    
+   rad_rac        Raggio di curvatura raccordo                                m                   [0.1277]                                                    
+   x_rac          Tratto di raccordo convergente-x                            m                   [[-0.119 ]
+ [-0.1205]
+ ...
+ [-0.2073]
+ [-0.2093]]           
+   y_rac          Tratto di raccordo convergente-y                            m                   [[0.1615]
+ [0.163 ]
+ ...
+ [0.1989]
+ [0.1989]]               
+   x_cc           X camera di combustione                                     m                   [[-0.5276]
+ [-0.5276]
+ [-0.2093]]                           
+   y_cc           Y camera di combustione                                     m                   [0 array([0.19893326]) array([0.19893326])]                 
 
 >OUTFLOW_GASES
    Mm_cc_e        Massa molare dei gas combusti                               kg/kmol             [23.0074]                                                   
@@ -849,8 +1043,10 @@ INPUT_DATA
    k_s            Coefficiente di sicurezza massa                             -                   [1.05]                                                      
 
 >VARIABLES_CEA
-   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a80e10>
-   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea108c2d0>
+   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fcf1160>
+   cc_cea_su      Oggetto CEA per la camera di combustione con unita di misura imperiali-                   <rocketcea.cea_obj.CEA_Obj object at 0x7feb6fc27208>        
+   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc16fd0>
+   full_output_ceaFull Output CEA                                             No units            [<models.CeaOutput object at 0x7feb6fc27080>]               
 
 ###################################
 Solving rocket Saturn V | 1st Stage
@@ -867,7 +1063,7 @@ INPUT_DATA
    rho_f          Densità combustibile                                        kg/m3               [808.]                                                      
    r_cc           Rapporto massico di miscela                                 -                   [2.27]                                                      
    eta_2D         Fattore di correzione velocità                              -                   [0.95]                                                      
-   L_star         Lunghezza caratteristica (Sutton)                           m                   [1.]                                                        
+   L_star         Lunghezza caratteristica (Sutton)                           m                   [1.4]                                                       
    p_tank_f       Pressione serbatoio combustibile                            Pa                  [167000.]                                                   
    p_tank_ox      Pressione serbatoio ossidante                               Pa                  [131000.]                                                   
    oxName         Nome ossidante (per il CEA)                                 -                   LOX                                                         
@@ -878,7 +1074,7 @@ INPUT_DATA
    GUESS          Stima pressione efflusso per metodo numerico                Pa                  [101000.]                                                   
 
 >ATMOSHPERE
-   p              Pressione atmosferica                                       Pa                  [1.0132e+05 8.7599e+04 ... 1.4487e+01 1.1905e+01]           
+   p              Pressione atmosferica                                       Pa                  [1.0132e+05 9.3790e+04 ... 7.0268e+00 6.3357e+00]           
    p_vac          Pressione nel vuoto                                         Pa                  [0]                                                         
 
 >COMBUSTION_CHAMBER
@@ -892,8 +1088,8 @@ INPUT_DATA
    rho_c          Densità dei gas in camera di combustione                    kg/m^3              [5.5658]                                                    
    A_c            Area camera di combustione                                  m^2                 [1.9077]                                                    
    D_c            Diametro camera di combustione                              m                   [1.5585]                                                    
-   V_c            Volume camera di combustione                                m^3                 [0.645]                                                     
-   L_c            Lunghezza camera di combustione                             m                   [0.3381]                                                    
+   V_c            Volume camera di combustione                                m^3                 [0.903]                                                     
+   L_c            Lunghezza camera di combustione                             m                   [0.4733]                                                    
    A_th_f         Area di tutti i fori piastra combustibile                   m^2                 [0.0187]                                                    
    A_th_ox        Area di tutti i fori piastra ossidante                      m^2                 [0.0356]                                                    
    n_h_f          Numero di fori piastra combustibile di diametro 1mm         -                   [23771.7968]                                                
@@ -949,14 +1145,14 @@ INPUT_DATA
    R_air          Costante specifica dell'aria                                J/(kg*K)            [287.058]                                                   
 
 >MISC
-   Ltot           Lunghezza totale motore                                     m                   [4.3966]                                                    
+   Ltot           Lunghezza totale motore                                     m                   [5.0124]                                                    
 
 >NONSTATIC_PROPULSIVE_PARAMETERS
-   ct_var         Coefficiente di spinta                                      -                   [1.6047 1.6361 ... 1.8363 1.8363]                           
-   thr_var        Spinta                                                      N                   [6770000.     6911647.5069 ... 7815519.6879 7815546.3345]   
-   I_s            Impulso specifico                                           s                   [270.1379 275.7899 ... 311.8564 311.8575]                   
-   I_v            Impulso specifico volumetrico                               s*kg/m^3            [274024.0303 279757.3864 ... 316342.7184 316343.797 ]       
-   I_tot          Impulso specifico totale                                    N*s                 [1.0713e+09 1.0937e+09 ... 1.2367e+09 1.2367e+09]           
+   ct_var         Coefficiente di spinta                                      -                   [1.6047 1.622  ... 1.8363 1.8363]                           
+   thr_var        Spinta                                                      N                   [6770000.     6847756.7187 ... 7815596.6746 7815603.8066]   
+   I_s            Impulso specifico                                           s                   [270.1379 273.2405 ... 311.8595 311.8598]                   
+   I_v            Impulso specifico volumetrico                               s*kg/m^3            [274024.0303 277171.3286 ... 316345.8346 316346.1233]       
+   I_tot          Impulso specifico totale                                    N*s                 [1.0713e+09 1.0836e+09 ... 1.2367e+09 1.2367e+09]           
 
 >NOZZLE
    theta          Half expansion angle                                        rad                 [0.2618]                                                    
@@ -966,13 +1162,50 @@ INPUT_DATA
    D_e            Diametro di efflusso                                        m                   [3.6249]                                                    
    L_cone         Lunghezza cono                                              m                   [5.0731]                                                    
    L_bell         Lunghezza campana                                           m                   [4.0585]                                                    
-   theta_i        Angolo iniziale tratto convergente                          rad                 [-2.5946]                                                   
-   x_conv         Tratto convergente ugello-x                                 -                   [-0.5805 -0.5769 ... -0.0094 -0.0026]                       
-   y_conv         Tratto convergente ugello-y                                 -                   [0.5362 0.5347 ... 0.4531 0.4531]                           
-   x_div_plus     Tratto divergente + ugello-x                                -                   [1.0599e-17 1.7309e-03 ... 7.3725e-02 7.5287e-02]           
-   y_div_plus     Tratto divergente + ugello-y                                -                   [0.4531 0.4531 ... 0.4696 0.4703]                           
-   x_div_minus    Tratto divergente - ugello-x                                -                   [0.0759 0.118  ... 3.9833 4.0209]                           
-   y_div_minus    Tratto divergente - ugello-y                                -                   [0.4706 0.4911 ... 1.7996 1.8061]                           
+   x_conv         Tratto convergente ugello-x                                 m                   [[-4.8060e-01]
+ [-4.6032e-01]
+ ...
+ [-2.8087e-02]
+ [-1.2485e-16]]
+   y_conv         Tratto convergente ugello-y                                 m                   [[0.6522]
+ [0.6327]
+ ...
+ [0.4537]
+ [0.4531]]               
+   x_div_plus     Tratto divergente + ugello-x                                m                   [[1.0599e-17]
+ [1.6037e-03]
+ ...
+ [7.4466e-02]
+ [7.5910e-02]]
+   y_div_plus     Tratto divergente + ugello-y                                m                   [[0.4531]
+ [0.4531]
+ ...
+ [0.4699]
+ [0.4706]]               
+   x_div_minus    Tratto divergente - ugello-x                                m                   [0.0759 0.1617 ... 3.9817 4.0585]                           
+   y_div_minus    Tratto divergente - ugello-y                                m                   [0.4706 0.5123 ... 1.7993 1.8124]                           
+   rad_lim        Raggio di curvatura minimo possibile                        m                   [0]                                                         
+   rad_min        Raggio di curvatura minimo desiderato                       m                   [0.3896]                                                    
+   alpha_lim      Limite alpha raccordo                                       rad                 [3.6886]                                                    
+   alpha_radmin   Alpha corrispondente a raggio di curvatura minimo           rad                 [3.91]                                                      
+   alpha_min      Alpha minimo desiderato                                     rad                 [3.927]                                                     
+   alpha          Alpha                                                       rad                 [3.927]                                                     
+   l_tc           Distanza gola-cc                                            m                   [0.7874]                                                    
+   rad_rac        Raggio di curvatura raccordo                                m                   [0.4339]                                                    
+   x_rac          Tratto di raccordo convergente-x                            m                   [[-0.4806]
+ [-0.4856]
+ ...
+ [-0.7805]
+ [-0.7874]]           
+   y_rac          Tratto di raccordo convergente-y                            m                   [[0.6522]
+ [0.6571]
+ ...
+ [0.7792]
+ [0.7793]]               
+   x_cc           X camera di combustione                                     m                   [[-1.2607]
+ [-1.2607]
+ [-0.7874]]                           
+   y_cc           Y camera di combustione                                     m                   [0 array([0.77926556]) array([0.77926556])]                 
 
 >OUTFLOW_GASES
    Mm_cc_e        Massa molare dei gas combusti                               kg/kmol             [22.4443]                                                   
@@ -1010,8 +1243,10 @@ INPUT_DATA
    k_s            Coefficiente di sicurezza massa                             -                   [1.05]                                                      
 
 >VARIABLES_CEA
-   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea108ce90>
-   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea10a5f50>
+   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc27358>
+   cc_cea_su      Oggetto CEA per la camera di combustione con unita di misura imperiali-                   <rocketcea.cea_obj.CEA_Obj object at 0x7feb6fc172e8>        
+   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc22d68>
+   full_output_ceaFull Output CEA                                             No units            [<models.CeaOutput object at 0x7feb6fc17e10>]               
 
 ###################################
 Solving rocket Saturn V | 2nd Stage
@@ -1039,7 +1274,7 @@ INPUT_DATA
    GUESS          Stima pressione efflusso per metodo numerico                Pa                  [30000.]                                                    
 
 >ATMOSHPERE
-   p              Pressione atmosferica                                       Pa                  [1.1905e+01 7.9877e+00 ... 5.7192e-08 3.8374e-08]           
+   p              Pressione atmosferica                                       Pa                  [6.3357e+00 5.3174e+00 ... 2.2128e-07 1.8572e-07]           
    p_vac          Pressione nel vuoto                                         Pa                  [0]                                                         
 
 >COMBUSTION_CHAMBER
@@ -1110,14 +1345,14 @@ INPUT_DATA
    R_air          Costante specifica dell'aria                                J/(kg*K)            [287.058]                                                   
 
 >MISC
-   Ltot           Lunghezza totale motore                                     m                   [2.4601]                                                    
+   Ltot           Lunghezza totale motore                                     m                   [2.6457]                                                    
 
 >NONSTATIC_PROPULSIVE_PARAMETERS
    ct_var         Coefficiente di spinta                                      -                   [1.8903 1.8903 ... 1.8904 1.8904]                           
-   thr_var        Spinta                                                      N                   [1009968.5233 1009978.8802 ... 1010000.     1010000.    ]   
-   I_s            Impulso specifico                                           s                   [432.2632 432.2676 ... 432.2766 432.2766]                   
-   I_v            Impulso specifico volumetrico                               s*kg/m^3            [140266.721  140268.1594 ... 140271.0926 140271.0926]       
-   I_tot          Impulso specifico totale                                    N*s                 [3.8919e+08 3.8920e+08 ... 3.8920e+08 3.8920e+08]           
+   thr_var        Spinta                                                      N                   [1009983.2481 1009985.9404 ... 1010000.     1010000.    ]   
+   I_s            Impulso specifico                                           s                   [432.2695 432.2706 ... 432.2766 432.2766]                   
+   I_v            Impulso specifico volumetrico                               s*kg/m^3            [140268.7661 140269.14   ... 140271.0926 140271.0926]       
+   I_tot          Impulso specifico totale                                    N*s                 [3.892e+08 3.892e+08 ... 3.892e+08 3.892e+08]               
 
 >NOZZLE
    theta          Half expansion angle                                        rad                 [0.2618]                                                    
@@ -1127,13 +1362,50 @@ INPUT_DATA
    D_e            Diametro di efflusso                                        m                   [1.8348]                                                    
    L_cone         Lunghezza cono                                              m                   [2.7709]                                                    
    L_bell         Lunghezza campana                                           m                   [2.2167]                                                    
-   theta_i        Angolo iniziale tratto convergente                          rad                 [-2.6486]                                                   
-   x_conv         Tratto convergente ugello-x                                 -                   [-0.2312 -0.2299 ... -0.0047 -0.0021]                       
-   y_conv         Tratto convergente ugello-y                                 -                   [0.2101 0.2096 ... 0.175  0.1749]                           
-   x_div_plus     Tratto divergente + ugello-x                                -                   [4.0920e-18 6.6827e-04 ... 3.2624e-02 3.3205e-02]           
-   y_div_plus     Tratto divergente + ugello-y                                -                   [0.1749 0.1749 ... 0.1834 0.1838]                           
-   x_div_minus    Tratto divergente - ugello-x                                -                   [0.0334 0.0525 ... 2.1676 2.1921]                           
-   y_div_minus    Tratto divergente - ugello-y                                -                   [0.1839 0.1949 ... 0.9099 0.9137]                           
+   x_conv         Tratto convergente ugello-x                                 m                   [[-1.8555e-01]
+ [-1.7773e-01]
+ ...
+ [-1.0844e-02]
+ [-4.8204e-17]]
+   y_conv         Tratto convergente ugello-y                                 m                   [[0.2518]
+ [0.2443]
+ ...
+ [0.1752]
+ [0.1749]]               
+   x_div_plus     Tratto divergente + ugello-x                                m                   [[4.0920e-18]
+ [7.1463e-04]
+ ...
+ [3.2816e-02]
+ [3.3437e-02]]
+   y_div_plus     Tratto divergente + ugello-y                                m                   [[0.1749]
+ [0.1749]
+ ...
+ [0.1836]
+ [0.1839]]               
+   x_div_minus    Tratto divergente - ugello-x                                m                   [0.0334 0.0724 ... 2.1666 2.2167]                           
+   y_div_minus    Tratto divergente - ugello-y                                m                   [0.1839 0.2062 ... 0.9098 0.9174]                           
+   rad_lim        Raggio di curvatura minimo possibile                        m                   [0]                                                         
+   rad_min        Raggio di curvatura minimo desiderato                       m                   [0.1566]                                                    
+   alpha_lim      Limite alpha raccordo                                       rad                 [3.6345]                                                    
+   alpha_radmin   Alpha corrispondente a raggio di curvatura minimo           rad                 [3.8759]                                                    
+   alpha_min      Alpha minimo desiderato                                     rad                 [3.927]                                                     
+   alpha          Alpha                                                       rad                 [3.927]                                                     
+   l_tc           Distanza gola-cc                                            m                   [0.3337]                                                    
+   rad_rac        Raggio di curvatura raccordo                                m                   [0.2095]                                                    
+   x_rac          Tratto di raccordo convergente-x                            m                   [[-0.1856]
+ [-0.1879]
+ ...
+ [-0.3304]
+ [-0.3337]]           
+   y_rac          Tratto di raccordo convergente-y                            m                   [[0.2518]
+ [0.2542]
+ ...
+ [0.3131]
+ [0.3132]]               
+   x_cc           X camera di combustione                                     m                   [[-0.5771]
+ [-0.5771]
+ [-0.3337]]                           
+   y_cc           Y camera di combustione                                     m                   [0 array([0.31317268]) array([0.31317268])]                 
 
 >OUTFLOW_GASES
    Mm_cc_e        Massa molare dei gas combusti                               kg/kmol             [11.8906]                                                   
@@ -1171,8 +1443,10 @@ INPUT_DATA
    k_s            Coefficiente di sicurezza massa                             -                   [1.05]                                                      
 
 >VARIABLES_CEA
-   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea1094d10>
-   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a97150>
+   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc746d8>
+   cc_cea_su      Oggetto CEA per la camera di combustione con unita di misura imperiali-                   <rocketcea.cea_obj.CEA_Obj object at 0x7feb6a298208>        
+   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc9bfd0>
+   full_output_ceaFull Output CEA                                             No units            [<models.CeaOutput object at 0x7feb6fc17cf8>]               
 
 ##############################################
 Solving rocket Saturn V | 3rd Stage - 1st burn
@@ -1200,7 +1474,7 @@ INPUT_DATA
    GUESS          Stima pressione efflusso per metodo numerico                Pa                  [30000.]                                                    
 
 >ATMOSHPERE
-   p              Pressione atmosferica                                       Pa                  [1.1905e+01 7.9877e+00 ... 5.7192e-08 3.8374e-08]           
+   p              Pressione atmosferica                                       Pa                  [1.8572e-07 1.8278e-07 ... 3.8990e-08 3.8374e-08]           
    p_vac          Pressione nel vuoto                                         Pa                  [0]                                                         
 
 >COMBUSTION_CHAMBER
@@ -1271,13 +1545,13 @@ INPUT_DATA
    R_air          Costante specifica dell'aria                                J/(kg*K)            [287.058]                                                   
 
 >MISC
-   Ltot           Lunghezza totale motore                                     m                   [2.3394]                                                    
+   Ltot           Lunghezza totale motore                                     m                   [2.5149]                                                    
 
 >NONSTATIC_PROPULSIVE_PARAMETERS
-   ct_var         Coefficiente di spinta                                      -                   [1.8903 1.8903 ... 1.8904 1.8904]                           
-   thr_var        Spinta                                                      N                   [902971.858  902981.1177 ... 903000.     903000.    ]       
-   I_s            Impulso specifico                                           s                   [432.2632 432.2676 ... 432.2766 432.2766]                   
-   I_v            Impulso specifico volumetrico                               s*kg/m^3            [140266.721  140268.1594 ... 140271.0926 140271.0926]       
+   ct_var         Coefficiente di spinta                                      -                   [1.8904 1.8904 ... 1.8904 1.8904]                           
+   thr_var        Spinta                                                      N                   [903000. 903000. ... 903000. 903000.]                       
+   I_s            Impulso specifico                                           s                   [432.2766 432.2766 ... 432.2766 432.2766]                   
+   I_v            Impulso specifico volumetrico                               s*kg/m^3            [140271.0926 140271.0926 ... 140271.0926 140271.0926]       
    I_tot          Impulso specifico totale                                    N*s                 [1.4791e+08 1.4791e+08 ... 1.4791e+08 1.4791e+08]           
 
 >NOZZLE
@@ -1288,13 +1562,50 @@ INPUT_DATA
    D_e            Diametro di efflusso                                        m                   [1.7349]                                                    
    L_cone         Lunghezza cono                                              m                   [2.62]                                                      
    L_bell         Lunghezza campana                                           m                   [2.096]                                                     
-   theta_i        Angolo iniziale tratto convergente                          rad                 [-2.6486]                                                   
-   x_conv         Tratto convergente ugello-x                                 -                   [-0.2186 -0.2174 ... -0.0044 -0.0019]                       
-   y_conv         Tratto convergente ugello-y                                 -                   [0.1987 0.1981 ... 0.1654 0.1654]                           
-   x_div_plus     Tratto divergente + ugello-x                                -                   [3.8692e-18 6.3188e-04 ... 3.0847e-02 3.1397e-02]           
-   y_div_plus     Tratto divergente + ugello-y                                -                   [0.1654 0.1654 ... 0.1735 0.1738]                           
-   x_div_minus    Tratto divergente - ugello-x                                -                   [0.0316 0.0496 ... 2.0495 2.0727]                           
-   y_div_minus    Tratto divergente - ugello-y                                -                   [0.1739 0.1843 ... 0.8604 0.8639]                           
+   x_conv         Tratto convergente ugello-x                                 m                   [[-1.7545e-01]
+ [-1.6805e-01]
+ ...
+ [-1.0254e-02]
+ [-4.5580e-17]]
+   y_conv         Tratto convergente ugello-y                                 m                   [[0.2381]
+ [0.231 ]
+ ...
+ [0.1656]
+ [0.1654]]               
+   x_div_plus     Tratto divergente + ugello-x                                m                   [[3.8692e-18]
+ [6.7572e-04]
+ ...
+ [3.1029e-02]
+ [3.1616e-02]]
+   y_div_plus     Tratto divergente + ugello-y                                m                   [[0.1654]
+ [0.1654]
+ ...
+ [0.1736]
+ [0.1739]]               
+   x_div_minus    Tratto divergente - ugello-x                                m                   [0.0316 0.0684 ... 2.0486 2.096 ]                           
+   y_div_minus    Tratto divergente - ugello-y                                m                   [0.1739 0.195  ... 0.8602 0.8674]                           
+   rad_lim        Raggio di curvatura minimo possibile                        m                   [0]                                                         
+   rad_min        Raggio di curvatura minimo desiderato                       m                   [0.1481]                                                    
+   alpha_lim      Limite alpha raccordo                                       rad                 [3.6345]                                                    
+   alpha_radmin   Alpha corrispondente a raggio di curvatura minimo           rad                 [3.8759]                                                    
+   alpha_min      Alpha minimo desiderato                                     rad                 [3.927]                                                     
+   alpha          Alpha                                                       rad                 [3.927]                                                     
+   l_tc           Distanza gola-cc                                            m                   [0.3155]                                                    
+   rad_rac        Raggio di curvatura raccordo                                m                   [0.1981]                                                    
+   x_rac          Tratto di raccordo convergente-x                            m                   [[-0.1754]
+ [-0.1777]
+ ...
+ [-0.3124]
+ [-0.3155]]           
+   y_rac          Tratto di raccordo convergente-y                            m                   [[0.2381]
+ [0.2403]
+ ...
+ [0.2961]
+ [0.2961]]               
+   x_cc           X camera di combustione                                     m                   [[-0.5589]
+ [-0.5589]
+ [-0.3155]]                           
+   y_cc           Y camera di combustione                                     m                   [0 array([0.29611953]) array([0.29611953])]                 
 
 >OUTFLOW_GASES
    Mm_cc_e        Massa molare dei gas combusti                               kg/kmol             [11.8906]                                                   
@@ -1332,8 +1643,10 @@ INPUT_DATA
    k_s            Coefficiente di sicurezza massa                             -                   [1.05]                                                      
 
 >VARIABLES_CEA
-   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea10abc10>
-   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea10abed0>
+   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6fc177b8>
+   cc_cea_su      Oggetto CEA per la camera di combustione con unita di misura imperiali-                   <rocketcea.cea_obj.CEA_Obj object at 0x7feb6a2a4128>        
+   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6a298940>
+   full_output_ceaFull Output CEA                                             No units            [<models.CeaOutput object at 0x7feb6a298710>]               
 
 ##############################################
 Solving rocket Saturn V | 3rd Stage - 2nd burn
@@ -1361,7 +1674,7 @@ INPUT_DATA
    GUESS          Stima pressione efflusso per metodo numerico                Pa                  [30000.]                                                    
 
 >ATMOSHPERE
-   p              Pressione atmosferica                                       Pa                  [3.8374e-08 3.1131e-08 ... 1.6734e-12 1.3575e-12]           
+   p              Pressione atmosferica                                       Pa                  [3.8374e-08 3.4600e-08 ... 1.5056e-12 1.3575e-12]           
    p_vac          Pressione nel vuoto                                         Pa                  [0]                                                         
 
 >COMBUSTION_CHAMBER
@@ -1432,7 +1745,7 @@ INPUT_DATA
    R_air          Costante specifica dell'aria                                J/(kg*K)            [287.058]                                                   
 
 >MISC
-   Ltot           Lunghezza totale motore                                     m                   [2.3394]                                                    
+   Ltot           Lunghezza totale motore                                     m                   [2.5149]                                                    
 
 >NONSTATIC_PROPULSIVE_PARAMETERS
    ct_var         Coefficiente di spinta                                      -                   [1.8904 1.8904 ... 1.8904 1.8904]                           
@@ -1449,13 +1762,50 @@ INPUT_DATA
    D_e            Diametro di efflusso                                        m                   [1.7349]                                                    
    L_cone         Lunghezza cono                                              m                   [2.62]                                                      
    L_bell         Lunghezza campana                                           m                   [2.096]                                                     
-   theta_i        Angolo iniziale tratto convergente                          rad                 [-2.6486]                                                   
-   x_conv         Tratto convergente ugello-x                                 -                   [-0.2186 -0.2174 ... -0.0044 -0.0019]                       
-   y_conv         Tratto convergente ugello-y                                 -                   [0.1987 0.1981 ... 0.1654 0.1654]                           
-   x_div_plus     Tratto divergente + ugello-x                                -                   [3.8692e-18 6.3188e-04 ... 3.0847e-02 3.1397e-02]           
-   y_div_plus     Tratto divergente + ugello-y                                -                   [0.1654 0.1654 ... 0.1735 0.1738]                           
-   x_div_minus    Tratto divergente - ugello-x                                -                   [0.0316 0.0496 ... 2.0495 2.0727]                           
-   y_div_minus    Tratto divergente - ugello-y                                -                   [0.1739 0.1843 ... 0.8604 0.8639]                           
+   x_conv         Tratto convergente ugello-x                                 m                   [[-1.7545e-01]
+ [-1.6805e-01]
+ ...
+ [-1.0254e-02]
+ [-4.5580e-17]]
+   y_conv         Tratto convergente ugello-y                                 m                   [[0.2381]
+ [0.231 ]
+ ...
+ [0.1656]
+ [0.1654]]               
+   x_div_plus     Tratto divergente + ugello-x                                m                   [[3.8692e-18]
+ [6.7572e-04]
+ ...
+ [3.1029e-02]
+ [3.1616e-02]]
+   y_div_plus     Tratto divergente + ugello-y                                m                   [[0.1654]
+ [0.1654]
+ ...
+ [0.1736]
+ [0.1739]]               
+   x_div_minus    Tratto divergente - ugello-x                                m                   [0.0316 0.0684 ... 2.0486 2.096 ]                           
+   y_div_minus    Tratto divergente - ugello-y                                m                   [0.1739 0.195  ... 0.8602 0.8674]                           
+   rad_lim        Raggio di curvatura minimo possibile                        m                   [0]                                                         
+   rad_min        Raggio di curvatura minimo desiderato                       m                   [0.1481]                                                    
+   alpha_lim      Limite alpha raccordo                                       rad                 [3.6345]                                                    
+   alpha_radmin   Alpha corrispondente a raggio di curvatura minimo           rad                 [3.8759]                                                    
+   alpha_min      Alpha minimo desiderato                                     rad                 [3.927]                                                     
+   alpha          Alpha                                                       rad                 [3.927]                                                     
+   l_tc           Distanza gola-cc                                            m                   [0.3155]                                                    
+   rad_rac        Raggio di curvatura raccordo                                m                   [0.1981]                                                    
+   x_rac          Tratto di raccordo convergente-x                            m                   [[-0.1754]
+ [-0.1777]
+ ...
+ [-0.3124]
+ [-0.3155]]           
+   y_rac          Tratto di raccordo convergente-y                            m                   [[0.2381]
+ [0.2403]
+ ...
+ [0.2961]
+ [0.2961]]               
+   x_cc           X camera di combustione                                     m                   [[-0.5589]
+ [-0.5589]
+ [-0.3155]]                           
+   y_cc           Y camera di combustione                                     m                   [0 array([0.29611953]) array([0.29611953])]                 
 
 >OUTFLOW_GASES
    Mm_cc_e        Massa molare dei gas combusti                               kg/kmol             [11.8906]                                                   
@@ -1493,6 +1843,8 @@ INPUT_DATA
    k_s            Coefficiente di sicurezza massa                             -                   [1.05]                                                      
 
 >VARIABLES_CEA
-   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a22fd0>
-   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7efea5a22590>
+   cc_cea         Oggetto CEA per la camera di combustione                    -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6a298630>
+   cc_cea_su      Oggetto CEA per la camera di combustione con unita di misura imperiali-                   <rocketcea.cea_obj.CEA_Obj object at 0x7feb6a2ac4a8>        
+   pb_cea         Oggetto CEA per il preburner                                -                   <rocketcea.cea_obj_w_units.CEA_Obj object at 0x7feb6a2a4c18>
+   full_output_ceaFull Output CEA                                             No units            [<models.CeaOutput object at 0x7feb6fc17cf8>]               
 

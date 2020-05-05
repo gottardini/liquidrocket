@@ -4,5 +4,5 @@ Potenza pompa combustibile,W_pump_f,W,1.40E+07,3.80E+05,,,16479967,5800000,58000
 Potenza pompa ossidante,W_pump_ox,W,5.10E+06,,,,22520136,1600000,1600000
 Impulso specifico nominale,Is_n,s,4.34E+02,444.2,282,348,263,421,421
 Diametro efflusso,D_e,m,2.15,0.992,1.07,3.172,3.7,1.9558,1.9558
-Lunghezza campana,L_bell,m,2.16E+00,,,,4,2.3,2.3
-Lunghezza motore,Ltot,m,3.45E+00,2.01E+00,,,,3.38,3.38
+Lunghezza campana,L_bell,m,,,,,4,2.3,2.3
+Lunghezza motore,Ltot,m,3.45E+00,2.01E+00,,,5.6,3.38,3.38

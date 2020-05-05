@@ -75,6 +75,6 @@ class Latexer:
             "\\end{tabular}"
             "\\end{center} \n\n")
 
-        f = open("out/latex_tables.txt", 'w+')
+        f = open("out/latex/latex_tables.txt", 'w+')
         f.write(output)
         f.close()
