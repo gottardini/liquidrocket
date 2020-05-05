@@ -41,6 +41,8 @@ class Comparer:
                         continue
                     else:
                         realValue=self.data[engName][varname].getValue()
+                        if realValue==None:
+                            continue
                         calcValue=block['solvedData'][varname].getValue()
                         engines[engName]=(realValue,calcValue)
             labels=list(engines.keys())
