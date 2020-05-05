@@ -18,7 +18,7 @@ class PostProcesser:
         figThrust_z, axThrust_z = plt.subplots(figsize=(12, 8),num="Spinta in funzione della quota")
         axThrust_z.set_xlabel("Quota [m]")
         axThrust_z.set_ylabel("Spinta [N]")
-        axThrust_z.set_title("Spinta in funzione della quota")
+        #axThrust_z.set_title("Spinta in funzione della quota")
         axThrust_z.set_yscale('linear')
         axThrust_z.grid(True, which="both")
 
@@ -26,7 +26,7 @@ class PostProcesser:
         figIsp_z, axIsp_z = plt.subplots(figsize=(12, 8),num="Impulso specifico in funzione della quota")
         axIsp_z.set_xlabel("Quota [m]")
         axIsp_z.set_ylabel("Impulso specifico [s]")
-        axIsp_z.set_title("Impulso specifico in funzione della quota")
+        #axIsp_z.set_title("Impulso specifico in funzione della quota")
         axIsp_z.set_yscale('linear')
         axIsp_z.grid(True, which="both")
 
@@ -34,7 +34,7 @@ class PostProcesser:
         figCt_z, axCt_z = plt.subplots(figsize=(12, 8),num="Coefficiente di spinta in funzione della quota")
         axCt_z.set_xlabel("Quota [m]")
         axCt_z.set_ylabel("Coefficiente di spinta [-]")
-        axCt_z.set_title("Coefficiente di spinta in funzione della quota")
+        #axCt_z.set_title("Coefficiente di spinta in funzione della quota")
         axCt_z.set_yscale('linear')
         axCt_z.grid(True, which="both")
 
@@ -44,7 +44,7 @@ class PostProcesser:
             sep_figThrust_z, sep_axThrust_z = plt.subplots(figsize=(12, 8),num="Spinta in funzione della quota - %s"%(rocketName))
             sep_axThrust_z.set_xlabel("Quota [m]")
             sep_axThrust_z.set_ylabel("Spinta [N]")
-            sep_axThrust_z.set_title("Spinta in funzione della quota - %s"%(rocketName))
+            #sep_axThrust_z.set_title("Spinta in funzione della quota - %s"%(rocketName))
             sep_axThrust_z.set_yscale('linear')
             sep_axThrust_z.grid(True, which="both")
 
@@ -52,7 +52,7 @@ class PostProcesser:
             sep_figIsp_z, sep_axIsp_z = plt.subplots(figsize=(12, 8),num="Impulso specifico in funzione della quota- %s"%(rocketName))
             sep_axIsp_z.set_xlabel("Quota [m]")
             sep_axIsp_z.set_ylabel("Impulso specifico [s]")
-            sep_axIsp_z.set_title("Impulso specifico in funzione della quota - %s"%(rocketName))
+            #sep_axIsp_z.set_title("Impulso specifico in funzione della quota - %s"%(rocketName))
             sep_axIsp_z.set_yscale('linear')
             sep_axIsp_z.grid(True, which="both")
 
@@ -60,7 +60,7 @@ class PostProcesser:
             sep_figCt_z, sep_axCt_z = plt.subplots(figsize=(12, 8),num="Coefficiente di spinta in funzione della quota- %s"%(rocketName))
             sep_axCt_z.set_xlabel("Quota [m]")
             sep_axCt_z.set_ylabel("Coefficiente di spinta [-]")
-            sep_axCt_z.set_title("Coefficiente di spinta in funzione della quota- %s"%(rocketName))
+            #sep_axCt_z.set_title("Coefficiente di spinta in funzione della quota- %s"%(rocketName))
             sep_axCt_z.set_yscale('linear')
             sep_axCt_z.grid(True, which="both")
 
