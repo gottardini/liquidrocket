@@ -30,7 +30,12 @@ The "solved data dictionary" is just the big dictionary with every imaginable va
 """
 
 tables={
-    "Parametri propulsivi":(['Is_vac','u_e'],["Vulcain II","HM7B","Merlin 1D+","Merlin 1D+ vac","F-1","J-2 (II° stadio)"])
+    "Parametri propulsivi calcolati analiticamente":(['Is_vac', 'Iv_vac', 'Itot_vac', 'u_e', 'ct_vac', 'c_star', 'thr_vac'],
+    ["Vulcain II","HM7B","Merlin 1D+","Merlin 1D+ vac","F-1","J-2 (II° stadio)"]),
+    #"Parametri propulsivi calcolati tramite CEA":(['Is_vac', 'Iv_vac', 'Itot_vac', 'u_e', 'ct_vac', 'c_star', 'thr_vac'],
+    #["Vulcain II","HM7B","Merlin 1D+","Merlin 1D+ vac","F-1","J-2 (II° stadio)"]),
+    "Grandezze tipiche motore":(['m_eng_f', 'm_eng_ox', 'm_p', 'M_f', 'M_ox', 'D_e', 'D_t', 'T_cc', 'D_c', 'L_c', 'W_pump_f', 'W_pump_ox', 'L_bell'],
+    ["Vulcain II","HM7B","Merlin 1D+","Merlin 1D+ vac","F-1","J-2 (II° stadio)"]),
 }
 aliases={
     "J-2 (II° stadio)":"J-2"
