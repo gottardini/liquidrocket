@@ -107,13 +107,13 @@ if __name__=="__main__":
                 task=[key for key in utils.getOutputs() if key in modelData]
 
             #LET'S SOLVE
-            if engineType not in graphed:
-                view=args.graph
+            if engineType not in graphed or True:
+                graph=args.graph
                 graphed.append(engineType)
             else:
-                view=False
+                graph=False
 
-            grph=Grapher(analysisName,view=view,debug=args.debug,cool=args.cool,labels=args.labels)
+            grph=Grapher(analysisName,graph=graph,view=(not args.noshow),debug=args.debug,cool=args.cool,labels=args.labels)
 
             slvr=Solver(modelData,task,grph,logger)
             utils.tic()
@@ -130,6 +130,8 @@ if __name__=="__main__":
                     unusedVariables=slvr.findUnusedVariables()
                     if len(unusedVariables):
                         logger.warning("There are some unused input varables: %s\n"%(str(unusedVariables)))
+                    if args.graph:
+                        grph.export()
             except Exception:
                  print(traceback.format_exc())
 
@@ -154,6 +156,6 @@ if __name__=="__main__":
         outputcea.make()
 
     #pp.pprint(rocketModels)
-    plt.ioff()
     if not args.noshow:
+        plt.ioff()
         plt.show()
