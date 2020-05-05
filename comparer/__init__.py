@@ -59,4 +59,4 @@ class Comparer:
             ax.set_xticks(x)
             ax.set_xticklabels(labels)
             ax.legend()
-            fig.savefig('out/comparer/'+var.description.replace(" ","_")+".png",dpi=fig.dpi)
+            fig.savefig('out/comparer/'+var.description.replace(" ","_")+".svg")

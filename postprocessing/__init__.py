@@ -84,21 +84,21 @@ class PostProcesser:
                     axCt_z.plot(blockSolved['z'].getValue(),blockSolved['ct_var'].getValue(),label="%s - %s"%(rocketName,block['name']),color=self.rocketColors[i],linestyle=self.stageStyles[blockIndex])
 
             sep_axThrust_z.legend()
-            sep_figThrust_z.savefig('out/performance/single/'+("Spinta-Quota %s"%(rocketName)).replace(" ","_")+".png",dpi=sep_figThrust_z.dpi)
+            sep_figThrust_z.savefig('out/performance/single/'+("Spinta-Quota %s"%(rocketName)).replace(" ","_")+".svg")
 
             sep_axIsp_z.legend()
-            sep_figIsp_z.savefig('out/performance/single/'+("Isp-Quota %s"%(rocketName)).replace(" ","_")+".png",dpi=sep_figIsp_z.dpi)
+            sep_figIsp_z.savefig('out/performance/single/'+("Isp-Quota %s"%(rocketName)).replace(" ","_")+".svg")
 
             sep_axCt_z.legend()
-            sep_figCt_z.savefig('out/performance/single/'+("Ct-Quota %s"%(rocketName)).replace(" ","_")+".png",dpi=sep_figCt_z.dpi)
+            sep_figCt_z.savefig('out/performance/single/'+("Ct-Quota %s"%(rocketName)).replace(" ","_")+".svg")
 
             i+=1
 
         axThrust_z.legend()
-        figThrust_z.savefig('out/performance/multi/'+"Spinta-Quota.png",dpi=figThrust_z.dpi)
+        figThrust_z.savefig('out/performance/multi/'+"Spinta-Quota.svg")
 
         axIsp_z.legend()
-        figIsp_z.savefig('out/performance/multi/'+"Isp-Quota.png",dpi=figIsp_z.dpi)
+        figIsp_z.savefig('out/performance/multi/'+"Isp-Quota.svg")
 
         axCt_z.legend()
-        figCt_z.savefig('out/performance/multi/'+"Ct-Quota.png",dpi=figCt_z.dpi)
+        figCt_z.savefig('out/performance/multi/'+"Ct-Quota.svg")

@@ -66,6 +66,6 @@ class NozzlePlotter:
                 compAx.plot(plot[1]+cursor+diam/2,-plot[0]+bellLength,color='black')
                 compAx.plot(-plot[1]+cursor+diam/2,-plot[0]+bellLength,color='black')
                 compAx.text(cursor+diam/2,totLength+0.2,engName,horizontalalignment='center',verticalalignment='center',fontsize=16)
-            fig.savefig('out/nozzles/'+engName.replace(" ","_")+".png",dpi=fig.dpi)
+            fig.savefig('out/nozzles/'+engName.replace(" ","_")+".svg")
             cursor+=diam+0.4
         compFig.savefig('out/nozzles/compare.svg')
