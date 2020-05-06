@@ -43,6 +43,20 @@ aliases={
     "J-2 (II° stadio)":"J-2"
 }
 
+multipliers={
+    'p_cc':1e6,
+    'p_tank_f':1e6,
+    'p_tank_ox':1e6,
+    'W_pump_f':1e6,
+    'W_pump_ox':1e6,
+    'Itot_vac':1e6,
+}
+
+prefixes={
+    '1':'',
+    '1000000':'M'
+}
+
 class Latexer:
     def __init__(self,rockets):
         self.rockets=rockets
@@ -70,8 +84,13 @@ class Latexer:
             "\\hline \n"
             "Variabile & Unità di misura & " + ' & '.join(names) +"\\\\ \n")
             for i in np.arange(len(tableValues[0])):
-                values = [list(engines.items())[0][1][tableValues[0][i]].units]
-                values += ['{:.2f}'.format(engines[engName][tableValues[0][i]].getValue()[0]) for engName in tableValues[1]]
+                varname=tableValues[0][i]
+                if varname in multipliers:
+                    multi=multipliers[varname]
+                else:
+                    multi=1
+                values = [prefixes[str(int(multi))]+list(engines.items())[0][1][tableValues[0][i]].units]
+                values += ['{:.2f}'.format(engines[engName][tableValues[0][i]].getValue()[0]/multi) for engName in tableValues[1]]
                 output += "\\hline \n$" + tableValues[0][i].replace('_', '\_') + '$ & ' + ' & '.join(values) + "\\\\ \n"
             output += (" \\hline \n"
             "\\end{tabular}"
