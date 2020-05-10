@@ -91,7 +91,7 @@ class Latexer:
                 else:
                     multi=1
                 values = ['$'+prefixes[str(int(multi))]+list(engines.items())[0][1][tableValues[0][i]].units+'$']
-                values += ['{:.2f}'.format(engines[engName][tableValues[0][i]].getValue()[0]/multi) for engName in tableValues[1]]
+                values += ['{:.4g}'.format(engines[engName][tableValues[0][i]].getValue()[0]/multi) for engName in tableValues[1]]
                 output += "\\hline \n$" + tableValues[0][i].replace('_', '\_') + '$ & ' + ' & '.join(values) + "\\\\ \n"
             output += (" \\hline \n"
             "\\end{tabular}"
