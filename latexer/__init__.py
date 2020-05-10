@@ -117,7 +117,7 @@ class Latexer:
                 multi=1
             values = ['$'+prefixes[str(int(multi))]+list(engines.items())[0][1][key].units+'$']
             values += ['{:.2f}'.format(engines[engName][key].getValue()[0]/multi) for engName in stages if len(engines[engName][key].getValue())==1]
-            output += "\\hline \n$" + key.replace('_', '_{') + '$ & ' + ' & '.join(values) + "\\\\ \n"
+            output += "\\hline \n" + value.description + " & $" + key.replace('_', '_{') + '} $ & ' + ' & '.join(values) + "\\\\ \n"
             i += i
 
         output += (" \\hline \n"
