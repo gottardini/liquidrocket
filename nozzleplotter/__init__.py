@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 from collections import OrderedDict
 import numpy as np
+import copy
 
 xs=[
     'x_cc',
@@ -34,6 +35,9 @@ class NozzlePlotter:
                     for i in range(len(xs)):
                         engines[engName].append((block['solvedData'][xs[i]].getValue(),block['solvedData'][ys[i]].getValue()))
 
+        del engines["J-2 (III° stadio)"]
+        engines['J-2']= copy.deepcopy(engines["J-2 (II° stadio)"])
+        del engines["J-2 (II° stadio)"]
         engines=OrderedDict(sorted(engines.items(), key=lambda x: x[1][-1][0][-1]-x[1][0][0][0],reverse=True))
 
         compFig=plt.figure(figsize=(20, 8),num="Confronto motori")
