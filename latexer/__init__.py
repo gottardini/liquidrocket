@@ -1,4 +1,5 @@
 import numpy as np
+import source as so
 
 """
 "rockets" object is a dictionary of lists:
@@ -95,6 +96,33 @@ class Latexer:
             output += (" \\hline \n"
             "\\end{tabular}"
             "\\end{center} \n\n")
+
+        #crea tabella con tutti i parametri calcolati
+        stages = ["Vulcain II","HM7B","Merlin 1D+","Merlin 1D+ vac","F-1","J-2 (II° stadio)"]
+        names = ["Vulcain II","HM7B","Merlin 1D+","Merlin 1D+ vac","F-1","J-2"]
+        dict = {**so.outflow_gases, **so.combustion_chamber, **so.preburner, **so.feed_system_variables, **so.static_propulsive_parameters, **so.nozzle, **so.tanks, **so.misc}
+        output += ("TABELLA CON TUTTI I PARAMETRI CALCOLATI \n\n"
+        "\\begin{center}\n"
+        "\\begin{tabular}{*{9}{|c}|} \n"
+        "\\hline \n"
+        "\\multicolumn{9}{|c|}{Output Completo} \\\\ \n"
+        "\\hline \n"
+        "Variabile & Simbolo & Unità di misura & " + ' & '.join(names) +"\\\\ \n")
+        i = 0
+        for key, value in dict.items():
+            varname=key
+            if varname in multipliers:
+                multi=multipliers[varname]
+            else:
+                multi=1
+            values = ['$'+prefixes[str(int(multi))]+list(engines.items())[0][1][key].units+'$']
+            values += ['{:.2f}'.format(engines[engName][key].getValue()[0]/multi) for engName in stages if len(engines[engName][key].getValue())==1]
+            output += "\\hline \n" + value.description + " & $" + key.replace('_', '_{') + '} $ & ' + ' & '.join(values) + "\\\\ \n"
+            i += i
+
+        output += (" \\hline \n"
+        "\\end{tabular}"
+        "\\end{center} \n\n")
 
         f = open("out/latex/latex_tables.txt", 'w+')
         f.write(output)

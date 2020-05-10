@@ -92,3 +92,210 @@ $theta\_e$ & $rad$ & 0.131 & 0.131 & 0.166 & 0.122 & 0.166 & 0.148\\
  \hline 
 \end{tabular}\end{center} 
 
+TABELLA CON TUTTI I PARAMETRI CALCOLATI 
+
+\begin{center}
+\begin{tabular}{*{9}{|c}|} 
+\hline 
+\multicolumn{9}{|c|}{Output Completo} \\ 
+\hline 
+Variabile & Simbolo & Unità di misura & Vulcain II & HM7B & Merlin 1D+ & Merlin 1D+ vac & F-1 & J-2\\ 
+\hline 
+Massa molare dei gas combusti & $Mm_{cc_{e} $ & $kg/kmol$ & 13.83 & 11.87 & 22.96 & 23.01 & 22.44 & 11.89\\ 
+\hline 
+Rapporto calori specifici dei gas combusti & $y_{cc_{e} $ & $-$ & 1.14 & 1.16 & 1.15 & 1.15 & 1.15 & 1.16\\ 
+\hline 
+Temperatura alla fine della camera di combustione & $T_{cc} $ & $K$ & 3352.73 & 3028.67 & 3454.67 & 3460.35 & 3356.52 & 3047.93\\ 
+\hline 
+Costante dei gas di scarico & $R_{cc_{e} $ & $J/(kg*K)$ & 601.08 & 700.71 & 362.10 & 361.38 & 370.45 & 699.25\\ 
+\hline 
+Funzione di Van Kerckhove & $GAMMA} $ & $-$ & 0.64 & 0.64 & 0.64 & 0.64 & 0.64 & 0.64\\ 
+\hline 
+Pressione all'efflusso & $p_{e} $ & $Pa$ & 19078.14 & 3727.72 & 87673.23 & 5068.00 & 55266.60 & 20415.58\\ 
+\hline 
+Portata massica di propellente & $m_{p} $ & $kg/s$ & 311.40 & 13.83 & 288.81 & 260.48 & 2555.45 & 238.24\\ 
+\hline 
+Velocità all'efflusso & $u_{e} $ & $m/s$ & 4165.15 & 4315.49 & 2959.71 & 3458.59 & 2835.24 & 4012.76\\ 
+\hline 
+Velocità caratteristica & $c_{star} $ & $m/s$ & 2228.15 & 2275.82 & 1752.22 & 1752.31 & 1745.30 & 2278.26\\ 
+\hline 
+Massa molare dei gas in camera di combustione & $Mm_{cc_{c} $ & $kg/kmol$ & 13.69 & 11.76 & 22.69 & 22.74 & 22.19 & 11.80\\ 
+\hline 
+Rapporto calori specifici dei gas combusti & $y_{cc_{c} $ & $-$ & 1.14 & 1.16 & 1.15 & 1.15 & 1.15 & 1.16\\ 
+\hline 
+Costante specifica dei gas in camera di combustione & $R_{cc_{c} $ & $J/(kg*K)$ & 607.38 & 706.80 & 366.37 & 365.68 & 374.70 & 704.91\\ 
+\hline 
+Numero di Mach in camera di combustione & $Ma_{c} $ & $-$ & 0.20 & 0.20 & 0.20 & 0.20 & 0.20 & 0.20\\ 
+\hline 
+Coefficiente di efflusso piastra di iniezione & $C_{d} $ & $-$ & 0.88 & 0.88 & 0.88 & 0.88 & 0.88 & 0.88\\ 
+\hline 
+Inclinazione linea iniezione ossidante & $alpha_{ox} $ & $rad$ & 0.52 & 0.52 & 0.52 & 0.52 & 0.52 & 0.52\\ 
+\hline 
+Velocità in camera di combustione & $u_{c} $ & $m/s$ & 305.06 & 314.80 & 241.12 & 241.02 & 240.67 & 315.84\\ 
+\hline 
+Densità dei gas in camera di combustione & $rho_{c} $ & $kg/m^3$ & 5.65 & 1.73 & 8.69 & 8.69 & 5.57 & 2.45\\ 
+\hline 
+Area camera di combustione & $A_{c} $ & $m^2$ & 0.18 & 0.03 & 0.14 & 0.12 & 1.91 & 0.31\\ 
+\hline 
+Diametro camera di combustione & $D_{c} $ & $m$ & 0.48 & 0.18 & 0.42 & 0.40 & 1.56 & 0.63\\ 
+\hline 
+Volume camera di combustione & $V_{c} $ & $m^3$ & 0.04 & 0.01 & 0.05 & 0.04 & 0.90 & 0.07\\ 
+\hline 
+Lunghezza camera di combustione & $L_{c} $ & $m$ & 0.24 & 0.25 & 0.33 & 0.32 & 0.47 & 0.24\\ 
+\hline 
+Area di tutti i fori piastra combustibile & $A_{th_{f} $ & $m^2$ & 0.00 & 0.00 & 0.00 & 0.00 & 0.02 & 0.00\\ 
+\hline 
+Area di tutti i fori piastra ossidante & $A_{th_{ox} $ & $m^2$ & 0.00 & 0.00 & 0.00 & 0.00 & 0.04 & 0.00\\ 
+\hline 
+Numero di fori piastra combustibile di diametro 1mm & $n_{h_{f} $ & $-$ & 3513.87 & 325.66 & 2083.20 & 1873.32 & 23771.80 & 4703.85\\ 
+\hline 
+Numero di fori piastra ossidante di diametro 1mm & $n_{h_{ox} $ & $-$ & 5345.47 & 406.07 & 3726.28 & 3365.06 & 45370.17 & 5865.36\\ 
+\hline 
+Numero di fori di ciascunna linea & $n_{h} $ & $-$ & 3513.87 & 325.66 & 2083.20 & 1873.32 & 23771.80 & 4703.85\\ 
+\hline 
+Area di un foro-combustibile & $A_{1h_{f} $ & $m^2$ & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\ 
+\hline 
+Area di un foro-ossidante & $A_{1h_{ox} $ & $m^2$ & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\ 
+\hline 
+Diametro di un foro-combustibile & $D_{1h_{f} $ & $m$ & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\ 
+\hline 
+Diametro di un foro-ossidante & $D_{1h_{ox} $ & $m$ & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\ 
+\hline 
+Velocità iniezione combustibile & $u_{f} $ & $m/s$ & 224.15 & 127.14 & 64.86 & 64.86 & 51.80 & 151.59\\ 
+\hline 
+Velocità iniezione ossidante & $u_{ox} $ & $m/s$ & 55.90 & 31.71 & 49.16 & 49.16 & 43.56 & 37.81\\ 
+\hline 
+Inclinazione linea iniezione combustibile & $alpha_{f} $ & $rad$ & 0.86 & 0.67 & 1.11 & 1.12 & 1.27 & 0.67\\ 
+\hline 
+C_p preburner & $cp_{pb} $ & $J/(kg*K)$ & 7815.94 & 7815.94 & 4068.55 & 4068.55 & 3990.19 & 7815.94\\ 
+\hline 
+Temperatura preburner & $T_{pb} $ & $K$ & 977.48 & 977.48 & 1588.52 & 1588.52 & 1578.18 & 977.48\\ 
+\hline 
+Rapporto calori specifici preburner & $y_{pb} $ & $-$ & 1.37 & 1.37 & 1.22 & 1.22 & 1.22 & 1.37\\ 
+\hline 
+Portata massica di combustibile al motore & $m_{eng_{f} $ & $kg/s$ & 43.86 & 2.31 & 85.96 & 77.30 & 781.48 & 39.71\\ 
+\hline 
+Portata massica di ossidante al motore & $m_{eng_{ox} $ & $kg/s$ & 267.54 & 11.53 & 202.85 & 183.19 & 1773.97 & 198.54\\ 
+\hline 
+Pressione combustibile a valle della pompa & $pstar_{f} $ & $Pa$ & 18400000.00 & 5920000.00 & 17600000.00 & 17600000.00 & 11200000.00 & 8416000.00\\ 
+\hline 
+Pressione ossidante a valle della pompa & $pstar_{ox} $ & $Pa$ & 16675000.00 & 5365000.00 & 15950000.00 & 15950000.00 & 10150000.00 & 7627000.00\\ 
+\hline 
+Delta P pompa combustibile & $deltap_{pump_{f} $ & $Pa$ & 18170000.00 & 5690000.00 & 17255000.00 & 17255000.00 & 11033000.00 & 8188000.00\\ 
+\hline 
+Delta P pompa ossidante & $deltap_{pump_{ox} $ & $Pa$ & 16405000.00 & 5095000.00 & 15605000.00 & 15605000.00 & 10019000.00 & 7355000.00\\ 
+\hline 
+Portata volumetrica di combustibile al motore & $q_{eng_{f} $ & $m^3/s$ & 0.62 & 0.03 & 0.11 & 0.10 & 0.97 & 0.56\\ 
+\hline 
+Portata volumetrica di ossidante al motore & $q_{eng_{ox} $ & $m^3/s$ & 0.23 & 0.01 & 0.14 & 0.13 & 1.55 & 0.17\\ 
+\hline 
+Portata volumetrica di combustibile spillato & $q_{spil_{f} $ & $m^3/s$ & 0.05 & 0.00 & 0.00 & 0.00 & 0.01 & 0.02\\ 
+\hline 
+Portata volumetrica totale di combustibile & $q_{tot_{f} $ & $m^3/s$ & 0.66 & 0.03 & 0.11 & 0.10 & 0.98 & 0.58\\ 
+\hline 
+Portata volumetrica di ossidante spillato & $q_{spil_{ox} $ & $m^3/s$ & 0.00 & 0.00 & 0.00 & 0.00 & 0.01 & 0.00\\ 
+\hline 
+Portata volumetrica totale di ossidante & $q_{tot_{ox} $ & $m^3/s$ & 0.24 & 0.01 & 0.14 & 0.13 & 1.56 & 0.18\\ 
+\hline 
+Portata massica di combustibile spillata & $m_{spil_{f} $ & $kg/s$ & 3.23 & 0.05 & 1.38 & 1.24 & 9.11 & 1.30\\ 
+\hline 
+Portata massica di ossidante spillata & $m_{spil_{ox} $ & $kg/s$ & 3.23 & 0.05 & 1.38 & 1.24 & 9.11 & 1.30\\ 
+\hline 
+Portata massica di combustibile totale & $m_{tot_{f} $ & $kg/s$ & 47.09 & 2.36 & 87.33 & 78.54 & 790.59 & 41.01\\ 
+\hline 
+Portata massica di ossidante totale & $m_{tot_{ox} $ & $kg/s$ & 270.77 & 11.58 & 204.23 & 184.43 & 1783.07 & 199.84\\ 
+\hline 
+Potenza richiesta dalla pompa di combustibile & $W_{pump_{f} $ & $MW$ & 16.09 & 0.25 & 2.33 & 2.09 & 13.49 & 6.31\\ 
+\hline 
+Potenza richiesta dalla pompa di ossidante & $W_{pump_{ox} $ & $MW$ & 4.87 & 0.06 & 2.83 & 2.55 & 19.54 & 1.61\\ 
+\hline 
+Impulso specifico nominale & $Is_{n} $ & $s$ & 445.33 & 458.47 & 298.34 & 365.62 & 270.14 & 432.28\\ 
+\hline 
+Spinta a quota di adattamento & $thr_{ad} $ & $N$ & 1297025.43 & 59699.78 & 854793.00 & 900909.48 & 7245320.47 & 956020.17\\ 
+\hline 
+Quota di adattamento & $z_{ad} $ & $m$ & 14201.59 & 24556.12 & 1237.59 & 22608.24 & 5419.28 & 13771.90\\ 
+\hline 
+Spinta nominale & $thr_{n} $ & $N$ & 1360000.00 & 62200.00 & 845000.00 & 934000.00 & 6770000.00 & 1010000.00\\ 
+\hline 
+Impulso specifico a quota di adattamento & $Is_{ad} $ & $s$ & 424.71 & 440.04 & 301.80 & 352.67 & 289.10 & 409.17\\ 
+\hline 
+Coefficiente di spinta a quota di adattamento & $ct_{ad} $ & $-$ & 1.85 & 1.88 & 1.67 & 1.95 & 1.54 & 1.74\\ 
+\hline 
+Coefficiente di spinta nominale & $ct_{n} $ & $-$ & 1.99 & 2.00 & 1.69 & 2.07 & 1.60 & 1.89\\ 
+\hline 
+Coefficiente di spinta nel vuoto & $ct_{vac} $ & $-$ & 1.99 & 2.00 & 1.84 & 2.07 & 1.84 & 1.89\\ 
+\hline 
+Impulso specifico nel vuoto & $Is_{vac} $ & $s$ & 445.33 & 458.47 & 324.54 & 365.62 & 311.86 & 432.28\\ 
+\hline 
+Impulso specifico volumetrico nel vuoto & $Iv_{vac} $ & $s*kg/m^3$ & 162519.73 & 148770.78 & 374944.55 & 422627.01 & 316348.77 & 140271.09\\ 
+\hline 
+Impulso specifico totale nel vuoto & $Itot_{vac} $ & $MN*s$ & 771.12 & 61.72 & 272.18 & 389.34 & 1236.71 & 389.20\\ 
+\hline 
+Spinta nel vuoto & $thr_{vac} $ & $N$ & 1360000.00 & 62200.00 & 919218.48 & 934000.00 & 7815669.19 & 1010000.00\\ 
+\hline 
+Half expansion angle & $theta} $ & $rad$ & 0.26 & 0.26 & 0.26 & 0.26 & 0.26 & 0.26\\ 
+\hline 
+Sezione di gola & $A_{t} $ & $m^2$ & 0.06 & 0.01 & 0.05 & 0.04 & 0.64 & 0.10\\ 
+\hline 
+Diametro di gola & $D_{t} $ & $m$ & 0.27 & 0.10 & 0.24 & 0.22 & 0.91 & 0.35\\ 
+\hline 
+Area di efflusso & $A_{e} $ & $m^2$ & 3.30 & 0.67 & 0.73 & 6.53 & 10.32 & 2.64\\ 
+\hline 
+Diametro di efflusso & $D_{e} $ & $m$ & 2.05 & 0.92 & 0.97 & 2.88 & 3.62 & 1.83\\ 
+\hline 
+Lunghezza cono & $L_{cone} $ & $m$ & 3.32 & 1.54 & 1.35 & 4.96 & 5.07 & 2.77\\ 
+\hline 
+Lunghezza campana & $L_{bell} $ & $m$ & 2.66 & 1.23 & 1.08 & 3.97 & 4.06 & 2.22\\ 
+\hline 
+Tratto convergente ugello-x & $x_{conv} $ & $m$\\ 
+\hline 
+Tratto convergente ugello-y & $y_{conv} $ & $m$\\ 
+\hline 
+Tratto divergente + ugello-x & $x_{div_{plus} $ & $m$\\ 
+\hline 
+Tratto divergente + ugello-y & $y_{div_{plus} $ & $m$\\ 
+\hline 
+Tratto divergente - ugello-x & $x_{div_{minus} $ & $m$\\ 
+\hline 
+Tratto divergente - ugello-y & $y_{div_{minus} $ & $m$\\ 
+\hline 
+Raggio di curvatura minimo possibile & $rad_{lim} $ & $m$ & 0.00 & 0.00 & 0.00 & 0.00 & 0.00 & 0.00\\ 
+\hline 
+Raggio di curvatura minimo desiderato & $rad_{min} $ & $m$ & 0.12 & 0.04 & 0.10 & 0.10 & 0.39 & 0.16\\ 
+\hline 
+Limite alpha raccordo & $alpha_{lim} $ & $rad$ & 3.64 & 3.65 & 3.68 & 3.65 & 3.69 & 3.63\\ 
+\hline 
+Alpha corrispondente a raggio di curvatura minimo & $alpha_{radmin} $ & $rad$ & 3.88 & 3.88 & 3.90 & 3.88 & 3.91 & 3.88\\ 
+\hline 
+Alpha minimo desiderato & $alpha_{min} $ & $rad$ & 3.93 & 3.93 & 3.93 & 3.93 & 3.93 & 3.93\\ 
+\hline 
+Alpha & $alpha} $ & $rad$ & 3.93 & 3.93 & 3.93 & 3.93 & 3.93 & 3.93\\ 
+\hline 
+Distanza gola-cc & $l_{tc} $ & $m$ & 0.25 & 0.09 & 0.21 & 0.21 & 0.79 & 0.33\\ 
+\hline 
+Raggio di curvatura raccordo & $rad_{rac} $ & $m$ & 0.16 & 0.06 & 0.12 & 0.13 & 0.43 & 0.21\\ 
+\hline 
+Tratto di raccordo convergente-x & $x_{rac} $ & $m$\\ 
+\hline 
+Tratto di raccordo convergente-y & $y_{rac} $ & $m$\\ 
+\hline 
+X camera di combustione & $x_{cc} $ & $m$\\ 
+\hline 
+Y camera di combustione & $y_{cc} $ & $m$\\ 
+\hline 
+Massa di combustibile & $M_{f} $ & $kg$ & 24868.12 & 2287.77 & 25451.34 & 32220.50 & 123657.88 & 15301.27\\ 
+\hline 
+Massa di ossidante & $M_{ox} $ & $kg$ & 151695.51 & 11438.86 & 60065.17 & 76362.59 & 280703.40 & 76506.36\\ 
+\hline 
+Volume di combustibile & $V_{f} $ & $m^3$ & 350.75 & 32.27 & 31.42 & 39.78 & 153.04 & 215.81\\ 
+\hline 
+Volume di ossidante & $V_{ox} $ & $m^3$ & 133.07 & 10.03 & 42.60 & 54.16 & 245.58 & 67.11\\ 
+\hline 
+Densità media propellente & $rho_{avg} $ & $kg/m^3$ & 364.94 & 324.49 & 1155.30 & 1155.92 & 1014.39 & 324.49\\ 
+\hline 
+Coefficiente di sicurezza massa & $k_{s} $ & $-$ & 1.05 & 1.05 & 1.05 & 1.05 & 1.05 & 1.05\\ 
+\hline 
+Lunghezza totale motore & $Ltot} $ & $m$ & 3.05 & 1.53 & 1.54 & 4.41 & 5.01 & 2.65\\ 
+ \hline 
+\end{tabular}\end{center} 
+
