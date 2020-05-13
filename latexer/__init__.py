@@ -37,7 +37,7 @@ tables={
     #["Vulcain II","HM7B","Merlin 1D+","Merlin 1D+ vac","F-1","J-2 (II° stadio)"]),
     "Grandezze tipiche motore":(['m_eng_f', 'm_eng_ox', 'm_p', 'M_f', 'M_ox', 'D_e', 'D_t', 'T_cc', 'D_c', 'L_c', 'W_pump_f', 'W_pump_ox', 'L_bell'],
     ["Vulcain II","HM7B","Merlin 1D+","Merlin 1D+ vac","F-1","J-2 (II° stadio)"]),
-    "Dati di Input":(['eps', 'p_cc', 'T_n', 'p_n', 'rho_f', 'rho_ox', 'r_cc', 'L_star', 'p_tank_f', 'p_tank_ox', 'theta_n', 'theta_e'],
+    "Dati di Input":(['eps', 'p_cc', 'T_n', 'p_n', 'rho_f', 'rho_ox', 'r_cc', 'L_star', 'p_tank_f', 'p_tank_ox', 'theta_n', 'theta_e','eta_2D'],
     ["Vulcain II","HM7B","Merlin 1D+","Merlin 1D+ vac","F-1","J-2 (II° stadio)"]),
 }
 aliases={
@@ -116,7 +116,7 @@ class Latexer:
             else:
                 multi=1
             values = ['$'+prefixes[str(int(multi))]+list(engines.items())[0][1][key].units+'$']
-            values += ['{:.2f}'.format(engines[engName][key].getValue()[0]/multi) for engName in stages if len(engines[engName][key].getValue())==1]
+            values += ['{:.4g}'.format(engines[engName][key].getValue()[0]/multi) for engName in stages if len(engines[engName][key].getValue())==1]
             output += "\\hline \n" + value.description + " & $" + key.replace('_', '_{') + '} $ & ' + ' & '.join(values) + "\\\\ \n"
             i += i
 
