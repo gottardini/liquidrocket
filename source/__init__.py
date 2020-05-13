@@ -85,6 +85,7 @@ feed_system_constants={
     'p_loss_exc':InputVariable("Frazione perdite di carico scambiatore di calore",'-',0.15),
     'p_loss_feed':InputVariable("Frazione perdite di carico linee di alimentazione",'-',0.1),
     'p_loss_valves':InputVariable("Frazione perdite di carico valvole",'-',0.15),
+    #'r_pb':UnknownVariable("Rapporto massico di miscela preburner",'-',CalcFunction(lambda f: 1 if f=="LH2" else 0.2,'fuelName')),
     'r_pb':InputVariable("Rapporto massico di miscela preburner",'-',1),
     'eta_pump_f':UnknownVariable("Rendimento della pompa di combustibile",'-',CalcFunction(lambda fName: 0.75 if fName=='LH2' else 0.8, 'fuelName')),
     'eta_pump_ox':InputVariable("Rendimento della pompa di ossidante",'-',0.8),
@@ -129,8 +130,8 @@ static_propulsive_parameters={
     'thr_n':UnknownVariable("Spinta nominale",'N',CalcFunction(kiloNewtonToNewton,'T_n')),
     'Is_ad':UnknownVariable("Impulso specifico a quota di adattamento",'s',CalcFunction(calcAdaptedSpecificImpulse,'u_e','g_0')),
     'ct_ad':UnknownVariable("Coefficiente di spinta a quota di adattamento",'-',CalcFunction(calcAdaptedThrustCoefficient,'eta_2D','Is_ad','g_0','c_star')),
-    'ct_n':UnknownVariable("Coefficiente di spinta nominale",'-',CalcFunction(calcThrustCoefficient,'p_n', 'y_cc_e', 'eps', 'p_e', 'p_cc')),
-    'ct_vac':UnknownVariable("Coefficiente di spinta nel vuoto",'-',CalcFunction(calcThrustCoefficient,'p_vac', 'y_cc_e', 'eps', 'p_e', 'p_cc')),
+    'ct_n':UnknownVariable("Coefficiente di spinta nominale",'-',CalcFunction(calcThrustCoefficient,'p_n', 'y_cc_e', 'eps', 'p_e', 'p_cc','eta_2D')),
+    'ct_vac':UnknownVariable("Coefficiente di spinta nel vuoto",'-',CalcFunction(calcThrustCoefficient,'p_vac', 'y_cc_e', 'eps', 'p_e', 'p_cc','eta_2D')),
     'Is_vac':UnknownVariable("Impulso specifico nel vuoto",'s',CalcFunction(calcSpecificImpulse,'thr_vac','m_p','g_0')),
     'Iv_vac':UnknownVariable("Impulso specifico volumetrico nel vuoto",'s*kg/m^3', CalcFunction(calcVolumetricSpecificImpulse, 'Is_vac', 'rho_avg')),
     'Itot_vac':UnknownVariable("Impulso specifico totale nel vuoto",'N*s', CalcFunction(calcTotalVolumetricImpulse, 'Is_vac', 'M_ox', 'M_f', 'g_0')),
@@ -139,7 +140,7 @@ static_propulsive_parameters={
 
 nonstatic_propulsive_parameters={
     #ANALYTICAL VALUES
-    'ct_var':UnknownVariable("Coefficiente di spinta",'-',CalcFunction(calcThrustCoefficient,'p','y_cc_e','eps','p_e','p_cc')),
+    'ct_var':UnknownVariable("Coefficiente di spinta",'-',CalcFunction(calcThrustCoefficient,'p','y_cc_e','eps','p_e','p_cc','eta_2D')),
     'thr_var':UnknownVariable("Spinta",'N',CalcFunction(calcThrust,'m_p','u_e','A_e','p_e', 'p')),
     'I_s':UnknownVariable("Impulso specifico",'s', CalcFunction(calcSpecificImpulse, 'thr_var', 'm_p', 'g_0')),
     'I_v':UnknownVariable("Impulso specifico volumetrico",'s*kg/m^3', CalcFunction(calcVolumetricSpecificImpulse, 'I_s', 'rho_avg')),
@@ -204,5 +205,5 @@ tanks={
 }
 
 misc={
-    'Ltot':UnknownVariable("Lunghezza totale motore",'m',CalcFunction(lambda lc,conv,div: lc+(div[-1]-conv[0]) ,'L_c','x_conv','x_div_minus')),
+    'Ltot':UnknownVariable("Lunghezza totale motore",'m',CalcFunction(lambda cc,div: div[-1]-cc[0] ,'x_cc','x_div_minus')),
 }

@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.optimize import fsolve
 from rocketcea.cea_obj_w_units import CEA_Obj
-from rocketcea.cea_obj import CEA_Obj as CEA_ObjSU 
+from rocketcea.cea_obj import CEA_Obj as CEA_ObjSU
 from models import CeaOutput
 
 #GENERAL FUNCTIONS
@@ -45,8 +45,8 @@ def calcAdaptedThrustCoefficient(eta_2D,I_s_e,g_0,c_star):
 def calcThrustCoefficientWhat(p_a,y,eps,p_e,p_c):
     return np.sqrt((2*(y**2)/(y-1))*((2/(y+1))**((y+1)/(y-1))))+eps*((p_e-p_a)/p_c);
 
-def calcThrustCoefficient(p_a,y,eps,p_e,p_c):
-    return y*np.sqrt(2/(y-1)*((2/(y+1))**((y+1)/(y-1)))*(1-(p_e/p_c)**((y-1)/y)))+eps*(p_e-p_a)/p_c;
+def calcThrustCoefficient(p_a,y,eps,p_e,p_c,eta_2d):
+    return eta_2d*y*np.sqrt(2/(y-1)*((2/(y+1))**((y+1)/(y-1)))*(1-(p_e/p_c)**((y-1)/y)))+eps*(p_e-p_a)/p_c;
 
 def calcPropFlowRate(T_z, u_e, eps, p_c, ct, p_e, p_z):
     return T_z/(u_e+((eps*u_e)/(p_c*ct))*(p_e-p_z));
@@ -119,7 +119,7 @@ def calcNumber1Holes(A_th):
     return 4*A_th/(np.pi*1e-6)
 
 def calcNumberHoles(n_h_f, n_h_ox):
-    return min(n_h_f, n_h_ox)
+    return np.ceil(min(n_h_f, n_h_ox))
 
 def calcHoleArea(A_th, n_h):
     return A_th/n_h
